@@ -44,6 +44,38 @@ export function convertServicesListToMap(data: {
 }
 
 /**
+ * Convert a {from, to} array to {from: to} Map based on targetKeys
+ * @param data
+ * @param targetKeys
+ * @param root is Root?
+ */
+export function convertFromToArrayToMap(
+  data: { [key: string]: any },
+  targetKeys: string[],
+  root = false
+) {
+  const deepCopied: { [key: string]: any } = root
+    ? JSON.parse(JSON.stringify(data))
+    : data;
+
+  for (const [key, value] of Object.entries(deepCopied)) {
+    if (targetKeys.includes(key)) {
+      const newMap: { [key: string]: any } = {};
+      for (const item of value) {
+        newMap[item.from] = item.to;
+      }
+      deepCopied[key] = newMap;
+      continue;
+    }
+
+    if (typeof value === "object") {
+      convertFromToArrayToMap(value, targetKeys, false);
+    }
+  }
+  return deepCopied;
+}
+
+/**
  * Expand image with tags
  * @param{IDockerImage[]} images
  * @return{any}

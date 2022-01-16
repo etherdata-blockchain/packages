@@ -22,7 +22,7 @@ export class StorageManagementService extends BaseMongoDBService<schema.IStorage
     const query = () =>
       this.model.find({ owner_id: userID }).populate("deviceStatus");
     //@ts-ignore
-    return this.doPagination(query, page, Configurations.numberPerPage);
+    return this.doPagination(query, page, configs.Configurations.numberPerPage);
   }
 
   /**
