@@ -1,5 +1,5 @@
 import { newObjectId } from "../../utils";
-import ObjectID from "bson-objectid";
+import { ObjectId } from "mongodb";
 
 describe("Given a mongodb utils", () => {
   test("When calling create a object id", () => {
@@ -8,7 +8,7 @@ describe("Given a mongodb utils", () => {
   });
 
   test("When calling create a object id with given string", () => {
-    const id = new ObjectID();
+    const id = new ObjectId();
     const result = newObjectId(id.toHexString());
     expect(`${result}`).toBe(id.toHexString());
   });
