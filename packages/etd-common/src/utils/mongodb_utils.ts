@@ -1,4 +1,4 @@
-import ObjectID from "bson-objectid";
+import { ObjectId } from "bson";
 
 /**
  * Construct a new Object id based on the given [id]
@@ -6,9 +6,9 @@ import ObjectID from "bson-objectid";
  * If not, then random generate a new object id
  * @param id
  */
-export function newObjectId(id?: string): ObjectID {
+export function newObjectId(id?: string): ObjectId {
   if (id !== undefined) {
-    return Object(id);
+    return new ObjectId(id);
   }
-  return new ObjectID();
+  return new ObjectId();
 }
