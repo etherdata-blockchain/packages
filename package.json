@@ -19,7 +19,7 @@
   },
   "scripts": {
     "test": "lerna run test",
-    "coverage": "jest --coverage",
+    "coverage": "jest --coverage --forceExit",
     "build": "lerna run build",
     "lint": "lerna run lint",
     "postinstall": "lerna run bootstrap",
