@@ -13,7 +13,7 @@ import { configs } from "@etherdata-blockchain/common";
 export const jwtVerificationHandler =
   (fn: NextApiHandler) => async (req: NextApiRequest, res: NextApiResponse) => {
     const secret = configs.Environments.ServerSideEnvironments.PUBLIC_SECRET;
-    let user = req.headers.authorization;
+    let user = req.headers?.authorization;
 
     if (user === undefined) {
       res
@@ -39,7 +39,6 @@ export const jwtVerificationHandler =
       };
       return fn(req, res);
     } catch (e) {
-      console.log(e);
       res.status(StatusCodes.UNAUTHORIZED).json({ reason: "Not authorized" });
     }
   };

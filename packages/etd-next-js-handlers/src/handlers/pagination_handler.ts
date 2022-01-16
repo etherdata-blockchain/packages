@@ -19,12 +19,30 @@ export const paginationHandler =
       (req.query.pageSize as string) ??
       `${configs.Configurations.numberPerPage}`;
     if (req.method !== "GET") {
-      return fn(req, res);
+      res
+        .status(StatusCodes.METHOD_NOT_ALLOWED)
+        .json({ reason: "Only works on GET request" });
+      return;
+    }
+
+    if (pageSize.length === 0 || page.length === 0) {
+      res
+        .status(StatusCodes.BAD_REQUEST)
+        .json({ err: "Neither page size nor page should be an empty string" });
+      return;
     }
 
     try {
-      const pageNumber = parseInt(page);
-      const pageSizeNumber = parseInt(pageSize);
+      const pageNumber = Number(page);
+      const pageSizeNumber = Number(pageSize);
+
+      if (isNaN(pageNumber) || isNaN(pageSizeNumber)) {
+        res
+          .status(StatusCodes.BAD_REQUEST)
+          .json({ err: "Cannot parse pagination request" });
+        return;
+      }
+
       req.body = {
         ...req.body,
         page: pageNumber,
