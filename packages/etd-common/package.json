@@ -1,9 +1,10 @@
 {
   "name": "@etherdata-blockchain/common",
-  "version": "1.4.13",
+  "version": "1.4.14",
   "main": "src/index.ts",
   "license": "MIT",
   "dependencies": {
+    "@etherdata-blockchain/storage-model": "^1.4.14",
     "@types/dockerode": "^3.3.1",
     "@types/json-schema": "^7.0.9",
     "bson-objectid": "^2.0.1",
@@ -11,8 +12,7 @@
     "json-schema": "^0.4.0",
     "typescript": "^4.5.4",
     "web3": "^1.6.1",
-    "yaml": "^1.10.2",
-    "@etherdata-blockchain/storage-model": "*"
+    "yaml": "^1.10.2"
   },
   "publishConfig": {
     "access": "public"
