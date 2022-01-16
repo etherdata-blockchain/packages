@@ -1,6 +1,6 @@
 {
   "name": "@etherdata-blockchain/common",
-  "version": "1.4.11",
+  "version": "1.4.12",
   "main": "src/index.ts",
   "license": "MIT",
   "dependencies": {

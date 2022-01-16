@@ -1,6 +1,6 @@
 {
   "name": "@etherdata-blockchain/storage-model",
-  "version": "1.4.11",
+  "version": "1.4.12",
   "main": "src/index.ts",
   "license": "MIT",
   "dependencies": {
@@ -9,7 +9,7 @@
     "web3-eth": "^1.6.1"
   },
   "devDependencies": {
-    "@etherdata-blockchain/common": "^1.4.11",
+    "@etherdata-blockchain/common": "^1.4.12",
     "jest": "^27.4.7",
     "ts-jest": "^27.1.3"
   },
