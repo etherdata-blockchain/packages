@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.5.0 (2022-01-16)
+
+
+### Features
+
+* **tests:** add more tests in logger package and fix service bugs ([#4](https://github.com/etherdata-blockchain/packages/issues/4)) ([c179fdc](https://github.com/etherdata-blockchain/packages/commit/c179fdc055d21edcdb83518ed1b2537c4670468d))
+
+
+
+
+
 ## 1.4.15 (2022-01-16)
 
 **Note:** Version bump only for package @etherdata-blockchain/history

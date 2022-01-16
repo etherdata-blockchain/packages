@@ -1,10 +1,10 @@
 {
   "name": "@etherdata-blockchain/common",
-  "version": "1.4.15",
+  "version": "1.5.0",
   "main": "src/index.ts",
   "license": "MIT",
   "dependencies": {
-    "@etherdata-blockchain/storage-model": "^1.4.15",
+    "@etherdata-blockchain/storage-model": "^1.5.0",
     "@types/dockerode": "^3.3.1",
     "@types/json-schema": "^7.0.9",
     "bson": "^4.6.1",
