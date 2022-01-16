@@ -1,0 +1,8 @@
+.devcontainer
+.github
+.vscode
+*.md
+*.json
+*.js
+*.lock
+jest.config.js

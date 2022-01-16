@@ -1,0 +1,23 @@
+{
+  "name": "@etherdata-blockchain/history",
+  "version": "1.4.10",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "dependencies": {
+    "moment": "^2.29.1",
+    "typescript": "^4.5.4"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.4.0",
+    "jest": "^27.4.7",
+    "ts-jest": "^27.1.3"
+  },
+  "gitHead": "222c868ef7b50aa6a8fb216019733e971c213a89"
+}

@@ -1,0 +1,29 @@
+{
+  "name": "@etherdata-blockchain/services",
+  "version": "1.4.10",
+  "main": "index/index.ts",
+  "license": "MIT",
+  "dependencies": {
+    "@etherdata-blockchain/logger": "^1.4.10",
+    "@etherdata-blockchain/storage-model": "^1.4.10",
+    "@types/jsonwebtoken": "^8.5.7",
+    "axios": "^0.24.0",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.1",
+    "socket.io": "^4.4.1",
+    "typescript": "^4.5.4"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "jest --passWithNoTests"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.4.0",
+    "jest": "^27.4.7",
+    "ts-jest": "^27.1.3"
+  },
+  "gitHead": "222c868ef7b50aa6a8fb216019733e971c213a89"
+}

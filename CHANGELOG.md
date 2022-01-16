@@ -1,0 +1,191 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.4.8](https://github.com/etherdata-blockchain/packages/compare/v1.4.7...v1.4.8) (2022-01-16)
+
+**Note:** Version bump only for package root
+
+
+
+
+
+## 1.4.7 (2022-01-16)
+
+
+### Bug Fixes
+
+* add public access in every pkg ([3c76525](https://github.com/etherdata-blockchain/packages/commit/3c76525ffdc0b4904d089ef1107be04babe3eea0))
+
+
+
+
+
+## 1.4.6 (2022-01-16)
+
+
+### Bug Fixes
+
+* release action ([a192ddd](https://github.com/etherdata-blockchain/packages/commit/a192ddd331d3261fcddd1b8d56ba6aad7f126e2e))
+
+
+
+
+
+## 1.4.5 (2022-01-16)
+
+
+### Bug Fixes
+
+* action ([ae7035f](https://github.com/etherdata-blockchain/packages/commit/ae7035f3353a335097ec10080080b0d5f50a00cd))
+
+
+
+
+
+## [1.4.4](https://github.com/etherdata-blockchain/packages/compare/v1.4.3...v1.4.4) (2022-01-16)
+
+**Note:** Version bump only for package root
+
+
+
+
+
+## [1.4.3](https://github.com/etherdata-blockchain/packages/compare/v1.4.2...v1.4.3) (2022-01-16)
+
+**Note:** Version bump only for package root
+
+
+
+
+
+## 1.4.2 (2022-01-16)
+
+
+### Bug Fixes
+
+* action ([3fadd05](https://github.com/etherdata-blockchain/packages/commit/3fadd0592caadf9369f230b246dbf2d1674d91fa))
+
+
+
+
+
+## 1.4.1 (2022-01-16)
+
+
+### Bug Fixes
+
+* Update action ([6c45c1b](https://github.com/etherdata-blockchain/packages/commit/6c45c1bee553a955f9613d2f1fc64a44f93eda79))
+
+
+
+
+
+# 1.4.0 (2022-01-16)
+
+
+### Features
+
+* Migrate packages into pkg repo ([bc48421](https://github.com/etherdata-blockchain/packages/commit/bc484215b6895611188e7c70e5e0064de6ce0053))
+
+
+
+
+
+## [1.3.3](https://github.com/etherdata-blockchain/packages/compare/v1.3.2...v1.3.3) (2022-01-16)
+
+**Note:** Version bump only for package root
+
+
+
+
+
+## 1.3.1 (2022-01-16)
+
+**Note:** Version bump only for package root
+
+
+
+
+
+# 1.3.0 (2022-01-16)
+
+
+### Features
+
+* Add automatically npm publish ([70665ba](https://github.com/etherdata-blockchain/packages/commit/70665bad80482650901e733c0aece9c66800268e))
+
+
+
+
+
+## 1.2.2 (2022-01-16)
+
+
+### Bug Fixes
+
+* update readme ([6f6ccfe](https://github.com/etherdata-blockchain/packages/commit/6f6ccfec00892c033c2bd3bff715ce7d9842d554))
+
+
+
+
+
+## [1.2.1](https://github.com/etherdata-blockchain/packages/compare/v1.2.0...v1.2.1) (2022-01-16)
+
+**Note:** Version bump only for package root
+
+
+
+
+
+## [1.1.2-alpha.3](https://github.com/etherdata-blockchain/packages/compare/v1.1.2-alpha.2...v1.1.2-alpha.3) (2022-01-16)
+
+**Note:** Version bump only for package root
+
+
+
+
+
+## [1.1.2-alpha.2](https://github.com/etherdata-blockchain/packages/compare/v1.1.2-alpha.1...v1.1.2-alpha.2) (2022-01-16)
+
+
+### Bug Fixes
+
+* add readme ([8e7c114](https://github.com/etherdata-blockchain/packages/commit/8e7c1147322fe9d85020b392f24aadb42fb982b0))
+
+
+
+
+
+## [1.1.2-alpha.1](https://github.com/etherdata-blockchain/packages/compare/v1.1.2-alpha.0...v1.1.2-alpha.1) (2022-01-16)
+
+**Note:** Version bump only for package root
+
+
+
+
+
+## 1.1.2-alpha.0 (2022-01-16)
+
+**Note:** Version bump only for package root
+
+
+
+
+
+## 1.1.1 (2022-01-16)
+
+**Note:** Version bump only for package root
+
+
+
+
+
+# 1.1.0 (2022-01-16)
+
+
+### Features
+
+* Add github action support ([3211883](https://github.com/etherdata-blockchain/packages/commit/3211883e667cd448b6cbdf4c9c697cf5286660c2))
+* Add release action in package json ([3764d2b](https://github.com/etherdata-blockchain/packages/commit/3764d2bc98911c8b3f6bd5b5b84f9998b6dca3ad))
