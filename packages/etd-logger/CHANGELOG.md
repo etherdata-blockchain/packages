@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.5.4 (2022-01-21)
+
+
+### Bug Fixes
+
+* package json ([05d3fef](https://github.com/etherdata-blockchain/packages/commit/05d3fef8c1822e21feb44e673ddc4c15895cac4b))
+
+
+
+
+
 ## 1.5.3 (2022-01-21)
 
 
