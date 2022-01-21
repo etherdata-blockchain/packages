@@ -1,7 +1,7 @@
 {
   "name": "@etherdata-blockchain/services",
   "version": "1.5.3",
-  "main": "index/index.ts",
+  "main": "src/index.ts",
   "license": "MIT",
   "dependencies": {
     "@etherdata-blockchain/logger": "^1.5.3",
