@@ -33,11 +33,7 @@ export abstract class BaseMongoDBService<
    */
   async get(id: string): Promise<T | undefined> {
     const result = await this.performGet(id).exec();
-    if (result) {
-      return result;
-    } else {
-      return undefined;
-    }
+    return result;
   }
 
   /**
@@ -89,11 +85,11 @@ export abstract class BaseMongoDBService<
    * @param data
    */
   async performPatch(data: T): Promise<T> {
-    return this.model.findOneAndUpdate(
+    return await this.model.findOneAndUpdate(
       { _id: data._id },
       //@ts-ignore
       data,
-      { upsert: true }
+      { upsert: true, new: true }
     );
   }
 
@@ -143,16 +139,12 @@ export abstract class BaseMongoDBService<
     pageNumber: number,
     pageSize: number
   ): Promise<interfaces.PaginationResult<T>> {
-    if (pageNumber === 0) {
-      throw Error("Page number should be greater than 0");
-    }
-    const skip = Math.max(
-      0,
-      (pageNumber - 1) * (pageSize ?? configs.Configurations.numberPerPage)
-    );
-    const limit = pageSize ?? 20;
     const count = await model().countDocuments();
-    const numPages = Math.ceil(count / pageSize);
+    const { skip, numPages, limit } = this.calculatePaginationInfo(
+      pageNumber,
+      pageSize,
+      count
+    );
     const results = await model().skip(skip).limit(limit).exec();
 
     return {
@@ -178,17 +170,12 @@ export abstract class BaseMongoDBService<
     pageNumber: number,
     pageSize: number
   ): Promise<interfaces.PaginationResult<T>> {
-    if (pageNumber === 0) {
-      throw Error("Page number should be greater than 0");
-    }
-
-    const skip = Math.max(
-      0,
-      (pageNumber - 1) * (pageSize ?? configs.Configurations.numberPerPage)
-    );
-    const limit = pageSize ?? 20;
     const count = await model().countDocuments();
-    const numPages = Math.ceil(count / pageSize);
+    const { skip, numPages, limit } = this.calculatePaginationInfo(
+      pageNumber,
+      pageSize,
+      count
+    );
     const results = await aggregation().skip(skip).limit(limit).exec();
 
     return {
@@ -197,6 +184,35 @@ export abstract class BaseMongoDBService<
       results: results,
       totalPage: numPages,
       pageSize: configs.Configurations.numberPerPage,
+    };
+  }
+
+  /**
+   * Calculate number of pages need to skip
+   * @param pageNumber current page number
+   * @param pageSize page's size
+   * @param count number of document
+   * @private
+   */
+  private calculatePaginationInfo(
+    pageNumber: number,
+    pageSize: number,
+    count: number
+  ) {
+    if (pageNumber === 0) {
+      throw Error("Page number should be greater than 0");
+    }
+    const skip = Math.max(
+      0,
+      (pageNumber - 1) * (pageSize ?? configs.Configurations.numberPerPage)
+    );
+
+    const limit = pageSize ?? configs.Configurations.numberPerPage;
+    const numPages = Math.ceil(count / pageSize);
+    return {
+      skip,
+      limit,
+      numPages,
     };
   }
 }
