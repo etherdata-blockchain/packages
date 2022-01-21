@@ -4,7 +4,7 @@ import { Model } from "mongoose";
 import { BaseMongoDBService } from "../../db_service";
 
 /**
- * Docker image db plugin
+ * Static node service
  */
 export class StaticNodeService extends BaseMongoDBService<schema.IStaticNode> {
   serviceName = enums.DBServiceName.staticNode;
