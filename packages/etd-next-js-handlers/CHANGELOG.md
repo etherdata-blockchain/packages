@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.5.2 (2022-01-21)
+
+
+### Bug Fixes
+
+* next-js-handlers package issue ([f71e248](https://github.com/etherdata-blockchain/packages/commit/f71e248dfdd1935f0f5dedfd03db0dff29e2486d))
+
+
+
+
+
 ## 1.5.1 (2022-01-21)
 
 **Note:** Version bump only for package @etherdata-blockchain/next-js-handlers
