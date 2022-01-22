@@ -18,12 +18,6 @@ export const paginationHandler =
     const pageSize =
       (req.query.pageSize as string) ??
       `${configs.Configurations.numberPerPage}`;
-    if (req.method !== "GET") {
-      res
-        .status(StatusCodes.METHOD_NOT_ALLOWED)
-        .json({ reason: "Only works on GET request" });
-      return;
-    }
 
     if (pageSize.length === 0 || page.length === 0) {
       res

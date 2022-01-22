@@ -14,14 +14,6 @@ describe("Given a pagination handler", () => {
     expect(res._getStatusCode()).toBe(StatusCodes.OK);
   });
 
-  test("When calling with a POST request", async () => {
-    const { req, res } = createMocks({
-      method: "POST",
-    });
-    await paginationHandler(okHandler)(req, res);
-    expect(res._getStatusCode()).toBe(StatusCodes.METHOD_NOT_ALLOWED);
-  });
-
   test("When calling with a GET request", async () => {
     const page = "1";
     const pageSize = "2";
