@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.5.7 (2022-01-22)
+
+
+### Bug Fixes
+
+* etd-history export ([b390212](https://github.com/etherdata-blockchain/packages/commit/b390212ac65f4a83c5115d76185a453638371b36))
+
+
+
+
+
 ## 1.5.6 (2022-01-22)
 
 
