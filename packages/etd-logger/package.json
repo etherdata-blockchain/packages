@@ -1,6 +1,6 @@
 {
   "name": "@etherdata-blockchain/logger",
-  "version": "1.5.4",
+  "version": "1.5.5",
   "main": "src/index.ts",
   "license": "MIT",
   "dependencies": {

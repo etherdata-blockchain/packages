@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.5.5 (2022-01-22)
+
+
+### Bug Fixes
+
+* add missing docker value type ([897ea61](https://github.com/etherdata-blockchain/packages/commit/897ea611752e38c3378d3a6c11f6203cba7cee5a))
+
+
+
+
+
 ## 1.5.4 (2022-01-21)
 
 
