@@ -1,7 +1,7 @@
 {
   "name": "@etherdata-blockchain/history",
-  "version": "1.5.6",
-  "main": "dist/index.js",
+  "version": "1.5.5",
+  "main": "src/index.ts",
   "license": "MIT",
   "dependencies": {
     "moment": "^2.29.1",
