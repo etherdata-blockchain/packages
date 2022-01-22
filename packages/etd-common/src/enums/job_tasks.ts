@@ -28,7 +28,7 @@ export interface Web3ValueType {
   params: string[];
 }
 
-interface DockerValueType {
+export interface DockerValueType {
   method: "logs" | "start" | "stop" | "remove" | "restart" | "exec";
   value: any;
 }
