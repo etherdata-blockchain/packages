@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.5.8 (2022-01-22)
+
+
+### Bug Fixes
+
+* removed method not allowed in next-js-handlers ([d7f1f49](https://github.com/etherdata-blockchain/packages/commit/d7f1f4931543e399d6d418022623e57556547091))
+
+
+
+
+
 ## 1.5.7 (2022-01-22)
 
 

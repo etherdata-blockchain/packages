@@ -1,11 +1,11 @@
 {
   "name": "@etherdata-blockchain/services",
-  "version": "1.5.7",
+  "version": "1.5.8",
   "main": "src/index.ts",
   "license": "MIT",
   "dependencies": {
-    "@etherdata-blockchain/logger": "^1.5.7",
-    "@etherdata-blockchain/storage-model": "^1.5.7",
+    "@etherdata-blockchain/logger": "^1.5.8",
+    "@etherdata-blockchain/storage-model": "^1.5.8",
     "@types/jsonwebtoken": "^8.5.7",
     "axios": "^0.24.0",
     "jsonwebtoken": "^8.5.1",
