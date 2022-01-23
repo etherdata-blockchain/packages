@@ -1,4 +1,8 @@
-import { ContainerStack, DockerContainerConfig, ImageStack } from "docker-plan";
+import {
+  ContainerStack,
+  DockerContainerConfig,
+  ImageStack,
+} from "@etherdata-blockchain/docker-plan";
 
 export interface UpdateTemplateDBInterface extends Document {
   name: string;

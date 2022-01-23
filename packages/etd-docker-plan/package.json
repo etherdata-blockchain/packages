@@ -1,5 +1,5 @@
 {
-  "name": "docker-plan",
+  "name": "@etherdata-blockchain/docker-plan",
   "version": "1.0.3",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

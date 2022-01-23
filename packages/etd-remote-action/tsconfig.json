@@ -106,8 +106,6 @@
     /* Skip type checking all .d.ts files. */
   },
   "references": [
-    {
-      "path": "../etd-docker-plan"
-    }
+    {"path":  "../etd-logger"},
   ]
 }

@@ -107,7 +107,7 @@
   },
   "references": [
     {
-      "path": "../etd-docker-plan"
+      "path": "../etd-logger"
     }
   ]
 }
