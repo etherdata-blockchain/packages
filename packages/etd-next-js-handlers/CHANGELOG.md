@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.6.0 (2022-01-23)
+
+
+### Features
+
+* use index.js as main and add type definition ([#6](https://github.com/etherdata-blockchain/packages/issues/6)) ([13121cc](https://github.com/etherdata-blockchain/packages/commit/13121cc2150104cdea51208430bed263e5a1e59d))
+
+
+
+
+
 ## 1.5.8 (2022-01-22)
 
 
