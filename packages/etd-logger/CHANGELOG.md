@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.6.2 (2022-01-23)
+
+
+### Bug Fixes
+
+* mongodb import ([78fe5b7](https://github.com/etherdata-blockchain/packages/commit/78fe5b73e50851b2643f4aa0b6a343172fa302d0))
+
+
+
+
+
 ## 1.6.1 (2022-01-23)
 
 
