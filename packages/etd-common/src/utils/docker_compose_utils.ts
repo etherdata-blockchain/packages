@@ -29,7 +29,10 @@
  * ```
  * @param{any} data data from json schema form
  */
-import { schema } from "@etherdata-blockchain/storage-model";
+import {
+  DockerImageDBInterface,
+  InstallationTemplateDBInterface,
+} from "../interfaces/db-interfaces";
 
 export function convertServicesListToMap(data: {
   services: { name: string; service: any }[];
@@ -81,8 +84,8 @@ export function convertFromToArrayToMap(
  * @return{any}
  */
 export function expandImages(
-  images: schema.IDockerImage[]
-): schema.IDockerImage[] {
+  images: DockerImageDBInterface[]
+): DockerImageDBInterface[] {
   const imageWithTags: any[] = [];
   for (const image of images) {
     // @ts-ignore
@@ -134,7 +137,7 @@ export function expandImages(
  * @param data
  */
 export function convertQueryFormatToCreateFormat(
-  data: schema.IInstallationTemplate
+  data: InstallationTemplateDBInterface
 ) {
   const deepCopied = JSON.parse(JSON.stringify(data));
   deepCopied.services = data.services.map((s) => {

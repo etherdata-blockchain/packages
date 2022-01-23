@@ -1,4 +1,5 @@
 import {
+  convertFromToArrayToMap,
   convertQueryFormatToCreateFormat,
   convertServicesListToMap,
   expandImages,
@@ -14,7 +15,6 @@ import {
   MockJSONSchemaFormInstallationTemplateData,
   MockTagId,
 } from "../../mockdata";
-import { utils } from "@etherdata-blockchain/common";
 
 describe("Given a install script utils", () => {
   test("When calling postprocess handler", () => {
@@ -175,7 +175,7 @@ describe("Given an update template utils", () => {
         },
       ],
     };
-    const result = utils.convertFromToArrayToMap(obj, ["envs"]);
+    const result = convertFromToArrayToMap(obj, ["envs"]);
     expect(result.name).toBe(obj.name);
     expect(result.envs).toStrictEqual({ a: "b", c: "d" });
   });
@@ -196,7 +196,7 @@ describe("Given an update template utils", () => {
         ],
       },
     };
-    const result = utils.convertFromToArrayToMap(obj, ["envs"]);
+    const result = convertFromToArrayToMap(obj, ["envs"]);
     expect(result.name).toBe(obj.name);
     expect(result.config.envs).toStrictEqual({ a: "b", c: "d" });
   });
