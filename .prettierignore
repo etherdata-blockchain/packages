@@ -6,3 +6,4 @@
 *.js
 *.lock
 jest.config.js
+*.yml

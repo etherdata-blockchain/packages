@@ -6,3 +6,4 @@ coverage
 *.log
 dist
 *.tsbuildinfo
+out.json

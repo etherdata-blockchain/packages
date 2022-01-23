@@ -1,0 +1,38 @@
+{
+  "name": "@etherdata-blockchain/remote-action",
+  "version": "0.2.3",
+  "description": "Remote ssh config file",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "jest": "^27.0.6",
+    "ts-node": "^10.1.0",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.3.5",
+    "ts-jest": "^27.0.3"
+  },
+  "dependencies": {
+    "@types/chalk": "^2.2.0",
+    "@types/cli-progress": "^3.9.2",
+    "@types/jest": "^26.0.24",
+    "@types/node": "^16.3.2",
+    "@types/yaml": "^1.9.7",
+    "cancelable-promise": "^4.2.1",
+    "chalk": "^4.1.1",
+    "cli-progress": "^3.9.0",
+    "moment": "^2.29.1",
+    "node-ssh": "^12.0.0",
+    "yaml": "^1.10.2",
+    "@etherdata-blockchain/logger": "*"
+  },
+  "scripts": {
+    "start": "ts-node lib/example.ts",
+    "dev": "ts-node-dev --respawn --transpile-only lib/index.ts",
+    "test": "jest",
+    "build": "tsc"
+  }
+}
