@@ -1,11 +1,11 @@
 {
   "name": "@etherdata-blockchain/common",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "license": "MIT",
   "dependencies": {
-    "@etherdata-blockchain/docker-plan": "^1.7.0",
+    "@etherdata-blockchain/docker-plan": "^1.7.1",
     "@types/dockerode": "^3.3.1",
     "@types/json-schema": "^7.0.9",
     "bson": "^4.6.1",
