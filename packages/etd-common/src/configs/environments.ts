@@ -1,7 +1,7 @@
 /**
  * All used environment
  */
-import {JSONSchema7} from "json-schema";
+import { JSONSchema7 } from "json-schema";
 
 /**
  * Environments used in admin server
