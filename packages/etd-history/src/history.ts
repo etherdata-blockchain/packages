@@ -5,8 +5,12 @@
  * It will only store maximum number of block history,
  * and if exceed, the oldest history will be removed.
  */
-import {Moment} from "moment";
-import {BlockTimeHistory, DifficultyHistory, ETDHistoryInterface,} from "./interfaces";
+import { Moment } from "moment";
+import {
+  BlockTimeHistory,
+  DifficultyHistory,
+  ETDHistoryInterface,
+} from "./interfaces";
 
 /**
  * Class which will process history info of given etd's stats

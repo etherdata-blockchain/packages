@@ -1,7 +1,8 @@
 {
   "name": "@etherdata-blockchain/storage-model",
   "version": "1.5.8",
-  "main": "src/index.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "license": "MIT",
   "dependencies": {
     "mongoose": "^6.1.6",
@@ -17,7 +18,8 @@
     "access": "public"
   },
   "scripts": {
-    "test": "jest --passWithNoTests"
+    "test": "jest --passWithNoTests",
+    "build": "tsc"
   },
   "gitHead": "222c868ef7b50aa6a8fb216019733e971c213a89"
 }
