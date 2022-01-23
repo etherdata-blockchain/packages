@@ -1,7 +1,7 @@
 name: ETD Box
 
 output: false
-remote: ["192.168.1.100"]
+remote: [ "192.168.1.100" ]
 
 login:
   username: abc

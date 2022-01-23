@@ -1,4 +1,4 @@
-import ConfigParser, { Config } from "../config";
+import ConfigParser from "../config";
 
 jest.mock("node-ssh", () => {
   return {

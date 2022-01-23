@@ -1,6 +1,6 @@
 import fs from "fs";
 import YAML from "yaml";
-import { Config, Logger as ConfigLogger, Login } from "./config-interface";
+import { Config } from "./config-interface";
 import Logger from "@etherdata-blockchain/logger";
 import { Remote } from "../remote/remote";
 import { Result } from "../remote";
@@ -90,8 +90,8 @@ interface RunCommandParam {
 }
 
 export class ConfigParser {
-  private readonly filePath: string;
   config: Config | undefined;
+  private readonly filePath: string;
   private readonly concurrency: number;
 
   constructor({ filePath, concurrency }: Param) {
@@ -119,6 +119,48 @@ export class ConfigParser {
     Logger.info("Finish reading configuration string");
     this.config = config;
     return this;
+  }
+
+  /**
+   * Run Command.
+   * Will run command in parallel if config.concurrency is set
+   */
+  runRemoteCommand(
+    param: RunCommandParam
+  ): CancelablePromise<Result[][] | undefined> {
+    return new CancelablePromise(async (resolve, reject, onCancel) => {
+      let returnResults: Result[][] = [];
+      if (this.config === undefined) {
+        throw new Error("You need to read config file first");
+      }
+      this.checkAndFixConfig();
+      Logger.info("Starting job " + this.config.name);
+      let concurrency = this.config.concurrency ?? 1;
+      // Perform deep copy
+      let remoteAddresses: string[] = JSON.parse(
+        JSON.stringify(this.config.remote)
+      );
+
+      remoteAddresses.splice(0, this.config.start_from);
+      let count = 0;
+      while (remoteAddresses.length > 0) {
+        // Split array into a small size of chunk
+        let remotes = remoteAddresses.splice(0, concurrency);
+        let promises = remotes.map((r, index) =>
+          this.runCommandHelper(r, index + count, param)
+        );
+        onCancel(() => {
+          promises.forEach((p) => {
+            p.cancel();
+          });
+        });
+        let results = await CancelablePromise.all(promises);
+        returnResults = returnResults.concat(results);
+        count += remotes.length;
+      }
+
+      resolve(returnResults);
+    });
   }
 
   private checkAndFixConfig() {
@@ -278,47 +320,5 @@ export class ConfigParser {
         }
       }
     );
-  }
-
-  /**
-   * Run Command.
-   * Will run command in parallel if config.concurrency is set
-   */
-  runRemoteCommand(
-    param: RunCommandParam
-  ): CancelablePromise<Result[][] | undefined> {
-    return new CancelablePromise(async (resolve, reject, onCancel) => {
-      let returnResults: Result[][] = [];
-      if (this.config === undefined) {
-        throw new Error("You need to read config file first");
-      }
-      this.checkAndFixConfig();
-      Logger.info("Starting job " + this.config.name);
-      let concurrency = this.config.concurrency ?? 1;
-      // Perform deep copy
-      let remoteAddresses: string[] = JSON.parse(
-        JSON.stringify(this.config.remote)
-      );
-
-      remoteAddresses.splice(0, this.config.start_from);
-      let count = 0;
-      while (remoteAddresses.length > 0) {
-        // Split array into a small size of chunk
-        let remotes = remoteAddresses.splice(0, concurrency);
-        let promises = remotes.map((r, index) =>
-          this.runCommandHelper(r, index + count, param)
-        );
-        onCancel(() => {
-          promises.forEach((p) => {
-            p.cancel();
-          });
-        });
-        let results = await CancelablePromise.all(promises);
-        returnResults = returnResults.concat(results);
-        count += remotes.length;
-      }
-
-      resolve(returnResults);
-    });
   }
 }

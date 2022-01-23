@@ -1,5 +1,5 @@
 import { BasePlugin } from "../base";
-import { WorkerCondition, WorkerStatus, Worker } from "../../interfaces";
+import { Worker, WorkerCondition, WorkerStatus } from "../../interfaces";
 import Web3 from "web3";
 import Logger from "@etherdata-blockchain/logger";
 
@@ -15,6 +15,105 @@ export type Web3PluginAcceptType =
 
 export class Web3Plugin extends BasePlugin {
   pluginName: string = "Web3 Plugin";
+
+  async doChecking(
+    worker: Worker,
+    condition: WorkerCondition<Web3PluginAcceptType>
+  ): Promise<WorkerStatus> {
+    const { remote } = worker;
+    const { workingType, comparison } = condition;
+
+    switch (workingType) {
+      case "isMining":
+        let [isMining, miningErr] = await this.checkIsMining(worker);
+        return {
+          remote: remote,
+          title: "Is Mining",
+          message: miningErr ?? `${isMining}`,
+          success: isMining,
+        };
+
+      case "isSyncing":
+        let [isSyncing, syncingErr] = await this.checkIsSyncing(worker);
+        return {
+          remote: remote,
+          title: "Is Syncing",
+          message: syncingErr ?? `${isSyncing}`,
+          success: isSyncing,
+        };
+      case "nodeVersion":
+        let [isNodeEqual, nodeErr] = await this.checkNodeVersion(
+          worker,
+          condition
+        );
+        return {
+          remote,
+          title: "Node Version",
+          message: nodeErr ?? `${isNodeEqual}`,
+          success: isNodeEqual,
+        };
+
+      case "chainID":
+        let [isChainIDEqual, chainIDErr] = await this.checkChainID(
+          worker,
+          condition
+        );
+        return {
+          remote,
+          title: "ChainID",
+          message: chainIDErr ?? `${isChainIDEqual}`,
+          success: isChainIDEqual,
+        };
+
+      case "coinbase":
+        let [isCoinbaseEqual, coinbaseErr] = await this.checkCoinbase(
+          worker,
+          condition
+        );
+        return {
+          remote,
+          title: "Coinbase",
+          message: coinbaseErr ?? `${isCoinbaseEqual}`,
+          success: isCoinbaseEqual,
+        };
+
+      case "blockNumber":
+        let [blockNumberResult, blockNumberErr] = await this.checkBlockNumber(
+          worker,
+          condition
+        );
+        return {
+          remote,
+          title: "Block Number",
+          message: blockNumberErr ?? `${blockNumberResult}`,
+          success: blockNumberResult,
+        };
+      case "peerCount":
+        let [peerCountResult, peerCountErr] = await this.checkPeerCount(
+          worker,
+          condition
+        );
+        return {
+          remote,
+          title: "Peer Count",
+          message: peerCountErr ?? `${peerCountResult}`,
+          success: peerCountResult,
+        };
+
+      case "hashRate":
+        let [hashRateResult, hashRateErr] = await this.checkHashRate(
+          worker,
+          condition
+        );
+        return {
+          remote,
+          title: "HashRate",
+          message: hashRateErr ?? `${hashRateResult}`,
+          success: hashRateResult,
+        };
+    }
+    return this.getDefaultWorkerStatus(worker);
+  }
 
   private getWeb3URL(ip: string): string {
     return `http://${ip}`;
@@ -250,104 +349,5 @@ export class Web3Plugin extends BasePlugin {
       Logger.error(`${this.pluginName}: ${worker.remote} -> ${err}`);
       return [false, err.toString()];
     }
-  }
-
-  async doChecking(
-    worker: Worker,
-    condition: WorkerCondition<Web3PluginAcceptType>
-  ): Promise<WorkerStatus> {
-    const { remote } = worker;
-    const { workingType, comparison } = condition;
-
-    switch (workingType) {
-      case "isMining":
-        let [isMining, miningErr] = await this.checkIsMining(worker);
-        return {
-          remote: remote,
-          title: "Is Mining",
-          message: miningErr ?? `${isMining}`,
-          success: isMining,
-        };
-
-      case "isSyncing":
-        let [isSyncing, syncingErr] = await this.checkIsSyncing(worker);
-        return {
-          remote: remote,
-          title: "Is Syncing",
-          message: syncingErr ?? `${isSyncing}`,
-          success: isSyncing,
-        };
-      case "nodeVersion":
-        let [isNodeEqual, nodeErr] = await this.checkNodeVersion(
-          worker,
-          condition
-        );
-        return {
-          remote,
-          title: "Node Version",
-          message: nodeErr ?? `${isNodeEqual}`,
-          success: isNodeEqual,
-        };
-
-      case "chainID":
-        let [isChainIDEqual, chainIDErr] = await this.checkChainID(
-          worker,
-          condition
-        );
-        return {
-          remote,
-          title: "ChainID",
-          message: chainIDErr ?? `${isChainIDEqual}`,
-          success: isChainIDEqual,
-        };
-
-      case "coinbase":
-        let [isCoinbaseEqual, coinbaseErr] = await this.checkCoinbase(
-          worker,
-          condition
-        );
-        return {
-          remote,
-          title: "Coinbase",
-          message: coinbaseErr ?? `${isCoinbaseEqual}`,
-          success: isCoinbaseEqual,
-        };
-
-      case "blockNumber":
-        let [blockNumberResult, blockNumberErr] = await this.checkBlockNumber(
-          worker,
-          condition
-        );
-        return {
-          remote,
-          title: "Block Number",
-          message: blockNumberErr ?? `${blockNumberResult}`,
-          success: blockNumberResult,
-        };
-      case "peerCount":
-        let [peerCountResult, peerCountErr] = await this.checkPeerCount(
-          worker,
-          condition
-        );
-        return {
-          remote,
-          title: "Peer Count",
-          message: peerCountErr ?? `${peerCountResult}`,
-          success: peerCountResult,
-        };
-
-      case "hashRate":
-        let [hashRateResult, hashRateErr] = await this.checkHashRate(
-          worker,
-          condition
-        );
-        return {
-          remote,
-          title: "HashRate",
-          message: hashRateErr ?? `${hashRateResult}`,
-          success: hashRateResult,
-        };
-    }
-    return this.getDefaultWorkerStatus(worker);
   }
 }

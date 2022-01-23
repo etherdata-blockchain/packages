@@ -23,6 +23,49 @@ export class WorkerChecker {
     this.concurrency = concurrency;
   }
 
+  /***
+   * Check workers using plugins based on condition
+   * @param workers
+   * @param condition
+   * @param callbacks List of callbacks
+   */
+  doChecking(
+    workers: Worker[],
+    condition: WorkerCondition<any>,
+    callbacks: Callbacks
+  ): CancelablePromise {
+    return new CancelablePromise(async (resolve, reject, onCancel) => {
+      /// Deep copy workers
+      let copiedWorkers: Worker[] = JSON.parse(JSON.stringify(workers));
+      let returnResults: WorkerStatus[][] = [];
+      let totalIndex = 0;
+      /// Split workers into multiple parts
+      while (copiedWorkers.length > 0) {
+        let splitWorkers = copiedWorkers.splice(0, this.concurrency);
+        let promises = splitWorkers.map((r, index) => {
+          return this.doCheckingHelper(
+            index + totalIndex,
+            splitWorkers[index],
+            condition,
+            callbacks
+          );
+        });
+
+        onCancel(() => {
+          for (let p of promises) {
+            p.cancel();
+          }
+        });
+
+        let results = await CancelablePromise.all(promises);
+        returnResults = returnResults.concat(results);
+        totalIndex += splitWorkers.length;
+      }
+
+      resolve(returnResults);
+    });
+  }
+
   /**
    * Checking helper function
    * @param index
@@ -50,49 +93,6 @@ export class WorkerChecker {
         pluginIndex += 1;
       }
       resolve(results);
-    });
-  }
-
-  /***
-   * Check workers using plugins based on condition
-   * @param workers
-   * @param condition
-   * @param callbacks List of callbacks
-   */
-  doChecking(
-    workers: Worker[],
-    condition: WorkerCondition<any>,
-    callbacks: Callbacks
-  ): CancelablePromise {
-    return new CancelablePromise(async (resolve, reject, onCancel) => {
-      /// Deep copy workers
-      let copiedWorkers: Worker[] = JSON.parse(JSON.stringify(workers));
-      let returnResults: WorkerStatus[][] = [];
-      let totalIndex = 0
-      /// Split workers into multiple parts
-      while (copiedWorkers.length > 0) {
-        let splitWorkers = copiedWorkers.splice(0, this.concurrency);
-        let promises = splitWorkers.map((r, index) => {
-          return this.doCheckingHelper(
-            index + totalIndex,
-            splitWorkers[index],
-            condition,
-            callbacks
-          );
-        });
-
-        onCancel(() => {
-          for (let p of promises) {
-            p.cancel();
-          }
-        });
-
-        let results = await CancelablePromise.all(promises);
-        returnResults = returnResults.concat(results);
-        totalIndex += splitWorkers.length
-      }
-
-      resolve(returnResults);
     });
   }
 }

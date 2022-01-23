@@ -3,42 +3,43 @@
 Run your ssh command with simple a configuration file
 
 ## Available variable
+
 - {index}: Current remote index
 
 ## Available configs
 
 ```typescript
 export interface Config {
-  name: string;
-  remote: string[];
-  login: Login;
-  logger: Logger;
-  steps: Step[];
-  output: boolean;
+    name: string;
+    remote: string[];
+    login: Login;
+    logger: Logger;
+    steps: Step[];
+    output: boolean;
 }
 
 export interface Logger {
-  output: string;
+    output: string;
 }
 
 export interface Login {
-  username: string;
-  password: string;
+    username: string;
+    password: string;
 }
 
 export interface Step {
-  run?: string;
-  catch_err?: boolean;
-  files?: Directory[];
-  directory?: Directory;
-  env?: string[];
-  cwd?: string;
-  name?: string;
-  with_root?: boolean;
+    run?: string;
+    catch_err?: boolean;
+    files?: Directory[];
+    directory?: Directory;
+    env?: string[];
+    cwd?: string;
+    name?: string;
+    with_root?: boolean;
 }
 
 export interface Directory {
-  local: string;
-  remote: string;
+    local: string;
+    remote: string;
 }
 ```
