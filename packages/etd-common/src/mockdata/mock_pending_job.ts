@@ -1,5 +1,5 @@
 import { MockDeviceID, MockDeviceID2 } from "./mock_storage_item";
-import { ObjectId } from "mongodb";
+import { ObjectId } from "bson";
 import { JobTaskType } from "../enums";
 
 export const MockUpdateTemplate = new ObjectId();

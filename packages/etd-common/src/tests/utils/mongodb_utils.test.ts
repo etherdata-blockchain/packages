@@ -1,5 +1,5 @@
 import { newObjectId } from "../../utils";
-import { ObjectId } from "mongodb";
+import { ObjectId } from "bson";
 
 describe("Given a mongodb utils", () => {
   test("When calling create a object id", () => {
