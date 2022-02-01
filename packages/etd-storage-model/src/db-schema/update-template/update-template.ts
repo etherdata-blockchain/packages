@@ -34,7 +34,6 @@ export const UpdateScriptSchema = new Schema<IUpdateTemplate>(
 /**
  * Schema
  */
-export const UpdateScriptModel: Model<IUpdateTemplate> = mongoose.models
-  .update_script
-  ? mongoose.models.update_script
-  : model<IUpdateTemplate>(enums.ModelName.updateScript, UpdateScriptSchema);
+export const UpdateScriptModel: Model<IUpdateTemplate> =
+  mongoose.models[enums.ModelName.updateScript] ??
+  model<IUpdateTemplate>(enums.ModelName.updateScript, UpdateScriptSchema);

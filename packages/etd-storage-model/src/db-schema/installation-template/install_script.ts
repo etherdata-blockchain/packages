@@ -47,7 +47,7 @@ export const installationTemplateSchema = new Schema<IInstallationTemplate>(
 );
 
 export const InstallationTemplateModel =
-  mongoose.models.installationTemplate ??
+  mongoose.models[enums.ModelName.installationTemplate] ??
   model<IInstallationTemplate>(
     enums.ModelName.installationTemplate,
     installationTemplateSchema

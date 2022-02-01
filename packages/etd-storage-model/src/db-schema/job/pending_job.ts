@@ -27,7 +27,7 @@ export const pendingJobSchema = new Schema<IPendingJob<enums.AnyValueType>>(
  * Pending job model
  */
 export const PendingJobModel: Model<IPendingJob<enums.AnyValueType>> =
-  mongoose.models.pending_job ??
+  mongoose.models[enums.ModelName.pendingJob] ??
   model<IPendingJob<enums.AnyValueType>>(
     enums.ModelName.pendingJob,
     pendingJobSchema

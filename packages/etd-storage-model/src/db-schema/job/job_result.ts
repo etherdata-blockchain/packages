@@ -25,5 +25,5 @@ export const jobResultSchema = new Schema<IJobResult>({
  * Job Result Model
  */
 export const JobResultModel: Model<IJobResult> =
-  mongoose.models.job_result ??
+  mongoose.models[enums.ModelName.jobResult] ??
   model<IJobResult>(enums.ModelName.jobResult, jobResultSchema);

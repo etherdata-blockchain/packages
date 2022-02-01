@@ -24,5 +24,5 @@ export const transactionSchema = new Schema<ITransaction>({
  * A transaction model. Mongoose will use this model to do CRUD operations.
  */
 export const TransactionModel =
-  mongoose.models.transaction ??
+  mongoose.models[enums.ModelName.transaction] ??
   model<ITransaction>(enums.ModelName.transaction, transactionSchema);

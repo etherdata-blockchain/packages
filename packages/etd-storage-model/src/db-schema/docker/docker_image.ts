@@ -40,5 +40,5 @@ export const dockerImageSchema = new Schema<IDockerImage>(
 dockerImageSchema.index({ imageName: "text" });
 
 export const DockerImageModel: Model<IDockerImage> =
-  mongoose.models.dockerImage ??
+  mongoose.models[enums.ModelName.dockerImage] ??
   model<IDockerImage>(enums.ModelName.dockerImage, dockerImageSchema);
