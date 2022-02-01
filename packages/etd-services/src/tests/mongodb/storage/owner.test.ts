@@ -3,7 +3,7 @@ import { configs, mockData } from "@etherdata-blockchain/common";
 import { schema } from "@etherdata-blockchain/storage-model";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose from "mongoose";
-import { StorageManagementOwnerService } from "../../../mongodb/services/device/storage_management_owner_service";
+import { StorageManagementOwnerService } from "../../../mongodb";
 
 describe("Given a storage owner", () => {
   let dbServer: MongoMemoryServer;
@@ -58,6 +58,60 @@ describe("Given a storage owner", () => {
 
     expect(user2!.totalCount).toBe(0);
     expect(user2!.onlineCount).toBe(0);
+  });
+
+  test("When calling get list of users with only one active user", async () => {
+    const now = moment();
+
+    await schema.StorageOwnerModel.create(mockData.MockUser);
+    await schema.StorageItemModel.create(mockData.MockStorageItem);
+
+    mockData.MockDeviceStatus.lastSeen = now
+      .subtract(
+        Math.floor(configs.Configurations.maximumNotSeenDuration * 0.5),
+        "seconds"
+      )
+      .toDate() as any;
+
+    await schema.DeviceModel.create(mockData.MockDeviceStatus);
+    const plugin = new StorageManagementOwnerService();
+    const result = await plugin.getListOfUsers(1);
+    expect(result.count).toBe(1);
+    expect(result.totalPage).toBe(1);
+    expect(result.results.length).toBe(1);
+
+    const user1 = result.results.find(
+      (r) => r.user_id === mockData.MockUser.user_id
+    );
+    expect(user1!.totalCount).toBe(1);
+    expect(user1!.onlineCount).toBe(1);
+  });
+
+  test("When calling get list of users without any active user", async () => {
+    const now = moment();
+
+    await schema.StorageOwnerModel.create(mockData.MockUser);
+    await schema.StorageItemModel.create(mockData.MockStorageItem);
+
+    mockData.MockDeviceStatus.lastSeen = now
+      .subtract(
+        Math.floor(configs.Configurations.maximumNotSeenDuration * 2),
+        "seconds"
+      )
+      .toDate() as any;
+
+    await schema.DeviceModel.create(mockData.MockDeviceStatus);
+    const plugin = new StorageManagementOwnerService();
+    const result = await plugin.getListOfUsers(1);
+    expect(result.count).toBe(1);
+    expect(result.totalPage).toBe(1);
+    expect(result.results.length).toBe(1);
+
+    const user1 = result.results.find(
+      (r) => r.user_id === mockData.MockUser.user_id
+    );
+    expect(user1!.totalCount).toBe(1);
+    expect(user1!.onlineCount).toBe(0);
   });
 
   test("When calling list of users without any user", async () => {

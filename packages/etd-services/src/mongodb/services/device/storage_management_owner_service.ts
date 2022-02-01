@@ -19,7 +19,10 @@ export class StorageManagementOwnerService extends BaseMongoDBService<schema.ISt
     page: number
   ): Promise<interfaces.PaginationResult<schema.IStorageOwner>> {
     const now = moment();
-    const prev = now.subtract(configs.Configurations.maximumNotSeenDuration);
+    const prev = now.subtract(
+      configs.Configurations.maximumNotSeenDuration,
+      "seconds"
+    );
     const pipeline: any[] = [
       {
         $lookup: {

@@ -33,7 +33,7 @@ export class StorageManagementService extends BaseMongoDBService<schema.IStorage
     const result = this.model
       .findOne({ qr_code: deviceID })
       .populate("deviceStatus");
-    return result.exec();
+    return (await result.exec()) as any;
   }
 
   /**
