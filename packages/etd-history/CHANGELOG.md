@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.7.3 (2022-02-01)
+
+
+### Bug Fixes
+
+* storage model's job_result undefined error ([#11](https://github.com/etherdata-blockchain/packages/issues/11)) ([28f3007](https://github.com/etherdata-blockchain/packages/commit/28f3007800bac6b7fbc27180457fbb696ce6cb37))
+
+
+
+
+
 ## 1.7.2 (2022-02-01)
 
 
