@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.7.2 (2022-02-01)
+
+
+### Bug Fixes
+
+* get 0 online count when calling list users function ([#8](https://github.com/etherdata-blockchain/packages/issues/8)) ([e921ff7](https://github.com/etherdata-blockchain/packages/commit/e921ff76ba986f84bc9d1be6a1bb66dcc1d414b0))
+
+
+
+
+
 ## 1.7.1 (2022-01-23)
 
 
