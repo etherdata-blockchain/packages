@@ -24,5 +24,5 @@ export const storageOwnerSchema = new Schema<IStorageOwner>(
  *
  */
 export const StorageOwnerModel: Model<IStorageOwner> =
-  mongoose.models.storage_owner ??
+  mongoose.models[enums.ModelName.storageOwner] ??
   model<IStorageOwner>(enums.ModelName.storageOwner, storageOwnerSchema);

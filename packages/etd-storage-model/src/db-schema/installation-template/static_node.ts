@@ -14,5 +14,5 @@ export const staticNodeSchema = new Schema<IStaticNode>({
 });
 
 export const StaticNodeModel =
-  mongoose.models.staticNode ??
+  mongoose.models[enums.ModelName.staticNode] ??
   model<IStaticNode>(enums.ModelName.staticNode, staticNodeSchema);

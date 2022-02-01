@@ -25,7 +25,6 @@ export const ExecutionPlanSchema = new Schema<IExecutionPlan>(
 /**
  * Execution plan model
  */
-export const ExecutionPlanModel: Model<IExecutionPlan> = mongoose.models
-  .execution_plan
-  ? mongoose.models.execution_plan
-  : model<IExecutionPlan>(enums.ModelName.executionPlan, ExecutionPlanSchema);
+export const ExecutionPlanModel: Model<IExecutionPlan> =
+  mongoose.models[enums.ModelName.executionPlan] ??
+  model<IExecutionPlan>(enums.ModelName.executionPlan, ExecutionPlanSchema);

@@ -5,7 +5,7 @@
  */
 import mongoose, { Document, model, Schema } from "mongoose";
 import moment from "moment";
-import { configs, interfaces } from "@etherdata-blockchain/common";
+import { configs, enums, interfaces } from "@etherdata-blockchain/common";
 
 export interface IDevice extends Document, interfaces.db.DeviceDBInterface {}
 
@@ -36,4 +36,5 @@ deviceSchema.virtual("isOnline").get(function () {
  * A user model. Mongoose will use this model to do CRUD operations.
  */
 export const DeviceModel =
-  mongoose.models.device ?? model<IDevice>("device", deviceSchema);
+  mongoose.models[enums.ModelName.device] ??
+  model<IDevice>(enums.ModelName.device, deviceSchema);

@@ -12,4 +12,5 @@ export enum ModelName {
   executionPlan = "execution_plan",
   updateScript = "update_script",
   transaction = "transaction",
+  device = "device",
 }

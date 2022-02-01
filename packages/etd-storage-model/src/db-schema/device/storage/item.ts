@@ -30,5 +30,5 @@ storageItemSchema.virtual("deviceStatus", {
  *
  */
 export const StorageItemModel: Model<IStorageItem> =
-  mongoose.models.storage_item ??
+  mongoose.models[enums.ModelName.storageItem] ??
   model<IStorageItem>(enums.ModelName.storageItem, storageItemSchema);
