@@ -1,41 +1,60 @@
 import { MockDeviceID, MockDeviceID2 } from "./mock_storage_item";
 import { ObjectId } from "bson";
-import { JobTaskType } from "../enums";
+import { JobTaskType, UpdateTemplateValueType } from "../enums";
+import { PendingJobDBInterface } from "../interfaces/db-interfaces";
 
 export const MockUpdateTemplate = new ObjectId();
 
-export const MockPendingJob = {
+export const MockPendingJob: PendingJobDBInterface<UpdateTemplateValueType> = {
+  createdAt: "",
+  retrieved: true,
   targetDeviceId: MockDeviceID,
   task: {
     type: JobTaskType.Web3,
-    value: "",
+    value: {
+      templateId: "",
+    },
   },
   from: "mock_from",
 };
 
-export const MockPendingJob2 = {
+export const MockPendingJob2: PendingJobDBInterface<UpdateTemplateValueType> = {
+  createdAt: "",
+  retrieved: false,
   targetDeviceId: MockDeviceID2,
   task: {
     type: JobTaskType.Web3,
-    value: "",
+    value: {
+      templateId: "",
+    },
   },
   from: "mock_from",
 };
 
-export const MockPendingUpdateTemplateJob = {
-  targetDeviceId: MockDeviceID,
-  task: {
-    type: JobTaskType.UpdateTemplate,
-    value: MockUpdateTemplate,
-  },
-  from: "mock_from",
-};
+export const MockPendingUpdateTemplateJob: PendingJobDBInterface<UpdateTemplateValueType> =
+  {
+    createdAt: "",
+    retrieved: false,
+    targetDeviceId: MockDeviceID,
+    task: {
+      type: JobTaskType.UpdateTemplate,
+      value: {
+        templateId: MockUpdateTemplate.toHexString(),
+      },
+    },
+    from: "mock_from",
+  };
 
-export const MockPendingUpdateTemplate2Job = {
-  targetDeviceId: MockDeviceID2,
-  task: {
-    type: JobTaskType.UpdateTemplate,
-    value: MockUpdateTemplate,
-  },
-  from: "mock_from",
-};
+export const MockPendingUpdateTemplate2Job: PendingJobDBInterface<UpdateTemplateValueType> =
+  {
+    createdAt: "",
+    retrieved: false,
+    targetDeviceId: MockDeviceID2,
+    task: {
+      type: JobTaskType.UpdateTemplate,
+      value: {
+        templateId: MockUpdateTemplate.toHexString(),
+      },
+    },
+    from: "mock_from",
+  };
