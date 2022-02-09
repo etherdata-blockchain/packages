@@ -62,9 +62,15 @@ describe("Given a update-script-script plugin", () => {
     expect(result.imageStacks[0].imageName).toStrictEqual(
       mockData.MockDockerImage.imageName
     );
+    expect(result.imageStacks[0].image).toBeDefined();
+    expect(result.imageStacks[0].tag).toBeDefined();
     expect(result.imageStacks[0].tags.tag).toStrictEqual(
       mockData.MockDockerImage.tags[0].tag
     );
+    expect(result.containerStacks[0].image.tag).toBeDefined();
+    expect(result.containerStacks[0].image.image).toBeDefined();
+    expect(result.containerStacks[0].image.imageName).toBeDefined();
+    expect(result.containerStacks[0].image.tags.tag).toBeDefined();
   });
 
   test("When calling getUpdateTemplateWithDockerImage if no image exists", async () => {

@@ -132,6 +132,30 @@ export class UpdateTemplateService extends BaseMongoDBService<schema.IUpdateTemp
       // @ts-ignore
       return await this.get(id);
     }
+
+    let returnedTemplate =
+      template[0] as interfaces.db.UpdateTemplateWithDockerImageDBInterface;
+
+    returnedTemplate.imageStacks = returnedTemplate.imageStacks.map((is) => ({
+      ...is,
+      tag: (is.tags as any)._id,
+      image: (is as any)._id,
+    }));
+
+    //@ts-ignore
+    returnedTemplate.containerStacks = returnedTemplate.containerStacks.map(
+      (cs) => ({
+        ...cs,
+        image: cs.image
+          ? {
+              ...cs.image,
+              image: (cs.image as any)._id,
+              tag: (cs.image.tags as any)._id,
+            }
+          : undefined,
+      })
+    );
+
     return template[0];
   }
 }

@@ -19,6 +19,14 @@ export interface UpdateTemplateDBInterface extends Document {
 interface UpdateImageStack {
   imageName: string;
   tags: { tag: string };
+  /**
+   * Image's object id
+   */
+  image: string;
+  /**
+   * Image tag's id
+   */
+  tag: string;
 }
 
 interface UpdateContainerStack {

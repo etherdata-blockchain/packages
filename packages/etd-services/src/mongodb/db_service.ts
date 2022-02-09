@@ -85,7 +85,8 @@ export abstract class BaseMongoDBService<
    * @param data
    */
   async performPatch(data: T): Promise<T> {
-    return await this.model.findOneAndUpdate(
+    //@ts-ignore
+    return this.model.findOneAndUpdate(
       { _id: data._id },
       //@ts-ignore
       data,
