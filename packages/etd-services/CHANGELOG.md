@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.8.0 (2022-02-09)
+
+
+### Features
+
+* return an error from apply function in docker plan package ([#14](https://github.com/etherdata-blockchain/packages/issues/14)) ([bfd4a61](https://github.com/etherdata-blockchain/packages/commit/bfd4a61c23c33814bb6a997f4c02d6e74d276d9d))
+
+
+
+
+
 ## 1.7.5 (2022-02-09)
 
 
