@@ -1,5 +1,8 @@
 import { Stack, StackInterface } from "./internal/stack/stack";
-import { ExecutionPlan } from "./internal/executionPlan/execution_plan";
+import {
+  ApplyResult,
+  ExecutionPlan,
+} from "./internal/executionPlan/execution_plan";
 import DockerService from "./internal/services/docker";
 import { ImageStack, Image } from "./internal/stack/image";
 import {
@@ -24,11 +27,12 @@ export class DockerPlan {
     this.executionPlan.create(this.stack);
   }
 
-  async apply(): Promise<void> {
+  async apply(): Promise<ApplyResult> {
     const success = await this.executionPlan.apply();
-    if (success) {
+    if (success.success) {
       this.stack.writeStack();
     }
+    return success;
   }
 }
 

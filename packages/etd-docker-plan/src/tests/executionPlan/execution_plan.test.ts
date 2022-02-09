@@ -61,7 +61,7 @@ describe("Given an execution plan object", () => {
     const executionPlan = new ExecutionPlan(successDockerService);
     executionPlan.create(stack);
     const result = await executionPlan.apply();
-    expect(result).toBeTruthy();
+    expect(result.success).toBeTruthy();
     // @ts-ignore
     expect(successDockerService.pullImages.mock.calls.length).toBe(1);
     // @ts-ignore

@@ -15,6 +15,11 @@ export interface ExecutionPlanInterface {
   };
 }
 
+export interface ApplyResult {
+  success: boolean;
+  error?: string;
+}
+
 export class ExecutionPlan {
   executionPlan?: ExecutionPlanInterface;
 
@@ -61,7 +66,7 @@ export class ExecutionPlan {
    * Apply is success.
    * @return success
    */
-  async apply(): Promise<boolean> {
+  async apply(): Promise<ApplyResult> {
     if (this.executionPlan === undefined) {
       throw Error("You need to create an execution plan first");
     }
@@ -78,9 +83,14 @@ export class ExecutionPlan {
       // Create new containers
       const newContainers = this.executionPlan.create.containers;
       await this.dockerService.createContainers(newContainers);
-      return true;
+      return {
+        success: true,
+      };
     } catch (e) {
-      return false;
+      return {
+        success: false,
+        error: `${e}`,
+      };
     }
   }
 }
