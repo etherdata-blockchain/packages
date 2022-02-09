@@ -4,6 +4,7 @@ import { DockerPlan } from "../../index";
 import { ImageStack } from "../../internal/stack/image";
 import { ContainerStack } from "../../internal/stack/container";
 import { StackInterface } from "../../internal/stack/stack";
+import * as fs from "fs";
 
 describe("Given a docker plan", () => {
   const imageName = "hello-world";
@@ -13,6 +14,12 @@ describe("Given a docker plan", () => {
 
   beforeAll(() => {
     docker = new Docker();
+  });
+
+  afterAll(() => {
+    if (fs.existsSync("stack.lock.yaml")) {
+      fs.unlinkSync("stack.lock.yaml");
+    }
   });
 
   afterEach(async () => {
