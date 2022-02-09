@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.7.4 (2022-02-09)
+
+
+### Bug Fixes
+
+* will include image and tag in update template's result ([#12](https://github.com/etherdata-blockchain/packages/issues/12)) ([34b00df](https://github.com/etherdata-blockchain/packages/commit/34b00df276dfa591ea89680483c450149e467ab4))
+
+
+
+
+
 ## 1.7.3 (2022-02-01)
 
 
