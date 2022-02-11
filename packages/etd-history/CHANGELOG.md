@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.8.1 (2022-02-11)
+
+
+### Bug Fixes
+
+* remove extends document from etd-common package ([#15](https://github.com/etherdata-blockchain/packages/issues/15)) ([414984a](https://github.com/etherdata-blockchain/packages/commit/414984a95b16eddad050117e7576fd4efc882438))
+
+
+
+
+
 # 1.8.0 (2022-02-09)
 
 
