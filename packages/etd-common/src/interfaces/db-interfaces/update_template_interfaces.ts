@@ -4,7 +4,7 @@ import {
   ImageStack,
 } from "@etherdata-blockchain/docker-plan";
 
-export interface UpdateTemplateDBInterface extends Document {
+export interface UpdateTemplateDBInterface {
   name: string;
   targetDeviceIds: string[];
   targetGroupIds: string[];

@@ -1,4 +1,4 @@
-export interface DockerImageDBInterface extends Document {
+export interface DockerImageDBInterface {
   imageName: string;
   tags: DockerImageVersionDBInterface[];
   /**
@@ -7,6 +7,6 @@ export interface DockerImageDBInterface extends Document {
   tag?: DockerImageVersionDBInterface;
 }
 
-interface DockerImageVersionDBInterface extends Document {
+interface DockerImageVersionDBInterface {
   tag: string;
 }
