@@ -1,4 +1,4 @@
-export interface StaticNodeDBInterface extends Document {
+export interface StaticNodeDBInterface {
   nodeName: string;
   nodeURL: string;
 }
