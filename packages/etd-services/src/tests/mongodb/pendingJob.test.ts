@@ -1,11 +1,81 @@
+import { enums, interfaces } from "@etherdata-blockchain/common";
 import { schema } from "@etherdata-blockchain/storage-model";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose from "mongoose";
-import { StorageManagementService } from "../../mongodb/services/device/storage_management_item_service";
-import { JobResultService } from "../../mongodb/services/job/job_result_service";
-import { PendingJobService } from "../../mongodb/services/job/pending_job_service";
+import { PendingJobService } from "../../mongodb";
+import { JobTaskType } from "@etherdata-blockchain/common/dist/enums";
 
 describe("Given a pending job", () => {
+  const job1: interfaces.db.PendingJobDBInterface<enums.UpdateTemplateValueType> =
+    {
+      targetDeviceId: "device-1",
+      from: "admin",
+      task: {
+        type: enums.JobTaskType.UpdateTemplate,
+        value: {
+          templateId: "1",
+        },
+      },
+      createdAt: "",
+      retrieved: false,
+    };
+
+  const job2: interfaces.db.PendingJobDBInterface<enums.UpdateTemplateValueType> =
+    {
+      targetDeviceId: "device-2",
+      from: "admin",
+      task: {
+        type: enums.JobTaskType.UpdateTemplate,
+        value: {
+          templateId: "1",
+        },
+      },
+      createdAt: "",
+      retrieved: false,
+    };
+
+  const job3: interfaces.db.PendingJobDBInterface<enums.UpdateTemplateValueType> =
+    {
+      targetDeviceId: "device-3",
+      from: "admin",
+      task: {
+        type: enums.JobTaskType.UpdateTemplate,
+        value: {
+          templateId: "1",
+        },
+      },
+      createdAt: "",
+      retrieved: true,
+    };
+
+  const job4: interfaces.db.PendingJobDBInterface<enums.UpdateTemplateValueType> =
+    {
+      targetDeviceId: "device-3",
+      from: "admin",
+      task: {
+        type: enums.JobTaskType.UpdateTemplate,
+        value: {
+          templateId: "1",
+        },
+      },
+      createdAt: "",
+      retrieved: false,
+    };
+
+  const job5: interfaces.db.PendingJobDBInterface<enums.UpdateTemplateValueType> =
+    {
+      targetDeviceId: "device-3",
+      from: "admin",
+      task: {
+        type: enums.JobTaskType.Web3,
+        value: {
+          templateId: "1",
+        },
+      },
+      createdAt: "",
+      retrieved: false,
+    };
+
   let dbServer: MongoMemoryServer;
   beforeAll(async () => {
     dbServer = await MongoMemoryServer.create();
@@ -16,8 +86,9 @@ describe("Given a pending job", () => {
     await schema.PendingJobModel.collection.drop();
   });
 
-  afterAll(() => {
-    dbServer.stop();
+  afterAll(async () => {
+    await dbServer.stop();
+    await mongoose.disconnect();
   });
 
   test("When getting a job", async () => {
@@ -73,5 +144,50 @@ describe("Given a pending job", () => {
     const job = await plugin.getJob("1");
     expect(job).toBeDefined();
     expect(await schema.PendingJobModel.count()).toBe(2);
+  });
+
+  test("When calling getNumberOfNotRetrievedJobs", async () => {
+    await schema.PendingJobModel.insertMany([job1, job2, job3]);
+    const service = new PendingJobService();
+    const result = await service.getNumberOfNotRetrievedJobs({
+      "task.type": JobTaskType.UpdateTemplate,
+    });
+    expect(result).toBe(2);
+  });
+
+  test("When calling getNumberOfNotRetrievedJobs", async () => {
+    await schema.PendingJobModel.insertMany([job1, job2, job5]);
+    const service = new PendingJobService();
+    const result = await service.getNumberOfNotRetrievedJobs({
+      "task.type": JobTaskType.UpdateTemplate,
+    });
+    expect(result).toBe(2);
+  });
+
+  test("When calling getNumberOfNotRetrievedJobs", async () => {
+    await schema.PendingJobModel.insertMany([job1, job2, job5]);
+    const service = new PendingJobService();
+    const result = await service.getNumberOfNotRetrievedJobs({
+      "task.type": JobTaskType.Web3,
+    });
+    expect(result).toBe(1);
+  });
+
+  test("When calling getNumberOfNotRetrievedJobs", async () => {
+    await schema.PendingJobModel.insertMany([job1, job2, job4]);
+    const service = new PendingJobService();
+    const result = await service.getNumberOfNotRetrievedJobs({
+      "task.type": JobTaskType.UpdateTemplate,
+    });
+    expect(result).toBe(3);
+  });
+
+  test("When calling getNumberOfNotRetrievedJobs", async () => {
+    await schema.PendingJobModel.insertMany([job3, job4]);
+    const service = new PendingJobService();
+    const result = await service.getNumberOfNotRetrievedJobs({
+      "task.type": JobTaskType.UpdateTemplate,
+    });
+    expect(result).toBe(1);
   });
 });
