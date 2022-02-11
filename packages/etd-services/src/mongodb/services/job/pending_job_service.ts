@@ -42,6 +42,14 @@ export class PendingJobService extends BaseMongoDBService<
   }
 
   /**
+   * Will return total number of pending jobs based on the query
+   */
+  async getNumberOfNotRetrievedJobs(query: { [key: string]: any }) {
+    query.retrieved = false;
+    return this.model.countDocuments(query);
+  }
+
+  /**
    * Insert many jobs
    * @param jobs
    */
