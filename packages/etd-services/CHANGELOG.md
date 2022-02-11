@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.8.4 (2022-02-11)
+
+
+### Bug Fixes
+
+* add more tests ([cdb5250](https://github.com/etherdata-blockchain/packages/commit/cdb5250fe53bea0cd486d246d1e776962795c3c3))
+
+
+
+
+
 ## 1.8.3 (2022-02-11)
 
 
