@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.8.3 (2022-02-11)
+
+
+### Bug Fixes
+
+* set private for package ([519f2fb](https://github.com/etherdata-blockchain/packages/commit/519f2fb2fbe4f223639b6678498b099b30b7342d))
+
+
+
+
+
 ## 1.8.2 (2022-02-11)
 
 
