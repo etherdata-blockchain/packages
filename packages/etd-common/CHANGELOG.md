@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.8.2 (2022-02-11)
+
+
+### Bug Fixes
+
+* change block exporter to private repo ([1b7f434](https://github.com/etherdata-blockchain/packages/commit/1b7f4349866eec8d98ee76c3d83bff0251a55407))
+
+
+
+
+
 ## 1.8.1 (2022-02-11)
 
 
