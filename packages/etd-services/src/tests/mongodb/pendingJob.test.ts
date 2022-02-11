@@ -76,6 +76,20 @@ describe("Given a pending job", () => {
       retrieved: false,
     };
 
+  const job6: interfaces.db.PendingJobDBInterface<enums.UpdateTemplateValueType> =
+    {
+      targetDeviceId: "device-3",
+      from: "admin",
+      task: {
+        type: enums.JobTaskType.UpdateTemplate,
+        value: {
+          templateId: "2",
+        },
+      },
+      createdAt: "",
+      retrieved: false,
+    };
+
   let dbServer: MongoMemoryServer;
   beforeAll(async () => {
     dbServer = await MongoMemoryServer.create();
@@ -187,6 +201,16 @@ describe("Given a pending job", () => {
     const service = new PendingJobService();
     const result = await service.getNumberOfNotRetrievedJobs({
       "task.type": JobTaskType.UpdateTemplate,
+    });
+    expect(result).toBe(1);
+  });
+
+  test("When calling getNumberOfNotRetrievedJobs", async () => {
+    await schema.PendingJobModel.insertMany([job4, job6]);
+    const service = new PendingJobService();
+    const result = await service.getNumberOfNotRetrievedJobs({
+      "task.type": JobTaskType.UpdateTemplate,
+      "task.value.templateId": "2",
     });
     expect(result).toBe(1);
   });
