@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.11.0 (2022-02-12)
+
+
+### Features
+
+* support find owner by device id ([#19](https://github.com/etherdata-blockchain/packages/issues/19)) ([0f0d47e](https://github.com/etherdata-blockchain/packages/commit/0f0d47ee85fecba864705656c2a583de7eab70a8))
+
+
+
+
+
 ## 1.10.3 (2022-02-12)
 
 
