@@ -70,7 +70,7 @@ export abstract class BaseSocketIOService extends BaseService<enums.SocketIOServ
    * @protected
    * @return{BaseSocketIOService} Found plugin
    */
-  protected findPlugin<T extends BaseSocketIOService>(
+  protected findService<T extends BaseSocketIOService>(
     pluginName: enums.SocketIOServiceName
   ): T | undefined {
     try {

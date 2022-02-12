@@ -5,6 +5,8 @@ import { PendingJobDBInterface } from "../interfaces/db-interfaces";
 
 export const MockUpdateTemplate = new ObjectId();
 
+export const MockUpdateTemplate2 = new ObjectId();
+
 export const MockPendingJob: PendingJobDBInterface<UpdateTemplateValueType> = {
   createdAt: "",
   retrieved: true,
