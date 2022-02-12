@@ -9,11 +9,12 @@ import { PendingJobService } from "../../mongodb/services/job/pending_job_servic
 import { ClientService } from "./client_service";
 import { DeviceRegistrationService } from "../../mongodb/services/device/device_registration_service";
 import { JobResultService } from "../../mongodb/services/job/job_result_service";
+import { ExecutionPlanService } from "../../mongodb";
 
 /**
  * Watch for database changes
  */
-export class DBChangePlugin extends BaseSocketIOService {
+export class DBChangeService extends BaseSocketIOService {
   serviceName = enums.SocketIOServiceName.dbChange;
 
   // eslint-disable-next-line require-jsdoc
@@ -38,7 +39,7 @@ export class DBChangePlugin extends BaseSocketIOService {
    * Periodic send latest online devices number
    */
   async periodicSendOnlineCount() {
-    const clientPlugin = this.findPlugin<ClientService>(
+    const clientPlugin = this.findService<ClientService>(
       enums.SocketIOServiceName.client
     );
     const plugin = new DeviceRegistrationService();
@@ -57,7 +58,7 @@ export class DBChangePlugin extends BaseSocketIOService {
     schema.JobResultModel.watch([], { fullDocument: "updateLookup" }).on(
       "change",
       async (data) => {
-        const clientPlugin = this.findPlugin<ClientService>(
+        const clientPlugin = this.findService<ClientService>(
           enums.SocketIOServiceName.client
         );
         switch (data.operationType) {
@@ -113,7 +114,7 @@ export class DBChangePlugin extends BaseSocketIOService {
     schema.DeviceModel.watch([], { fullDocument: "updateLookup" }).on(
       "change",
       (data) => {
-        const clientPlugin = this.findPlugin<ClientService>(
+        const clientPlugin = this.findService<ClientService>(
           enums.SocketIOServiceName.client
         );
         switch (data.operationType) {
@@ -135,7 +136,7 @@ export class DBChangePlugin extends BaseSocketIOService {
     schema.PendingJobModel.watch([], { fullDocument: "updateLookup" }).on(
       "change",
       async (data) => {
-        const clientPlugin = this.findPlugin<ClientService>(
+        const clientPlugin = this.findService<ClientService>(
           enums.SocketIOServiceName.client
         );
         if (
@@ -150,6 +151,29 @@ export class DBChangePlugin extends BaseSocketIOService {
         }
       }
     );
+
+    schema.ExecutionPlanModel.watch<schema.IExecutionPlan>([], {
+      fullDocument: "updateLookup",
+    }).on("change", async (data) => {
+      const clientService = this.findService<ClientService>(
+        enums.SocketIOServiceName.client
+      );
+      const executionPlanService = new ExecutionPlanService();
+      if (
+        data.operationType === "insert" ||
+        data.operationType === "update" ||
+        data.operationType === "delete"
+      ) {
+        const updateTemplateId = data.fullDocument!.updateTemplate;
+        const executionPlans = await executionPlanService.getPlans(
+          updateTemplateId
+        );
+
+        clientService?.server
+          ?.in(updateTemplateId)
+          .emit(enums.SocketIOEvents.executionPlan, executionPlans);
+      }
+    });
   }
 
   /**
