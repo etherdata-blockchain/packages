@@ -6,9 +6,9 @@ on:
       - main
       - dev
 
-
 jobs:
   dependencies:
+    if: ${{ github.event.pusher.name != 'github action' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -23,6 +23,7 @@ jobs:
           prettier: true
 
   test:
+    if: ${{ github.event.pusher.name != 'github action' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -38,8 +39,8 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
 
   release:
-    needs: [dependencies, test]
     if: ${{ (github.event.pusher.name != 'github action') && (github.ref == 'refs/heads/main') }}
+    needs: [ dependencies, test ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -52,16 +53,6 @@ jobs:
         run: |
           git config --global user.email "github-action.github.com"
           git config --global user.name "github action"
-      - name: Authenticate with Registry
-        run: |
-          yarn logout
-          echo "@apollo-elements:registry=http://registry.npmjs.org/" > .npmrc
-          echo "registry=http://registry.npmjs.org/" >> .npmrc
-          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc
-          npm whoami
+      - run: yarn version-create
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - run: yarn release --no-verify-access
-        env:
-          GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GH_TOKEN: ${{secrets.RELEASE_TOKEN}}

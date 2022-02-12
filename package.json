@@ -24,6 +24,6 @@
     "lint": "lerna run lint",
     "postinstall": "lerna run bootstrap",
     "version-create": "lerna version --conventional-commits --yes --create-release github",
-    "release": "lerna publish --conventional-commits --yes --create-release github"
+    "release": "lerna publish from-git --yes"
   }
 }

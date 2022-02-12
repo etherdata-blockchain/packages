@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.1](https://github.com/etherdata-blockchain/packages/compare/v1.10.0...v1.10.1) (2022-02-12)
+
+
+### Bug Fixes
+
+* release action ([f1f5c5e](https://github.com/etherdata-blockchain/packages/commit/f1f5c5e58920994846490e0d3fe86be2b8011731))
+
+
+
+
+
 # 1.10.0 (2022-02-12)
 
 
