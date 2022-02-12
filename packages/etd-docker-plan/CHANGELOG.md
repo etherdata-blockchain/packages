@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.11.2 (2022-02-12)
+
+
+### Bug Fixes
+
+* use enums as socket io events ([3a405ad](https://github.com/etherdata-blockchain/packages/commit/3a405ad020a2a72df141dba9f2f76131b6dfbf90))
+
+
+
+
+
 ## 1.11.1 (2022-02-12)
 
 
