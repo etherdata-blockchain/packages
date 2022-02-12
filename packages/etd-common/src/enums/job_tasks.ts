@@ -21,6 +21,7 @@ export enum JobTaskType {
 
 export interface UpdateTemplateValueType {
   templateId: string;
+  coinbase?: string;
 }
 
 export interface Web3ValueType {
