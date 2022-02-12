@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.10.3 (2022-02-12)
+
+
+### Bug Fixes
+
+* add no-verify-access tag ([ad4034c](https://github.com/etherdata-blockchain/packages/commit/ad4034c8672ade174c926724ddd08535f63e7e3c))
+
+
+
+
+
 ## 1.10.2 (2022-02-12)
 
 
