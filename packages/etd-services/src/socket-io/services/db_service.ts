@@ -10,6 +10,7 @@ import { ClientService } from "./client_service";
 import { DeviceRegistrationService } from "../../mongodb/services/device/device_registration_service";
 import { JobResultService } from "../../mongodb/services/job/job_result_service";
 import { ExecutionPlanService } from "../../mongodb";
+import Logger from "@etherdata-blockchain/logger";
 
 /**
  * Watch for database changes
@@ -159,19 +160,12 @@ export class DBChangeService extends BaseSocketIOService {
         enums.SocketIOServiceName.client
       );
       const executionPlanService = new ExecutionPlanService();
-      if (
-        data.operationType === "insert" ||
-        data.operationType === "update" ||
-        data.operationType === "delete"
-      ) {
+      if (data.operationType === "insert" || data.operationType === "delete") {
         const updateTemplateId = data.fullDocument!.updateTemplate;
-        const executionPlans = await executionPlanService.getPlans(
-          updateTemplateId
-        );
-
+        Logger.info(`Execution plan ${updateTemplateId} has a update`);
         clientService?.server
           ?.in(updateTemplateId)
-          .emit(enums.SocketIOEvents.executionPlan, executionPlans);
+          .emit(enums.SocketIOEvents.executionPlan, "update");
       }
     });
   }
