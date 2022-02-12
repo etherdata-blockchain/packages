@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.10.0 (2022-02-12)
+
+
+### Features
+
+* add coinbase into update template's interface ([#18](https://github.com/etherdata-blockchain/packages/issues/18)) ([bcfebb8](https://github.com/etherdata-blockchain/packages/commit/bcfebb83bbc1204ef1b10b179cfc2653fb8492bc))
+
+
+
+
+
 # 1.9.0 (2022-02-12)
 
 
