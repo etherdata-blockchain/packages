@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.11.1 (2022-02-12)
+
+
+### Bug Fixes
+
+* only send updates not full documents using socket ([#20](https://github.com/etherdata-blockchain/packages/issues/20)) ([190022a](https://github.com/etherdata-blockchain/packages/commit/190022ab6bcdb12e8baa123d06daac15322bd593))
+
+
+
+
+
 # 1.11.0 (2022-02-12)
 
 
