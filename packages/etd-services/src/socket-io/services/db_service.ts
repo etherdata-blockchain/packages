@@ -162,9 +162,8 @@ export class DBChangeService extends BaseSocketIOService {
       if (data.operationType === "insert" || data.operationType === "delete") {
         const updateTemplateId = data.fullDocument?.updateTemplate;
         if (updateTemplateId) {
-          Logger.info(`Execution plan ${updateTemplateId} has a update`);
           clientService?.server
-            ?.in(updateTemplateId)
+            ?.in(`${updateTemplateId}`)
             .emit(enums.SocketIOEvents.executionPlan, "update");
         }
       }
