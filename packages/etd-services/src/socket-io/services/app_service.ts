@@ -66,14 +66,13 @@ export class APpService extends BaseSocketIOAuthService {
    * @param socket
    */
   joinRoomHandler: SocketHandler = (socket) => {
-    socket.on("join-room", async (roomId: string) => {
+    socket.on(enums.SocketIOEvents.joinRoom, async (roomId: string) => {
       if (socket.rooms.size > 2) {
         socket.emit("join-room-error", {
           err: "You have already joined another room. You need to leave first!",
         });
         return;
       }
-
       Logger.info("Joining room " + roomId);
       socket.join(roomId);
     });
@@ -84,7 +83,7 @@ export class APpService extends BaseSocketIOAuthService {
    * @param socket
    */
   leaveRoomHandler: SocketHandler = (socket) => {
-    socket.on("leave-room", (roomId: string) => {
+    socket.on(enums.SocketIOEvents.leaveRoom, (roomId: string) => {
       socket.leave(roomId);
     });
   };
@@ -95,7 +94,7 @@ export class APpService extends BaseSocketIOAuthService {
    */
   rpcCommandHandler: SocketHandler = (socket) => {
     socket.on(
-      "rpc-command",
+      enums.SocketIOEvents.rpcCommand,
       async (command: enums.Web3ValueType, uuid: number | undefined) => {
         const pendingJobPlugin = new PendingJobService();
         const selectedRoom = this.canSubmitJob(socket);
@@ -120,7 +119,7 @@ export class APpService extends BaseSocketIOAuthService {
           await pendingJobPlugin.create(job, {});
         } else {
           Logger.error("Cannot run rpc-command, not in any room!");
-          socket.emit("rpc-error", {
+          socket.emit(enums.SocketIOEvents.rpcError, {
             err: "Cannot join the room. Not in any room!",
           });
         }
@@ -133,37 +132,40 @@ export class APpService extends BaseSocketIOAuthService {
    * @param socket
    */
   dockerCommandHandler: SocketHandler = (socket) => {
-    socket.on("docker-command", async (value: any, uuid: string) => {
-      console.log("Getting docker command", value, uuid);
-      const pendingJobPlugin = new PendingJobService();
-      // eslint-disable-next-line no-invalid-this
-      const selectedRoom = this.canSubmitJob(socket);
-      if (selectedRoom) {
-        const job = {
-          id: uuid,
-          targetDeviceId: selectedRoom,
-          from: socket.id,
-          time: new Date(),
-          task: {
-            type: enums.JobTaskType.Docker,
-            value: value,
-          },
-        };
-        /// Add id if user defined
-        if (uuid) {
+    socket.on(
+      enums.SocketIOEvents.dockerCommand,
+      async (value: any, uuid: string) => {
+        console.log("Getting docker command", value, uuid);
+        const pendingJobPlugin = new PendingJobService();
+        // eslint-disable-next-line no-invalid-this
+        const selectedRoom = this.canSubmitJob(socket);
+        if (selectedRoom) {
+          const job = {
+            id: uuid,
+            targetDeviceId: selectedRoom,
+            from: socket.id,
+            time: new Date(),
+            task: {
+              type: enums.JobTaskType.Docker,
+              value: value,
+            },
+          };
+          /// Add id if user defined
+          if (uuid) {
+            //@ts-ignore
+            // eslint-disable-next-line new-cap
+            job._id = mongoose.mongo.ObjectId(uuid);
+          }
           //@ts-ignore
-          // eslint-disable-next-line new-cap
-          job._id = mongoose.mongo.ObjectId(uuid);
+          await pendingJobPlugin.create(job, {});
+        } else {
+          Logger.error("Cannot run docker-command, not in any room!");
+          socket.emit(enums.SocketIOEvents.dockerError, {
+            err: "Cannot join the room. Not in any room!",
+          });
         }
-        //@ts-ignore
-        await pendingJobPlugin.create(job, {});
-      } else {
-        Logger.error("Cannot run docker-command, not in any room!");
-        socket.emit("docker-error", {
-          err: "Cannot join the room. Not in any room!",
-        });
       }
-    });
+    );
   };
 
   handlePushUpdates: SocketHandler = (socket) => {
