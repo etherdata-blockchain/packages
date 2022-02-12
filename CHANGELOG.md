@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.9.0 (2022-02-12)
+
+
+### Features
+
+* add execution plan change stream ([#17](https://github.com/etherdata-blockchain/packages/issues/17)) ([4d19100](https://github.com/etherdata-blockchain/packages/commit/4d19100d0234fd73ec8de8c32988774d11524735))
+
+
+
+
+
 ## 1.8.4 (2022-02-11)
 
 
