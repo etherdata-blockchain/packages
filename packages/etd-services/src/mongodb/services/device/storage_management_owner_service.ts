@@ -105,4 +105,44 @@ export class StorageManagementOwnerService extends BaseMongoDBService<schema.ISt
       configs.Configurations.numberPerPage
     );
   }
+
+  /**
+   * Get owner by device id. Will return a full owner object
+   * @param deviceId device's id
+   * @return storage owner
+   */
+  async getOwnerByDevice(
+    deviceId: string
+  ): Promise<schema.IStorageOwner | undefined> {
+    const pipelines = [
+      {
+        $lookup: {
+          from: "storage_management_item",
+          localField: "user_id",
+          foreignField: "owner_id",
+          as: "items",
+        },
+      },
+      {
+        $unwind: {
+          path: "$items",
+          preserveNullAndEmptyArrays: true,
+        },
+      },
+      {
+        $match: {
+          "items.qr_code": deviceId,
+        },
+      },
+      { $limit: 1 },
+    ];
+
+    const result = await this.model.aggregate(pipelines);
+
+    if (result && result.length > 0) {
+      return result[0];
+    }
+
+    return undefined;
+  }
 }
