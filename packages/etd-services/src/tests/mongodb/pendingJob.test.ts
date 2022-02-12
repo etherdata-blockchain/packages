@@ -1,4 +1,4 @@
-import { enums, interfaces } from "@etherdata-blockchain/common";
+import { enums, interfaces, configs } from "@etherdata-blockchain/common";
 import { schema } from "@etherdata-blockchain/storage-model";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose from "mongoose";
@@ -18,6 +18,7 @@ describe("Given a pending job", () => {
       },
       createdAt: "",
       retrieved: false,
+      tries: 0,
     };
 
   const job2: interfaces.db.PendingJobDBInterface<enums.UpdateTemplateValueType> =
@@ -32,6 +33,7 @@ describe("Given a pending job", () => {
       },
       createdAt: "",
       retrieved: false,
+      tries: 0,
     };
 
   const job3: interfaces.db.PendingJobDBInterface<enums.UpdateTemplateValueType> =
@@ -46,6 +48,7 @@ describe("Given a pending job", () => {
       },
       createdAt: "",
       retrieved: true,
+      tries: 0,
     };
 
   const job4: interfaces.db.PendingJobDBInterface<enums.UpdateTemplateValueType> =
@@ -60,6 +63,7 @@ describe("Given a pending job", () => {
       },
       createdAt: "",
       retrieved: false,
+      tries: 0,
     };
 
   const job5: interfaces.db.PendingJobDBInterface<enums.UpdateTemplateValueType> =
@@ -74,6 +78,7 @@ describe("Given a pending job", () => {
       },
       createdAt: "",
       retrieved: false,
+      tries: 0,
     };
 
   const job6: interfaces.db.PendingJobDBInterface<enums.UpdateTemplateValueType> =
@@ -88,6 +93,25 @@ describe("Given a pending job", () => {
       },
       createdAt: "",
       retrieved: false,
+      tries: 0,
+    };
+
+  /**
+   * Job over the maximum retries limit
+   */
+  const job7: interfaces.db.PendingJobDBInterface<enums.UpdateTemplateValueType> =
+    {
+      targetDeviceId: "device-3",
+      from: "admin-2",
+      task: {
+        type: enums.JobTaskType.UpdateTemplate,
+        value: {
+          templateId: "2",
+        },
+      },
+      createdAt: "",
+      retrieved: false,
+      tries: configs.Configurations.maximumRetiresAllowed + 1,
     };
 
   let dbServer: MongoMemoryServer;
@@ -213,5 +237,30 @@ describe("Given a pending job", () => {
       "task.value.templateId": "2",
     });
     expect(result).toBe(1);
+  });
+
+  test("When calling get jobs while the job exceeds maximum retries limit", async () => {
+    await schema.PendingJobModel.insertMany([job7]);
+    const service = new PendingJobService();
+    const result = await service.getNumberOfNotRetrievedJobs({
+      "task.type": JobTaskType.UpdateTemplate,
+      "task.value.templateId": "2",
+    });
+    const job = await service.getJob(job7.targetDeviceId);
+    expect(result).toBe(0);
+    expect(job).toBeUndefined();
+  });
+
+  test("When calling get jobs while the job exceeds maximum retries limit", async () => {
+    await schema.PendingJobModel.insertMany([job6, job7]);
+    const service = new PendingJobService();
+    const result = await service.getNumberOfNotRetrievedJobs({
+      "task.type": JobTaskType.UpdateTemplate,
+      "task.value.templateId": "2",
+    });
+    const job = await service.getJob(job7.targetDeviceId);
+    expect(result).toBe(1);
+    expect(job).toBeDefined();
+    expect(job!.from).toBe(job6.from);
   });
 });

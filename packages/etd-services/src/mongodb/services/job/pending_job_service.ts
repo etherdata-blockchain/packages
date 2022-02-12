@@ -1,5 +1,5 @@
 import { schema } from "@etherdata-blockchain/storage-model";
-import { enums } from "@etherdata-blockchain/common";
+import { enums, configs } from "@etherdata-blockchain/common";
 import { Model } from "mongoose";
 import { BaseMongoDBService } from "../../db_service";
 import moment from "moment";
@@ -26,6 +26,7 @@ export class PendingJobService extends BaseMongoDBService<
       {
         targetDeviceId: deviceID,
         retrieved: false,
+        tries: { $lte: configs.Configurations.maximumRetiresAllowed },
       },
       {
         retrieved: true,
@@ -46,6 +47,7 @@ export class PendingJobService extends BaseMongoDBService<
    */
   async getNumberOfNotRetrievedJobs(query: { [key: string]: any }) {
     query.retrieved = false;
+    query.tries = { $lte: configs.Configurations.maximumRetiresAllowed };
     return this.model.countDocuments(query);
   }
 

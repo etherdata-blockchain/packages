@@ -17,4 +17,8 @@ export interface PendingJobDBInterface<T> {
    * Whether this job has been retrieved
    */
   retrieved: boolean;
+  /**
+   * Number of retires happened in the past
+   */
+  tries: number;
 }

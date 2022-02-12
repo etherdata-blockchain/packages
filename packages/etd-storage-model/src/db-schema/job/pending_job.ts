@@ -19,6 +19,7 @@ export const pendingJobSchema = new Schema<IPendingJob<enums.AnyValueType>>(
       value: { type: Schema.Types.Mixed, required: true },
     },
     retrieved: { type: "boolean", default: false },
+    tries: { type: Number, default: 0, required: true },
   },
   { timestamps: true, autoIndex: true }
 );

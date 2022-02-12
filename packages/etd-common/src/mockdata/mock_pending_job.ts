@@ -18,6 +18,7 @@ export const MockPendingJob: PendingJobDBInterface<UpdateTemplateValueType> = {
     },
   },
   from: "mock_from",
+  tries: 0,
 };
 
 export const MockPendingJob2: PendingJobDBInterface<UpdateTemplateValueType> = {
@@ -31,6 +32,7 @@ export const MockPendingJob2: PendingJobDBInterface<UpdateTemplateValueType> = {
     },
   },
   from: "mock_from",
+  tries: 0,
 };
 
 export const MockPendingUpdateTemplateJob: PendingJobDBInterface<UpdateTemplateValueType> =
@@ -45,6 +47,7 @@ export const MockPendingUpdateTemplateJob: PendingJobDBInterface<UpdateTemplateV
       },
     },
     from: "mock_from",
+    tries: 0,
   };
 
 export const MockPendingUpdateTemplate2Job: PendingJobDBInterface<UpdateTemplateValueType> =
@@ -59,4 +62,5 @@ export const MockPendingUpdateTemplate2Job: PendingJobDBInterface<UpdateTemplate
       },
     },
     from: "mock_from",
+    tries: 0,
   };

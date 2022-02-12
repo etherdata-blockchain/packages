@@ -16,4 +16,5 @@ export const Configurations = {
   defaultSleepDuration: 100,
   defaultRefreshInterval: 3000,
   defaultMessagePanelWidth: 400,
+  maximumRetiresAllowed: 3,
 };
