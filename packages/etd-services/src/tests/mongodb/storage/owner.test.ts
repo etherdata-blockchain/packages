@@ -119,4 +119,44 @@ describe("Given a storage owner", () => {
     const result = await plugin.getListOfUsers(1);
     expect(result.results.length).toBe(0);
   });
+
+  test("When calling get owner by device id", async () => {
+    const service = new StorageManagementOwnerService();
+    const result = await service.getOwnerByDevice(mockData.MockDeviceID);
+    expect(result).toBeUndefined();
+  });
+
+  test("When calling get owner by device id", async () => {
+    await schema.StorageOwnerModel.create(mockData.MockUser);
+    await schema.StorageOwnerModel.create(mockData.MockUser2);
+    await schema.StorageItemModel.create(mockData.MockStorageItem);
+    await schema.StorageItemModel.create(mockData.MockStorageItem2);
+    const service = new StorageManagementOwnerService();
+    const result = await service.getOwnerByDevice(
+      mockData.MockStorageItem.qr_code
+    );
+    expect(result).toBeDefined();
+    expect(result!.user_name).toBe(mockData.MockUser.user_name);
+    expect(result!.user_id).toBe(mockData.MockUser.user_id);
+  });
+
+  test("When calling get owner by device id", async () => {
+    await schema.StorageOwnerModel.create(mockData.MockUser);
+    await schema.StorageOwnerModel.create(mockData.MockUser2);
+    await schema.StorageItemModel.create(mockData.MockStorageItem);
+    await schema.StorageItemModel.create(mockData.MockStorageItem2);
+    await schema.StorageItemModel.create(mockData.MockStorageItem3);
+    const service = new StorageManagementOwnerService();
+    let result = await service.getOwnerByDevice(
+      mockData.MockStorageItem.qr_code
+    );
+    expect(result).toBeDefined();
+    expect(result!.user_name).toBe(mockData.MockUser.user_name);
+    expect(result!.user_id).toBe(mockData.MockUser.user_id);
+
+    result = await service.getOwnerByDevice(mockData.MockStorageItem3.qr_code);
+    expect(result).toBeDefined();
+    expect(result!.user_name).toBe(mockData.MockUser2.user_name);
+    expect(result!.user_id).toBe(mockData.MockUser2.user_id);
+  });
 });
