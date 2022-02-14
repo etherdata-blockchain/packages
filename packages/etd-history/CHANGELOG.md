@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.13.0 (2022-02-14)
+
+
+### Features
+
+* add device authorization handler ([#22](https://github.com/etherdata-blockchain/packages/issues/22)) ([ed4a07c](https://github.com/etherdata-blockchain/packages/commit/ed4a07c0bf5e01b78c15337c35a1f4f73e3a8308))
+
+
+
+
+
 # 1.12.0 (2022-02-14)
 
 
