@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.12.0 (2022-02-14)
+
+
+### Features
+
+* add maximum retries limit to the service ([#21](https://github.com/etherdata-blockchain/packages/issues/21)) ([fe1c5fd](https://github.com/etherdata-blockchain/packages/commit/fe1c5fd426e8232ca5b04e830eae1fc8a419939c))
+
+
+
+
+
 ## 1.11.3 (2022-02-12)
 
 
