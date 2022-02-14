@@ -36,18 +36,25 @@ export class JobResultService extends BaseMongoDBService<schema.IJobResult> {
   async submitResult(
     result: interfaces.db.JobResultDBInterface,
     pendingJob: interfaces.db.PendingJobDBInterface<any>
-  ) {
-    const pendingJobService = new PendingJobService();
-    if (!result.success) {
-      // Delete the pending job if it exceeds the limit
-      if (pendingJob.tries === configs.Configurations.maximumRetiresAllowed) {
+  ): Promise<{ success: boolean; reason?: string }> {
+    try {
+      const pendingJobService = new PendingJobService();
+      if (pendingJob.tries > configs.Configurations.maximumRetiresAllowed - 1) {
+        await pendingJobService.delete((pendingJob as any)._id);
+        return { success: false, reason: "Tries exceeds the limit" };
+      }
+      if (!result.success) {
+        // Delete the pending job if it exceeds the limit
+        pendingJob.tries = pendingJob.tries + 1;
+        await pendingJobService.patch(pendingJob as any);
+        return { success: true };
+      } else {
         await pendingJobService.delete((pendingJob as any)._id);
       }
-      pendingJob.tries = pendingJob.tries + 1;
-      await pendingJobService.patch(pendingJob as any);
-    } else {
-      await pendingJobService.delete((pendingJob as any)._id);
+      await this.patch(result as any);
+      return { success: true };
+    } catch (e) {
+      return { success: false, reason: `${e}` };
     }
-    await this.patch(result as any);
   }
 }

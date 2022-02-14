@@ -1,13 +1,77 @@
+import {
+  enums,
+  interfaces,
+  configs,
+  mockData,
+} from "@etherdata-blockchain/common";
 import { schema } from "@etherdata-blockchain/storage-model";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose from "mongoose";
-import { StorageManagementService } from "../../mongodb/services/device/storage_management_item_service";
-import { JobResultService } from "../../mongodb/services/job/job_result_service";
+import { StorageManagementService } from "../../mongodb";
+import { JobResultService } from "../../mongodb";
 
 jest.mock("../../mongodb/services/device/storage_management_item_service");
 
 describe("Job Result Test", () => {
   let dbServer: MongoMemoryServer;
+
+  /**
+   * Job doesn't exceed limit
+   */
+  const pendingJob1: interfaces.db.PendingJobDBInterface<any> = {
+    targetDeviceId: mockData.MockDeviceID,
+    from: "admin",
+    task: {
+      type: enums.JobTaskType.Web3,
+      value: {},
+    },
+    createdAt: "",
+    retrieved: false,
+    tries: configs.Configurations.maximumRetiresAllowed - 1,
+  };
+
+  /**
+   * Job exceeds tries' limit
+   */
+  const pendingJob2: interfaces.db.PendingJobDBInterface<any> = {
+    targetDeviceId: mockData.MockDeviceID,
+    from: "admin",
+    task: {
+      type: enums.JobTaskType.Web3,
+      value: {},
+    },
+    createdAt: "",
+    retrieved: false,
+    tries: configs.Configurations.maximumRetiresAllowed + 1,
+  };
+
+  /**
+   * Job is success
+   */
+  const jobResult1: interfaces.db.JobResultDBInterface = {
+    jobId: "",
+    time: new Date(),
+    deviceID: "",
+    from: "admin",
+    command: undefined,
+    result: undefined,
+    success: true,
+    commandType: "",
+  };
+
+  /**
+   * Job is failed
+   */
+  const jobResult2: interfaces.db.JobResultDBInterface = {
+    jobId: "",
+    time: new Date(),
+    deviceID: "",
+    from: "admin",
+    command: undefined,
+    result: undefined,
+    success: false,
+    commandType: "",
+  };
 
   beforeAll(async () => {
     dbServer = await MongoMemoryServer.create();
@@ -91,5 +155,48 @@ describe("Job Result Test", () => {
     const result = await plugin.getResults("a");
     expect(result?.length).toBe(2);
     expect(await schema.JobResultModel.count()).toBe(0);
+  });
+
+  test("When submitting a result while tries exceeds limit", async () => {
+    const job = await schema.PendingJobModel.create(pendingJob2);
+    jobResult1.jobId = job._id;
+    const jobService = new JobResultService();
+    const { success } = await jobService.submitResult(jobResult1, job);
+    expect(success).toBeFalsy();
+  });
+
+  test("When submitting a result while tries exceeds limit", async () => {
+    const job = await schema.PendingJobModel.create(pendingJob2);
+    jobResult1.jobId = job._id;
+    const jobService = new JobResultService();
+    const { success } = await jobService.submitResult(jobResult2, job);
+    expect(success).toBeFalsy();
+  });
+
+  test("When submitting a result while tries doesn't exceed limit", async () => {
+    const job = await schema.PendingJobModel.create(pendingJob1);
+    jobResult1.jobId = job._id;
+    const jobService = new JobResultService();
+    const { success } = await jobService.submitResult(jobResult1, job);
+    expect(success).toBeTruthy();
+  });
+
+  test("When submitting a result while tries doesn't exceed limit", async () => {
+    const job = await schema.PendingJobModel.create(pendingJob1);
+    jobResult1.jobId = job._id;
+    const jobService = new JobResultService();
+    const { success } = await jobService.submitResult(jobResult2, job);
+    expect(success).toBeTruthy();
+  });
+
+  test("When submitting a result while tries doesn't exceed limit", async () => {
+    let job = await schema.PendingJobModel.create(pendingJob1);
+    jobResult1.jobId = job._id;
+    const jobService = new JobResultService();
+    let result = await jobService.submitResult(jobResult2, job);
+    expect(result.success).toBeTruthy();
+    let job2 = await schema.PendingJobModel.findOne({ _id: job._id });
+    result = await jobService.submitResult(jobResult2, job2!);
+    expect(result.success).toBeFalsy();
   });
 });
