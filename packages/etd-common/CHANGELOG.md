@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.13.1 (2022-02-16)
+
+
+### Bug Fixes
+
+* docker plan create and delete container issues ([#23](https://github.com/etherdata-blockchain/packages/issues/23)) ([84b8f26](https://github.com/etherdata-blockchain/packages/commit/84b8f260943d7372ff5802df9f9bb843e02db8e5))
+
+
+
+
+
 # 1.13.0 (2022-02-14)
 
 
