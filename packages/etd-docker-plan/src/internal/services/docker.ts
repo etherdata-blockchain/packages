@@ -80,11 +80,15 @@ export default class DockerService {
       try {
         const container = this.docker.getContainer(rmc.containerId!);
         await container.remove({ force: true });
-      } catch (e) {
+      } catch (e: any) {
         // eslint-disable-next-line no-console
         console.log(
           `Cannot remove container ${rmc.containerName} because ${e}`
         );
+        //if we cannot find this container
+        if (e.statusCode === 404) {
+          continue;
+        }
         throw e;
       }
     }
@@ -111,11 +115,12 @@ export default class DockerService {
           Image: `${newContainer.image.image}:${newContainer.image.tag}`,
           ...newContainer.config,
         });
+        await container.start();
         newContainer.containerId = container.id;
       } catch (e) {
         // eslint-disable-next-line no-console
         console.log(
-          `Cannot remove container ${newContainer.containerName} because ${e}. Rolling back.`
+          `Cannot create container ${newContainer.containerName} because ${e}. Rolling back.`
         );
         if (!rollback) {
           await this.removeContainers(

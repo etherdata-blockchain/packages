@@ -48,6 +48,7 @@ describe("Given a docker service with error", () => {
 
     const container = {
       remove: mockRemove,
+      start: jest.fn(),
       id: MockContainerId,
     };
 
