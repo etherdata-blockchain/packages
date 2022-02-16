@@ -7,6 +7,7 @@ const container = {
   id: MockContainerId,
   stop: jest.fn(),
   remove: jest.fn(),
+  start: jest.fn(),
 };
 
 const image = {
@@ -74,6 +75,23 @@ describe("Given a docker service while docker works as expected", () => {
   test("When calling remove containers with an empty container provided", async () => {
     const dockerService = new DockerService(docker);
     await expect(dockerService.removeImages([])).resolves.not.toThrow();
+  });
+
+  test("When calling remove containers with no container found", async () => {
+    const mockRemove = jest.fn().mockRejectedValue({
+      statusCode: 404,
+    });
+    const mockDocker = jest.fn().mockImplementation(() => ({
+      getContainer: jest.fn().mockImplementation(() => ({
+        remove: mockRemove,
+      })),
+    }));
+
+    const dockerService = new DockerService(new mockDocker() as any);
+    await expect(
+      dockerService.removeContainers([MockContainers[0]])
+    ).resolves.not.toThrow();
+    expect(mockRemove).toBeCalledTimes(1);
   });
 
   test("When calling remove images with some containers provided", async () => {
