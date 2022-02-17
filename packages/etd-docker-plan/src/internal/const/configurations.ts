@@ -1,3 +1,3 @@
 export const Configurations = {
-  defaultStackPosition: "./stack.lock.yaml",
+  defaultStackPosition: "./stacks/stack.lock.yaml",
 };
