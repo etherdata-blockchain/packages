@@ -94,6 +94,34 @@ describe("Given a docker service while docker works as expected", () => {
     expect(mockRemove).toBeCalledTimes(1);
   });
 
+  test("When calling create containers while exists", async () => {
+    const mockRemove = jest.fn();
+    const mockStart = jest.fn();
+    const mockCreate = jest
+      .fn()
+      .mockRejectedValueOnce({
+        statusCode: 409,
+      })
+      .mockResolvedValue({
+        start: mockStart,
+      });
+
+    const mockDocker = jest.fn().mockImplementation(() => ({
+      getContainer: jest.fn().mockImplementation(() => ({
+        remove: mockRemove,
+      })),
+      createContainer: mockCreate,
+    }));
+
+    const dockerService = new DockerService(new mockDocker() as any);
+    await expect(
+      dockerService.createContainers([MockContainers[0]])
+    ).resolves.not.toThrow();
+    expect(mockCreate).toBeCalledTimes(2);
+    expect(mockStart).toBeCalledTimes(1);
+    expect(mockRemove).toBeCalledTimes(1);
+  });
+
   test("When calling remove images with some containers provided", async () => {
     const dockerService = new DockerService(docker);
     const containers = [MockContainers[0], MockContainers[1]];

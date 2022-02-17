@@ -3,6 +3,7 @@ import fs from "fs";
 import { Configurations } from "../const/configurations";
 import { ImageStack, Image } from "./image";
 import { Container, ContainerStack } from "./container";
+import * as path from "path";
 
 export interface StackInterface {
   update_time: string;
@@ -73,6 +74,8 @@ export class Stack {
 
   public readPreviousStack() {
     if (!fs.existsSync(Configurations.defaultStackPosition)) {
+      const dirName = path.dirname(Configurations.defaultStackPosition);
+      fs.mkdirSync(dirName, { recursive: true });
       return;
     }
     const data = fs.readFileSync(Configurations.defaultStackPosition, "utf-8");

@@ -66,16 +66,21 @@ export default class DockerService {
    * Remove list of containers
    * @param removeContainers
    * @param rollback is rollback?
+   * @param useLog
    */
   async removeContainers(
     removeContainers: ContainerStack[],
     // eslint-disable-next-line no-unused-vars
-    rollback: boolean = false
+    rollback: boolean = false,
+    useLog: boolean = true
   ) {
-    // eslint-disable-next-line no-console
-    console.log(
-      `Starting container removal process (Total: ${removeContainers.length})`
-    );
+    if (useLog) {
+      // eslint-disable-next-line no-console
+      console.log(
+        `Starting container removal process (Total: ${removeContainers.length})`
+      );
+    }
+
     for (const rmc of removeContainers) {
       try {
         const container = this.docker.getContainer(rmc.containerId!);
@@ -98,15 +103,19 @@ export default class DockerService {
    * Create list of containers
    * @param newContainers a list of images
    * @param rollback is rollback?
+   * @param useLog
    */
   async createContainers(
     newContainers: ContainerStack[],
-    rollback: boolean = false
+    rollback: boolean = false,
+    useLog: boolean = true
   ) {
-    // eslint-disable-next-line no-console
-    console.log(
-      `Starting container creation process (Total: ${newContainers.length})`
-    );
+    if (useLog) {
+      // eslint-disable-next-line no-console
+      console.log(
+        `Starting container creation process (Total: ${newContainers.length})`
+      );
+    }
 
     for (const newContainer of newContainers) {
       try {
@@ -117,11 +126,23 @@ export default class DockerService {
         });
         await container.start();
         newContainer.containerId = container.id;
-      } catch (e) {
+      } catch (e: any) {
+        // if there is a container before, get that container and remove it
+        if (e.statusCode === 409) {
+          await this.removeContainers(
+            [{ containerId: newContainer.containerName, ...newContainer }],
+            false,
+            false
+          );
+          await this.createContainers([newContainer], false, false);
+          continue;
+        }
+
         // eslint-disable-next-line no-console
         console.log(
           `Cannot create container ${newContainer.containerName} because ${e}. Rolling back.`
         );
+
         if (!rollback) {
           await this.removeContainers(
             newContainers.filter((c) => c.containerId !== undefined),
