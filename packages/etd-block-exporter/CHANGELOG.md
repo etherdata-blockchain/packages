@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.13.2 (2022-02-17)
+
+
+### Bug Fixes
+
+* update default stack.lock's position ([#24](https://github.com/etherdata-blockchain/packages/issues/24)) ([b461907](https://github.com/etherdata-blockchain/packages/commit/b4619074ed3b4ffbbf6a0bf2506e0cf1d501446f))
+
+
+
+
+
 ## 1.13.1 (2022-02-16)
 
 
