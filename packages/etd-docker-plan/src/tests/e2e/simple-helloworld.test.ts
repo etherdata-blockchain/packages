@@ -1,10 +1,12 @@
 import Docker from "dockerode";
 import DockerService from "../../internal/services/docker";
 import { DockerPlan } from "../../index";
-import { ImageStack } from "../../internal/stack/image";
-import { ContainerStack } from "../../internal/stack/container";
 import { StackInterface } from "../../internal/stack/stack";
 import * as fs from "fs";
+import { interfaces } from "@etherdata-blockchain/common";
+
+type ImageStack = interfaces.db.ImageStack;
+type ContainerStack = interfaces.db.ContainerStack;
 
 describe("Given a docker plan", () => {
   const imageName = "hello-world";

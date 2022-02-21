@@ -1,14 +1,12 @@
-export interface ImageStack {
-  imageId?: string;
-  image: string;
-  tag: string;
-}
+import { interfaces } from "@etherdata-blockchain/common";
+
+type ImageStack = interfaces.db.ImageStack;
 
 export class Image {
   /**
    * List of images to be pull
    */
-  images: ImageStack[];
+  images: interfaces.db.ImageStack[];
 
   private readonly originImages: ImageStack[];
 

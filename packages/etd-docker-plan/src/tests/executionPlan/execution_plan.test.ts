@@ -1,5 +1,9 @@
 import { Stack } from "../../internal/stack/stack";
-import { MockCompletelyUpdateStack, MockStack } from "../data/mock_stack";
+import {
+  MockCompletelyUpdateStack2,
+  MockStack,
+  MockStack2,
+} from "../data/mock_stack";
 import { ExecutionPlan } from "../../internal/executionPlan/execution_plan";
 import DockerService from "../../internal/services/docker";
 import { MockContainersNoId } from "../data/mock_container_stack";
@@ -10,6 +14,7 @@ jest.mock("../../internal/services/docker", () =>
     removeImages: jest.fn(),
     removeContainers: jest.fn(),
     createContainers: jest.fn(),
+    searchImages: jest.fn().mockReturnValue({ exist: true }),
   }))
 );
 
@@ -28,7 +33,7 @@ describe("Given an execution plan object", () => {
 
   test("When creating an execution plan with only create", () => {
     const stack = new Stack();
-    stack.updateStack(MockStack);
+    stack.updateStack(MockStack2);
 
     const executionPlan = new ExecutionPlan(successDockerService);
     executionPlan.create(stack);
@@ -41,8 +46,8 @@ describe("Given an execution plan object", () => {
 
   test("When creating an execution plan with remove and create", () => {
     const stack = new Stack();
-    stack.updateStack(MockStack);
-    stack.updateStack(MockCompletelyUpdateStack);
+    stack.updateStack(MockStack2);
+    stack.updateStack(MockCompletelyUpdateStack2);
 
     const executionPlan = new ExecutionPlan(successDockerService);
     executionPlan.create(stack);
@@ -56,7 +61,7 @@ describe("Given an execution plan object", () => {
   test("When calling apply execution plan successfully", async () => {
     const stack = new Stack();
     stack.updateStack(MockStack);
-    stack.updateStack(MockCompletelyUpdateStack);
+    stack.updateStack(MockCompletelyUpdateStack2);
 
     const executionPlan = new ExecutionPlan(successDockerService);
     executionPlan.create(stack);

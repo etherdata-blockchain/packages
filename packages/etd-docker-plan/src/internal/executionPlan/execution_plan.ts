@@ -1,7 +1,10 @@
 import { Stack } from "../stack/stack";
-import { ContainerStack } from "../stack/container";
-import { ImageStack } from "../stack/image";
-import DockerService from "../services/docker";
+import DockerService, { SearchResult } from "../services/docker";
+import { configs, utils, interfaces } from "@etherdata-blockchain/common";
+import { Configurations } from "../const/configurations";
+
+type ImageStack = interfaces.db.ImageStack;
+type ContainerStack = interfaces.db.ContainerStack;
 
 export interface ExecutionPlanInterface {
   update_time: string;
@@ -20,6 +23,18 @@ export interface ApplyResult {
   error?: string;
 }
 
+/**
+ * Async sleep
+ * @param ms
+ */
+export function sleep(ms: number) {
+  return new Promise<void>((resolve, reject) => {
+    setTimeout(() => {
+      resolve();
+    }, ms);
+  });
+}
+
 export class ExecutionPlan {
   executionPlan?: ExecutionPlanInterface;
 
@@ -30,19 +45,7 @@ export class ExecutionPlan {
   }
 
   create(stack: Stack) {
-    if (stack.stacks === undefined) {
-      throw Error(
-        "You need to create/load a stack before creating an execution plan"
-      );
-    }
-
-    for (const container of stack.getRemovedContainers()) {
-      if (container.containerId === undefined) {
-        throw new Error(
-          `Container ${container.containerName}'s id should not be null`
-        );
-      }
-    }
+    stack.validate();
 
     this.executionPlan = {
       update_time: new Date().toISOString(),
@@ -51,8 +54,8 @@ export class ExecutionPlan {
         images: stack.getRemovedImages(),
       },
       create: {
-        containers: stack.stacks.containers,
-        images: stack.stacks.images,
+        containers: stack.stacks!.containers,
+        images: stack.stacks!.images,
       },
     };
 
@@ -74,6 +77,30 @@ export class ExecutionPlan {
       // Pull new images
       const newImages = this.executionPlan.create.images;
       await this.dockerService.pullImages(newImages);
+      // Make sure all images are downloaded
+      let failedTimes = 0;
+      let searchResult!: SearchResult;
+
+      while (failedTimes < configs.Configurations.maximumRetiresAllowed) {
+        searchResult = await this.dockerService.searchImages(newImages);
+        if (searchResult.exist) {
+          break;
+        }
+        console.log("Waiting images to be found...");
+        failedTimes += 1;
+        await sleep(Configurations.awaitTime);
+      }
+      if (!searchResult.exist) {
+        return {
+          success: false,
+          error: `Missing images ${JSON.stringify(
+            searchResult.missing,
+            null,
+            2
+          )}`,
+        };
+      }
+
       // Remove old containers
       const removeContainers = this.executionPlan.remove.containers;
       await this.dockerService.removeContainers(removeContainers);

@@ -21,6 +21,7 @@ jest.mock("dockerode", () =>
     getImage: jest.fn().mockReturnValue(image),
     getContainer: jest.fn().mockReturnValue(container),
     pull: jest.fn().mockReturnValue(image),
+    listImages: jest.fn().mockResolvedValue([image]),
   }))
 );
 describe("Given a docker service while docker works as expected", () => {
@@ -128,5 +129,11 @@ describe("Given a docker service while docker works as expected", () => {
     await expect(
       dockerService.removeContainers(containers)
     ).resolves.not.toThrow();
+  });
+
+  test("When calling search images", async () => {
+    const dockerService = new DockerService(docker);
+    const result = await dockerService.searchImages(MockImageStacks);
+    expect(result.exist).toBeTruthy();
   });
 });
