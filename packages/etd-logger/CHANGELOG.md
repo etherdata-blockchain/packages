@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.15.1 (2022-02-22)
+
+
+### Bug Fixes
+
+* storage counting incorrect problem ([#27](https://github.com/etherdata-blockchain/packages/issues/27)) ([43b4e7f](https://github.com/etherdata-blockchain/packages/commit/43b4e7f9c6a3436da559ed1ac83a7cf5e1c930ef))
+
+
+
+
+
 # 1.15.0 (2022-02-22)
 
 
