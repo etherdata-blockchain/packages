@@ -1,5 +1,7 @@
-import { ContainerStack } from "../../internal/stack/container";
 import { MockImageStacks } from "./mock_image_stack";
+import { interfaces } from "@etherdata-blockchain/common";
+
+type ContainerStack = interfaces.db.ContainerStack;
 
 export const MockContainers: ContainerStack[] = [
   {
@@ -26,6 +28,16 @@ export const MockContainers: ContainerStack[] = [
     containerId: "3",
     containerName: "mock_container_2",
     image: MockImageStacks[4],
+  },
+  {
+    containerId: "2",
+    containerName: "mock_container_1",
+    image: MockImageStacks[2],
+  },
+  {
+    containerId: "2",
+    containerName: "mock_container_1",
+    image: MockImageStacks[3],
   },
 ];
 

@@ -1,9 +1,13 @@
 import yaml from "yaml";
 import fs from "fs";
 import { Configurations } from "../const/configurations";
-import { ImageStack, Image } from "./image";
-import { Container, ContainerStack } from "./container";
+import { Image } from "./image";
+import { Container } from "./container";
 import * as path from "path";
+import { interfaces } from "@etherdata-blockchain/common";
+
+type ImageStack = interfaces.db.ImageStack;
+type ContainerStack = interfaces.db.ContainerStack;
 
 export interface StackInterface {
   update_time: string;
@@ -70,6 +74,42 @@ export class Stack {
     this.stacks.update_time = new Date().toISOString();
     this.stacks.images = this.image.images;
     this.stacks.containers = this.container.containers;
+  }
+
+  public validate() {
+    if (this.stacks === undefined) {
+      throw Error(
+        "You need to create/load a stack before creating an execution plan"
+      );
+    }
+
+    for (const container of this.getRemovedContainers()) {
+      if (container.containerId === undefined) {
+        throw new Error(
+          `Container ${container.containerName}'s id should not be null`
+        );
+      }
+    }
+
+    if (
+      this.stacks?.images.length === 0 &&
+      this.stacks.containers.length !== 0
+    ) {
+      throw new Error("Created image length is 0 and container size is not 0");
+    }
+
+    for (const container of this.stacks?.containers ?? []) {
+      const foundImage = this.stacks?.images.find(
+        (i) =>
+          i.image === container.image.image && i.tag === container.image.tag
+      );
+
+      if (!foundImage) {
+        throw new Error(
+          `${container.image.image}:${container.image.tag} not found in image stack`
+        );
+      }
+    }
   }
 
   public readPreviousStack() {

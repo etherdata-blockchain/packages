@@ -8,7 +8,3 @@ export * from "./static_node_interfaces";
 export * from "./execution_plan_interfaces";
 export * from "./update_template_interfaces";
 export * from "./transaction_interfaces";
-export type {
-  ContainerStack,
-  ImageStack,
-} from "@etherdata-blockchain/docker-plan";

@@ -1,4 +1,6 @@
-import { ImageStack } from "../../internal/stack/image";
+import { interfaces } from "@etherdata-blockchain/common";
+
+type ImageStack = interfaces.db.ImageStack;
 
 export const MockImageStacks: ImageStack[] = [
   {

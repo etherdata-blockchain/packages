@@ -2,8 +2,10 @@ import Docker from "dockerode";
 import { DockerPlan } from "./index";
 import DockerService from "./internal/services/docker";
 import { StackInterface } from "./internal/stack/stack";
-import { ImageStack } from "./internal/stack/image";
-import { ContainerStack } from "./internal/stack/container";
+import { interfaces } from "@etherdata-blockchain/common";
+
+type ImageStack = interfaces.db.ImageStack;
+type ContainerStack = interfaces.db.ContainerStack;
 
 (async () => {
   const docker = new Docker();

@@ -1,8 +1,48 @@
-import {
-  ContainerStack,
-  DockerContainerConfig,
-  ImageStack,
-} from "@etherdata-blockchain/docker-plan";
+/**
+ * Stack to describe the structure of the container
+ */
+export interface ContainerStack {
+  containerId?: string;
+  containerName: string;
+  image: ImageStack;
+  config?: DockerContainerConfig;
+}
+
+export interface ImageStack {
+  imageId?: string;
+  image: string;
+  tag: string;
+}
+
+export interface DockerContainerConfig {
+  Hostname?: string | undefined;
+  Domainname?: string | undefined;
+  User?: string | undefined;
+  AttachStdin?: boolean | undefined;
+  AttachStdout?: boolean | undefined;
+  AttachStderr?: boolean | undefined;
+  Tty?: boolean | undefined;
+  OpenStdin?: boolean | undefined;
+  StdinOnce?: boolean | undefined;
+  Env?: string[] | undefined;
+  Cmd?: string[] | undefined;
+  Entrypoint?: string | string[] | undefined;
+  Labels?: { [label: string]: string } | undefined;
+  Volumes?: { [volume: string]: {} } | undefined;
+  WorkingDir?: string | undefined;
+  NetworkDisabled?: boolean | undefined;
+  MacAddress?: boolean | undefined;
+  ExposedPorts?: { [port: string]: {} } | undefined;
+  StopSignal?: string | undefined;
+  StopTimeout?: number | undefined;
+  HostConfig?: any | undefined;
+  NetworkingConfig?:
+    | {
+        EndpointsConfig?: any | undefined;
+      }
+    | undefined;
+  abortSignal?: AbortSignal;
+}
 
 export interface UpdateTemplateDBInterface {
   name: string;

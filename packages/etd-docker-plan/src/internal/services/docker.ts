@@ -1,6 +1,14 @@
 import Docker, { Image } from "dockerode";
-import { ImageStack } from "../stack/image";
-import { ContainerStack } from "../stack/container";
+import { interfaces } from "@etherdata-blockchain/common";
+
+type ImageStack = interfaces.db.ImageStack;
+type ContainerStack = interfaces.db.ContainerStack;
+
+export interface SearchResult {
+  exist: boolean;
+  missing: ImageStack[];
+  found: ImageStack[];
+}
 
 export default class DockerService {
   docker: Docker;
@@ -53,7 +61,7 @@ export default class DockerService {
     for (const rmi of removedImages) {
       try {
         const image = this.docker.getImage(`${rmi.image}:${rmi.tag}`);
-        await image.remove();
+        await image.remove({ force: true });
       } catch (e) {
         // eslint-disable-next-line no-console
         console.log(`Cannot remove image ${rmi.image} because ${e}`);
@@ -86,14 +94,14 @@ export default class DockerService {
         const container = this.docker.getContainer(rmc.containerId!);
         await container.remove({ force: true });
       } catch (e: any) {
-        // eslint-disable-next-line no-console
-        console.log(
-          `Cannot remove container ${rmc.containerName} because ${e}`
-        );
         //if we cannot find this container
         if (e.statusCode === 404) {
           continue;
         }
+        // eslint-disable-next-line no-console
+        console.log(
+          `Cannot remove container ${rmc.containerName} because ${e}`
+        );
         throw e;
       }
     }
@@ -152,5 +160,37 @@ export default class DockerService {
         throw e;
       }
     }
+  }
+
+  /**
+   * Search images by images stacks
+   * @param images
+   */
+  async searchImages(images: ImageStack[]): Promise<SearchResult> {
+    console.log(`Searching for images (Total: ${images.length})`);
+    const results = await this.docker.listImages();
+
+    const missing: ImageStack[] = [];
+    const found: ImageStack[] = [];
+    for (const image of images) {
+      const key = `${image.image}:${image.tag}`;
+      const options: any = {
+        filters: {
+          reference: [key],
+        },
+      };
+      const foundImages = (await this.docker.listImages(options)) as any;
+      if (foundImages.length === 0) {
+        missing.push(image);
+      } else {
+        found.push(image);
+      }
+    }
+
+    return {
+      exist: missing.length === 0,
+      missing,
+      found,
+    };
   }
 }
