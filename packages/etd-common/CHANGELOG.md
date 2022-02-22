@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.15.0 (2022-02-22)
+
+
+### Features
+
+* add retry and validation function ([#26](https://github.com/etherdata-blockchain/packages/issues/26)) ([b459c16](https://github.com/etherdata-blockchain/packages/commit/b459c162144745c8bef494e7b804534eb393e26c))
+
+
+
+
+
 # 1.14.0 (2022-02-17)
 
 
