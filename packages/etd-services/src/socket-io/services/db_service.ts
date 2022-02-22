@@ -9,7 +9,7 @@ import { PendingJobService } from "../../mongodb/services/job/pending_job_servic
 import { ClientService } from "./client_service";
 import { DeviceRegistrationService } from "../../mongodb/services/device/device_registration_service";
 import { JobResultService } from "../../mongodb/services/job/job_result_service";
-import { ExecutionPlanService } from "../../mongodb";
+import { ExecutionPlanService, StorageManagementService } from "../../mongodb";
 import Logger from "@etherdata-blockchain/logger";
 
 /**
@@ -44,8 +44,10 @@ export class DBChangeService extends BaseSocketIOService {
       enums.SocketIOServiceName.client
     );
     const plugin = new DeviceRegistrationService();
+    const storage = new StorageManagementService();
+
     const onlineCount = await plugin.getOnlineDevicesCount();
-    const totalCount = await plugin.count();
+    const totalCount = await storage.count();
     clientPlugin?.server?.emit(enums.SocketIOEvents.latestInfo, {
       totalCount,
       onlineCount,
