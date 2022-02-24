@@ -35,6 +35,10 @@ export class DockerImageService extends BaseMongoDBService<schema.IDockerImage> 
   async createWithDockerWebhookData(
     data: interfaces.DockerWebhookInterface
   ): Promise<void> {
+    if (data.push_data?.tag?.length === 0) {
+      return;
+    }
+
     const dockerData = {
       imageName: data.repository.repo_name,
       tags: [{ tag: data.push_data.tag }],
