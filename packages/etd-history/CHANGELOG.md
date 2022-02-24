@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.15.2 (2022-02-24)
+
+
+### Bug Fixes
+
+* webhook with empty tag problem ([#28](https://github.com/etherdata-blockchain/packages/issues/28)) ([9477a26](https://github.com/etherdata-blockchain/packages/commit/9477a26f68a2f8f65da964be4dd7932ca1d209b1))
+
+
+
+
+
 ## 1.15.1 (2022-02-22)
 
 
