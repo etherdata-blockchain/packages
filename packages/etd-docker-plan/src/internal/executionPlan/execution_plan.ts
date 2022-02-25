@@ -2,6 +2,7 @@ import { Stack } from "../stack/stack";
 import DockerService, { SearchResult } from "../services/docker";
 import { configs, utils, interfaces } from "@etherdata-blockchain/common";
 import { Configurations } from "../const/configurations";
+import Logger from "@etherdata-blockchain/logger";
 
 type ImageStack = interfaces.db.ImageStack;
 type ContainerStack = interfaces.db.ContainerStack;
@@ -60,7 +61,7 @@ export class ExecutionPlan {
     };
 
     // eslint-disable-next-line no-console
-    console.log(
+    Logger.info(
       `Execution plan:\n${JSON.stringify(this.executionPlan, undefined, 4)}`
     );
   }
@@ -86,7 +87,7 @@ export class ExecutionPlan {
         if (searchResult.exist) {
           break;
         }
-        console.log("Waiting images to be found...");
+        Logger.info("Waiting images to be found...");
         failedTimes += 1;
         await sleep(Configurations.awaitTime);
       }

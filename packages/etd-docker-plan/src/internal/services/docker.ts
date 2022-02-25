@@ -3,6 +3,7 @@ import { interfaces } from "@etherdata-blockchain/common";
 import { sleep } from "../executionPlan/execution_plan";
 import { Configurations } from "../const/configurations";
 import { enums } from "@etherdata-blockchain/common";
+import Logger from "@etherdata-blockchain/logger";
 
 type ImageStack = interfaces.db.ImageStack;
 type ContainerStack = interfaces.db.ContainerStack;
@@ -27,14 +28,14 @@ export default class DockerService {
    */
   async pullImages(newImages: ImageStack[], rollback: boolean = false) {
     // eslint-disable-next-line no-console
-    console.log(`Start images pulling process (Total: ${newImages.length})`);
+    Logger.info(`Start images pulling process (Total: ${newImages.length})`);
     for (const nim of newImages) {
       try {
         const image: Image = await this.docker.pull(`${nim.image}:${nim.tag}`);
         nim.imageId = image.id;
       } catch (e) {
         // eslint-disable-next-line no-console
-        console.log(
+        Logger.error(
           `Cannot pull image ${nim.image} because ${e}. Rolling back.`
         );
         if (!rollback) {
@@ -57,7 +58,7 @@ export default class DockerService {
   // eslint-disable-next-line no-unused-vars
   async removeImages(removedImages: ImageStack[], rollback: boolean = false) {
     // eslint-disable-next-line no-console
-    console.log(
+    Logger.info(
       `Start images removal process (Total: ${removedImages.length})`
     );
 
@@ -70,7 +71,7 @@ export default class DockerService {
           continue;
         }
         // eslint-disable-next-line no-console
-        console.log(`Cannot remove image ${rmi.image} because ${e}`);
+        Logger.error(`Cannot remove image ${rmi.image} because ${e}`);
         throw e;
       }
     }
@@ -90,7 +91,7 @@ export default class DockerService {
   ) {
     if (useLog) {
       // eslint-disable-next-line no-console
-      console.log(
+      Logger.info(
         `Starting container removal process (Total: ${removeContainers.length})`
       );
     }
@@ -105,7 +106,7 @@ export default class DockerService {
           continue;
         }
         // eslint-disable-next-line no-console
-        console.log(
+        Logger.error(
           `Cannot remove container ${rmc.containerName} because ${e}`
         );
         throw e;
@@ -126,7 +127,7 @@ export default class DockerService {
   ) {
     if (useLog) {
       // eslint-disable-next-line no-console
-      console.log(
+      Logger.info(
         `Starting container creation process (Total: ${newContainers.length})`
       );
     }
@@ -170,7 +171,7 @@ export default class DockerService {
         }
 
         // eslint-disable-next-line no-console
-        console.log(
+        Logger.error(
           `Cannot create container ${newContainer.containerName} because ${e}. Rolling back.`
         );
 
@@ -192,7 +193,6 @@ export default class DockerService {
   async searchImages(images: ImageStack[]): Promise<SearchResult> {
     console.log(`Searching for images (Total: ${images.length})`);
     const results = await this.docker.listImages();
-
     const missing: ImageStack[] = [];
     const found: ImageStack[] = [];
     for (const image of images) {
