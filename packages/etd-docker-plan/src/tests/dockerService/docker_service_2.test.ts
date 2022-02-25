@@ -85,7 +85,7 @@ describe("Given a docker service", () => {
         MockContainersNoId[2],
       ])
     ).rejects.toThrow(
-      "Container is not running with exit code 1 and reason mock_data"
+      "Container is not running with exit code 1 and reason is\nmock_data"
     );
   });
 });

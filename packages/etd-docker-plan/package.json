@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@etherdata-blockchain/common": "^1.16.0",
+    "@etherdata-blockchain/logger": "*",
     "@types/cli-progress": "^3.9.2",
     "@types/dockerode": "^3.3.0",
     "@types/jest-when": "^2.7.3",
