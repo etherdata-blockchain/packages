@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.15.3 (2022-02-25)
+
+
+### Bug Fixes
+
+* add HostConfig ([#29](https://github.com/etherdata-blockchain/packages/issues/29)) ([882ba5b](https://github.com/etherdata-blockchain/packages/commit/882ba5b103bb678c28677f57f74d825f33fd8e72))
+
+
+
+
+
 ## 1.15.2 (2022-02-24)
 
 
