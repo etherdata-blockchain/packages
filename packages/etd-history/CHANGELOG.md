@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.16.2 (2022-02-25)
+
+
+### Bug Fixes
+
+* mongoose not defined ([#32](https://github.com/etherdata-blockchain/packages/issues/32)) ([1ad7fe9](https://github.com/etherdata-blockchain/packages/commit/1ad7fe914462ab5ad279d68d0037afe26f061503))
+
+
+
+
+
 ## 1.16.1 (2022-02-25)
 
 
