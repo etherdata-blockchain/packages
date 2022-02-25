@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.16.0 (2022-02-25)
+
+
+### Features
+
+* check docker container's status ([#30](https://github.com/etherdata-blockchain/packages/issues/30)) ([c4521c2](https://github.com/etherdata-blockchain/packages/commit/c4521c2be95ddb398a5a850e0ccd28c95c4489e4))
+
+
+
+
+
 ## 1.15.3 (2022-02-25)
 
 
