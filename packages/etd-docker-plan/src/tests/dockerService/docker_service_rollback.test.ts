@@ -8,6 +8,7 @@ import {
   MockContainers,
   MockContainersNoId,
 } from "../data/mock_container_stack";
+import { Configurations } from "../../internal/const/configurations";
 
 jest.mock("dockerode");
 
@@ -15,6 +16,10 @@ describe("Given a docker service with error", () => {
   afterEach(() => {
     // @ts-ignore
     Docker.mockClear();
+  });
+
+  beforeAll(() => {
+    Configurations.awaitTime = 0;
   });
 
   test("When calling pulling images and then rollback", async () => {
@@ -49,7 +54,13 @@ describe("Given a docker service with error", () => {
     const container = {
       remove: mockRemove,
       start: jest.fn(),
+      inspect: jest.fn().mockResolvedValue({
+        State: {
+          Running: true,
+        },
+      }),
       id: MockContainerId,
+      logs: jest.fn().mockResolvedValue(Buffer.from("mock_data")),
     };
 
     const mockCreate = jest

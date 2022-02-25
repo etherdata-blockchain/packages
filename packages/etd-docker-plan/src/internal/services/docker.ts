@@ -1,5 +1,8 @@
 import Docker, { Image } from "dockerode";
 import { interfaces } from "@etherdata-blockchain/common";
+import { sleep } from "../executionPlan/execution_plan";
+import { Configurations } from "../const/configurations";
+import { enums } from "@etherdata-blockchain/common";
 
 type ImageStack = interfaces.db.ImageStack;
 type ContainerStack = interfaces.db.ContainerStack;
@@ -62,7 +65,10 @@ export default class DockerService {
       try {
         const image = this.docker.getImage(`${rmi.image}:${rmi.tag}`);
         await image.remove({ force: true });
-      } catch (e) {
+      } catch (e: any) {
+        if (e.statusCode === 404) {
+          continue;
+        }
         // eslint-disable-next-line no-console
         console.log(`Cannot remove image ${rmi.image} because ${e}`);
         throw e;
@@ -133,6 +139,23 @@ export default class DockerService {
           ...newContainer.config,
         });
         await container.start();
+        // check for container status
+        await sleep(Configurations.awaitTime);
+        const inspectResult = await container.inspect();
+        const lastLogBuffer = await container.logs({
+          stdout: true,
+          stderr: true,
+          follow: false,
+        });
+        const lastLog = lastLogBuffer.toString();
+        if (!inspectResult.State.Running) {
+          if (inspectResult.State.ExitCode !== enums.ExitCode.success) {
+            throw new Error(
+              `Container is not running with exit code ${inspectResult.State.ExitCode} and reason ${lastLog}`
+            );
+          }
+          newContainer.runningLog = lastLog;
+        }
         newContainer.containerId = container.id;
       } catch (e: any) {
         // if there is a container before, get that container and remove it

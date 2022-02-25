@@ -2,12 +2,15 @@ import Docker from "dockerode";
 import DockerService from "../../internal/services/docker";
 import { MockContainerId, MockContainers } from "../data/mock_container_stack";
 import { MockImageStacks } from "../data/mock_image_stack";
+import { Configurations } from "../../internal/const/configurations";
 
 const container = {
   id: MockContainerId,
   stop: jest.fn(),
   remove: jest.fn(),
   start: jest.fn(),
+  inspect: jest.fn().mockResolvedValue({ State: { Running: true } }),
+  logs: jest.fn().mockResolvedValue(Buffer.from("mock_data")),
 };
 
 const image = {
@@ -34,6 +37,7 @@ describe("Given a docker service while docker works as expected", () => {
 
   beforeAll(() => {
     docker = new Docker();
+    Configurations.awaitTime = 0;
   });
 
   test("When calling create images with an empty container provided", async () => {
@@ -105,6 +109,8 @@ describe("Given a docker service while docker works as expected", () => {
       })
       .mockResolvedValue({
         start: mockStart,
+        inspect: jest.fn().mockResolvedValue({ State: { Running: true } }),
+        logs: jest.fn().mockResolvedValue(Buffer.from("mock_value")),
       });
 
     const mockDocker = jest.fn().mockImplementation(() => ({
