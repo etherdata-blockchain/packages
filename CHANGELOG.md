@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.16.1 (2022-02-25)
+
+
+### Bug Fixes
+
+* docker plan lacks of log ([#31](https://github.com/etherdata-blockchain/packages/issues/31)) ([77e0c77](https://github.com/etherdata-blockchain/packages/commit/77e0c77e92838c74374169e8a44b3156f60ce6da))
+
+
+
+
+
 # 1.16.0 (2022-02-25)
 
 
