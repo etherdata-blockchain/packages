@@ -9,6 +9,7 @@ import { Server, Socket } from "socket.io";
 import jwt from "jsonwebtoken";
 import { BaseSocketIOAuthService, SocketHandler } from "../socket_io_service";
 import { PendingJobService } from "../../mongodb/services/job/pending_job_service";
+import mongoose from "mongoose";
 
 // eslint-disable-next-line valid-jsdoc
 /**
@@ -111,9 +112,8 @@ export class APpService extends BaseSocketIOAuthService {
           };
           /// Add id if user defined
           if (uuid) {
-            //@ts-ignore
             // eslint-disable-next-line new-cap
-            job._id = mongoose.mongo.ObjectId(uuid);
+            (job as any)._id = new mongoose.mongo.ObjectId(uuid);
           }
           //@ts-ignore
           await pendingJobPlugin.create(job, {});
@@ -152,50 +152,14 @@ export class APpService extends BaseSocketIOAuthService {
           };
           /// Add id if user defined
           if (uuid) {
-            //@ts-ignore
             // eslint-disable-next-line new-cap
-            job._id = mongoose.mongo.ObjectId(uuid);
+            (job as any)._id = new mongoose.mongo.ObjectId(uuid);
           }
           //@ts-ignore
           await pendingJobPlugin.create(job, {});
         } else {
           Logger.error("Cannot run docker-command, not in any room!");
           socket.emit(enums.SocketIOEvents.dockerError, {
-            err: "Cannot join the room. Not in any room!",
-          });
-        }
-      }
-    );
-  };
-
-  handlePushUpdates: SocketHandler = (socket) => {
-    socket.on(
-      "push-update",
-      async (imageName: string, version: string, uuid: number | undefined) => {
-        const pendingJobPlugin = new PendingJobService();
-        // eslint-disable-next-line no-invalid-this
-        const selectedRoom = this.canSubmitJob(socket);
-        if (selectedRoom) {
-          const job = {
-            targetDeviceId: selectedRoom,
-            from: socket.id,
-            time: new Date(),
-            task: {
-              type: "update-docker",
-              value: {
-                imageName,
-                version,
-              },
-            },
-          };
-          //@ts-ignore
-          // eslint-disable-next-line new-cap
-          job._id = mongoose.mongo.ObjectId(uuid);
-          //@ts-ignore
-          await pendingJobPlugin.create(job, {});
-        } else {
-          Logger.error("Cannot run update-command, not in any room!");
-          socket.emit("update-command-error", {
             err: "Cannot join the room. Not in any room!",
           });
         }

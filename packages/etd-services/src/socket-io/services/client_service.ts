@@ -15,7 +15,6 @@ export class ClientService extends APpService {
       this.leaveRoomHandler,
       this.rpcCommandHandler,
       this.disconnectHandler,
-      this.handlePushUpdates,
       this.dockerCommandHandler,
     ];
   }
