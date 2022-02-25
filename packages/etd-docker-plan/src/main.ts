@@ -12,8 +12,8 @@ type ContainerStack = interfaces.db.ContainerStack;
   const dockerService = new DockerService(docker);
   const plan = new DockerPlan(dockerService);
   const image: ImageStack = {
-    image: "hello-world",
-    tag: "latest",
+    image: "sirily11/etd-privatenet",
+    tag: "1.12.7.hotfix.1",
   };
 
   const container: ContainerStack = {

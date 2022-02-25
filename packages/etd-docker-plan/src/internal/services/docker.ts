@@ -4,6 +4,7 @@ import { sleep } from "../executionPlan/execution_plan";
 import { Configurations } from "../const/configurations";
 import { enums } from "@etherdata-blockchain/common";
 import Logger from "@etherdata-blockchain/logger";
+import * as Buffer from "buffer";
 
 type ImageStack = interfaces.db.ImageStack;
 type ContainerStack = interfaces.db.ContainerStack;
@@ -141,18 +142,24 @@ export default class DockerService {
         });
         await container.start();
         // check for container status
+        Logger.info(
+          `container ${newContainer.containerName} has started, checking for container's status`
+        );
         await sleep(Configurations.awaitTime);
         const inspectResult = await container.inspect();
-        const lastLogBuffer = await container.logs({
+        const lastLogBuffer = (await container.logs({
           stdout: true,
           stderr: true,
           follow: false,
-        });
-        const lastLog = lastLogBuffer.toString();
+        })) as any as Buffer;
+        const lastLog = lastLogBuffer.toString("utf-8");
         if (!inspectResult.State.Running) {
+          Logger.info(`container ${newContainer.containerName} has stopped with ${inspectResult.State.ExitCode}
+           Last running log is: ${lastLog}
+          `);
           if (inspectResult.State.ExitCode !== enums.ExitCode.success) {
             throw new Error(
-              `Container is not running with exit code ${inspectResult.State.ExitCode} and reason ${lastLog}`
+              `Container is not running with exit code ${inspectResult.State.ExitCode} and reason is\n${lastLog}`
             );
           }
           newContainer.runningLog = lastLog;
@@ -191,7 +198,7 @@ export default class DockerService {
    * @param images
    */
   async searchImages(images: ImageStack[]): Promise<SearchResult> {
-    console.log(`Searching for images (Total: ${images.length})`);
+    Logger.info(`Searching for images (Total: ${images.length})`);
     const results = await this.docker.listImages();
     const missing: ImageStack[] = [];
     const found: ImageStack[] = [];

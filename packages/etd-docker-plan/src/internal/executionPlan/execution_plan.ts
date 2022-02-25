@@ -60,7 +60,6 @@ export class ExecutionPlan {
       },
     };
 
-    // eslint-disable-next-line no-console
     Logger.info(
       `Execution plan:\n${JSON.stringify(this.executionPlan, undefined, 4)}`
     );
