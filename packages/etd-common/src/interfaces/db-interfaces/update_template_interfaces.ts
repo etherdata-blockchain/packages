@@ -8,6 +8,7 @@ export interface ContainerStack {
   containerName: string;
   image: ImageStack;
   config?: DockerContainerConfig;
+  runningLog?: string;
 }
 
 export interface ImageStack {
