@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.16.3 (2022-02-26)
+
+
+### Bug Fixes
+
+* add export deviceAuthorizationHandler ([d34dfab](https://github.com/etherdata-blockchain/packages/commit/d34dfab4d8c170bdc6d6faef70bafd2405b61c38))
+
+
+
+
+
 ## 1.16.2 (2022-02-25)
 
 
