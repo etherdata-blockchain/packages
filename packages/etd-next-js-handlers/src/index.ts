@@ -9,4 +9,5 @@ export {
   jwtVerificationHandler,
   methodAllowedHandler,
   paginationHandler,
+  deviceAuthorizationHandler,
 };
