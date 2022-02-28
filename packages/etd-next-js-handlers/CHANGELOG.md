@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.16.6 (2022-02-28)
+
+
+### Bug Fixes
+
+* duplicate tags will be added ([#35](https://github.com/etherdata-blockchain/packages/issues/35)) ([8d783bd](https://github.com/etherdata-blockchain/packages/commit/8d783bdf8ef7298352f6aa6049a151e7d4c45ae6))
+
+
+
+
+
 ## 1.16.5 (2022-02-28)
 
 
