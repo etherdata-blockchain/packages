@@ -42,11 +42,9 @@ export class APpService extends BaseSocketIOAuthService {
     const secret = configs.Environments.ServerSideEnvironments.PUBLIC_SECRET;
     try {
       jwt.verify(password, secret);
-
       return true;
     } catch (err) {
-      // return false;
-      return true;
+      return false;
     }
   }
 

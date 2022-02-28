@@ -1,6 +1,7 @@
 import { configs, enums } from "@etherdata-blockchain/common";
 import { Server, Socket } from "socket.io";
 import { APpService } from "./app_service";
+import Logger from "@etherdata-blockchain/logger";
 
 /**
  * Web Browser socket io plugin
@@ -20,6 +21,9 @@ export class ClientService extends APpService {
   }
 
   auth(password: string): boolean {
+    Logger.info(
+      `${configs.Environments.ClientSideEnvironments.NEXT_PUBLIC_CLIENT_PASSWORD} is not equal to ${password}, rejecting...`
+    );
     return (
       configs.Environments.ClientSideEnvironments
         .NEXT_PUBLIC_CLIENT_PASSWORD === password
