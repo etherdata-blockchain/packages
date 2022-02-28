@@ -120,7 +120,7 @@ describe("Given a update-script-script plugin", () => {
     const tagId = data.tags[0]._id;
 
     const imageId2 = data2._id;
-    const tagId2 = data.tags[0]._id;
+    const tagId2 = data2.tags[0]._id;
 
     const mockUpdateScriptData = JSON.parse(
       JSON.stringify(mockData.MockUpdateScriptData2)
@@ -244,5 +244,84 @@ describe("Given a update-script-script plugin", () => {
 
     expect(result.imageStacks[1].imageName).toBeDefined();
     expect(result.imageStacks[1].tags.tag).toBeDefined();
+  });
+
+  test("When calling getUpdateTemplateWithDockerImage with multiple containers and images", async () => {
+    const data = (
+      await schema.DockerImageModel.create(mockData.MockDockerImage)
+    ).toJSON();
+    const data2 = (
+      await schema.DockerImageModel.create(mockData.MockDockerImage2)
+    ).toJSON();
+
+    const imageId = data._id;
+    const tagId = data.tags[0]._id;
+
+    const imageId2 = data2._id;
+    const tagId2 = data2.tags[0]._id;
+
+    const mockUpdateScriptData = JSON.parse(
+      JSON.stringify(mockData.MockUpdateScriptData2)
+    );
+
+    mockUpdateScriptData.imageStacks[0].tag = tagId;
+    mockUpdateScriptData.imageStacks[0].image = imageId;
+
+    mockUpdateScriptData.imageStacks[1].tag = tagId2;
+    mockUpdateScriptData.imageStacks[1].image = imageId2;
+
+    mockUpdateScriptData.containerStacks[0].image.image = imageId;
+    mockUpdateScriptData.containerStacks[0].image.tag = tagId;
+
+    mockUpdateScriptData.containerStacks[1].image.image = imageId2;
+    mockUpdateScriptData.containerStacks[1].image.tag = tagId2;
+
+    const createdData = await schema.UpdateScriptModel.create(
+      mockUpdateScriptData
+    );
+
+    const plugin = new UpdateTemplateService();
+    const result = (await plugin.getUpdateTemplateWithDockerImage(
+      createdData._id
+    ))!;
+    expect(result).toBeDefined();
+    expect(result.imageStacks.length).toBe(2);
+    expect(result.containerStacks.length).toBe(2);
+  });
+
+  test("When calling getUpdateTemplateWithDockerImage with multiple containers and images", async () => {
+    const data = (
+      await schema.DockerImageModel.create(mockData.MockDockerImage)
+    ).toJSON();
+
+    const imageId = data._id;
+    const tagId = data.tags[0]._id;
+
+    const mockUpdateScriptData = JSON.parse(
+      JSON.stringify(mockData.MockUpdateScriptData2)
+    );
+
+    mockUpdateScriptData.imageStacks = [mockUpdateScriptData.imageStacks[0]];
+
+    mockUpdateScriptData.imageStacks[0].tag = tagId;
+    mockUpdateScriptData.imageStacks[0].image = imageId;
+
+    mockUpdateScriptData.containerStacks[0].image.image = imageId;
+    mockUpdateScriptData.containerStacks[0].image.tag = tagId;
+
+    mockUpdateScriptData.containerStacks[1].image.image = imageId;
+    mockUpdateScriptData.containerStacks[1].image.tag = tagId;
+
+    const createdData = await schema.UpdateScriptModel.create(
+      mockUpdateScriptData
+    );
+
+    const plugin = new UpdateTemplateService();
+    const result = (await plugin.getUpdateTemplateWithDockerImage(
+      createdData._id
+    ))!;
+    expect(result).toBeDefined();
+    expect(result.imageStacks.length).toBe(1);
+    expect(result.containerStacks.length).toBe(2);
   });
 });
