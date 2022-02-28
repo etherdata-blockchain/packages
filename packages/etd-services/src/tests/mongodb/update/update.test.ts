@@ -88,6 +88,7 @@ describe("Given a update-script-script plugin", () => {
 
     mockUpdateScriptData.containerStacks[0].image.image = imageId;
     mockUpdateScriptData.containerStacks[0].image.tag = tagId;
+    mockUpdateScriptData.containerStacks[0].containerName = "mock_name";
 
     const createdData = await schema.UpdateScriptModel.create(
       mockUpdateScriptData
@@ -103,6 +104,7 @@ describe("Given a update-script-script plugin", () => {
     ))!;
     expect(result).toBeDefined();
     expect(result.imageStacks.length).toBe(0);
+    expect(result.containerStacks.length).toBe(1);
     expect(result.containerStacks[0].image).toBeUndefined();
   });
 

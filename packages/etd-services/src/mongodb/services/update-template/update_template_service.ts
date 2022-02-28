@@ -105,11 +105,6 @@ export class UpdateTemplateService extends BaseMongoDBService<schema.IUpdateTemp
         },
       },
       {
-        $match: {
-          containerStacks: { $exists: true },
-        },
-      },
-      {
         $group: {
           _id: "$_id",
           name: { $first: "$name" },
@@ -147,9 +142,9 @@ export class UpdateTemplateService extends BaseMongoDBService<schema.IUpdateTemp
       image: (is as any)._id,
     }));
 
-    //@ts-ignore
-    returnedTemplate.containerStacks = returnedTemplate.containerStacks.map(
-      (cs) => ({
+    (returnedTemplate as any).containerStacks = returnedTemplate.containerStacks
+      .filter((c) => c.containerName !== undefined)
+      .map((cs) => ({
         ...cs,
         image: cs.image
           ? {
@@ -158,8 +153,7 @@ export class UpdateTemplateService extends BaseMongoDBService<schema.IUpdateTemp
               tag: (cs.image.tags as any)._id,
             }
           : undefined,
-      })
-    );
+      }));
 
     return template[0];
   }
