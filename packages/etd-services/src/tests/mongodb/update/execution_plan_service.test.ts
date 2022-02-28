@@ -2,7 +2,7 @@ import { interfaces, mockData, utils } from "@etherdata-blockchain/common";
 import { schema } from "@etherdata-blockchain/storage-model";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose from "mongoose";
-import { ExecutionPlanService } from "../../../mongodb/services/update-template/execution_plan_service";
+import { ExecutionPlanService } from "../../../mongodb";
 
 describe("Given a execution plan service", () => {
   let dbServer: MongoMemoryServer;
