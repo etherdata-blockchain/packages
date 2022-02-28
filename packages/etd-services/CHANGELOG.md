@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.16.8 (2022-02-28)
+
+
+### Bug Fixes
+
+* will return duplicates containers and images ([#37](https://github.com/etherdata-blockchain/packages/issues/37)) ([6f22996](https://github.com/etherdata-blockchain/packages/commit/6f22996fa0357fa31479919159911fc141b1a540))
+
+
+
+
+
 ## 1.16.7 (2022-02-28)
 
 
