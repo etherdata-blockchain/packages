@@ -1,10 +1,8 @@
-import moment from "moment";
-import { configs, mockData, interfaces } from "@etherdata-blockchain/common";
+import { mockData } from "@etherdata-blockchain/common";
 import { schema } from "@etherdata-blockchain/storage-model";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose from "mongoose";
-import { UpdateTemplateService } from "../../../mongodb/services/update-template/update_template_service";
-import { DockerImageService } from "../../../mongodb/services/installation-template/docker_image_service";
+import { DockerImageService, UpdateTemplateService } from "../../../mongodb";
 
 describe("Given a update-script-script plugin", () => {
   let dbServer: MongoMemoryServer;
@@ -90,6 +88,7 @@ describe("Given a update-script-script plugin", () => {
 
     mockUpdateScriptData.containerStacks[0].image.image = imageId;
     mockUpdateScriptData.containerStacks[0].image.tag = tagId;
+    mockUpdateScriptData.containerStacks[0].containerName = "mock_name";
 
     const createdData = await schema.UpdateScriptModel.create(
       mockUpdateScriptData
@@ -105,6 +104,7 @@ describe("Given a update-script-script plugin", () => {
     ))!;
     expect(result).toBeDefined();
     expect(result.imageStacks.length).toBe(0);
+    expect(result.containerStacks.length).toBe(1);
     expect(result.containerStacks[0].image).toBeUndefined();
   });
 
@@ -191,6 +191,12 @@ describe("Given a update-script-script plugin", () => {
     expect(result).toBeDefined();
     expect(result.imageStacks.length).toBe(2);
     expect(result.containerStacks.length).toBe(0);
+
+    expect(result.imageStacks[0].imageName).toBeDefined();
+    expect(result.imageStacks[0].tags.tag).toBeDefined();
+
+    expect(result.imageStacks[1].imageName).toBeDefined();
+    expect(result.imageStacks[1].tags.tag).toBeDefined();
   });
 
   test("When calling getUpdateTemplateWithDockerImage update", async () => {
@@ -232,5 +238,11 @@ describe("Given a update-script-script plugin", () => {
     expect(result).toBeDefined();
     expect(result.imageStacks.length).toBe(2);
     expect(result.containerStacks.length).toBe(0);
+
+    expect(result.imageStacks[0].imageName).toBeDefined();
+    expect(result.imageStacks[0].tags.tag).toBeDefined();
+
+    expect(result.imageStacks[1].imageName).toBeDefined();
+    expect(result.imageStacks[1].tags.tag).toBeDefined();
   });
 });
