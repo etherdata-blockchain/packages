@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.16.7 (2022-02-28)
+
+
+### Bug Fixes
+
+* add logger for authentication ([#36](https://github.com/etherdata-blockchain/packages/issues/36)) ([71c6e36](https://github.com/etherdata-blockchain/packages/commit/71c6e36b1a13f9a222d308a747e869751dbf815e))
+
+
+
+
+
 ## 1.16.6 (2022-02-28)
 
 
