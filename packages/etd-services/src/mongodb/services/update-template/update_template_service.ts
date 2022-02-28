@@ -105,6 +105,11 @@ export class UpdateTemplateService extends BaseMongoDBService<schema.IUpdateTemp
         },
       },
       {
+        $match: {
+          containerStacks: { $exists: true },
+        },
+      },
+      {
         $group: {
           _id: "$_id",
           name: { $first: "$name" },

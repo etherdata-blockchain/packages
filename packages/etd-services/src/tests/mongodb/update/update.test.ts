@@ -153,4 +153,84 @@ describe("Given a update-script-script plugin", () => {
     expect(result.imageStacks.length).toBe(1);
     expect(result.containerStacks[0].image).toBeUndefined();
   });
+
+  test("When calling getUpdateTemplateWithDockerImage if container stacks is empty", async () => {
+    const data = (
+      await schema.DockerImageModel.create(mockData.MockDockerImage)
+    ).toJSON();
+    const data2 = (
+      await schema.DockerImageModel.create(mockData.MockDockerImage2)
+    ).toJSON();
+
+    const imageId = data._id;
+    const tagId = data.tags[0]._id;
+
+    const imageId2 = data2._id;
+    const tagId2 = data2.tags[0]._id;
+
+    const mockUpdateScriptData = JSON.parse(
+      JSON.stringify(mockData.MockUpdateScriptData2)
+    );
+
+    mockUpdateScriptData.imageStacks[0].tag = tagId;
+    mockUpdateScriptData.imageStacks[0].image = imageId;
+
+    mockUpdateScriptData.imageStacks[1].tag = tagId2;
+    mockUpdateScriptData.imageStacks[1].image = imageId2;
+
+    mockUpdateScriptData.containerStacks = [];
+
+    const createdData = await schema.UpdateScriptModel.create(
+      mockUpdateScriptData
+    );
+
+    const plugin = new UpdateTemplateService();
+    const result = (await plugin.getUpdateTemplateWithDockerImage(
+      createdData._id
+    ))!;
+    expect(result).toBeDefined();
+    expect(result.imageStacks.length).toBe(2);
+    expect(result.containerStacks.length).toBe(0);
+  });
+
+  test("When calling getUpdateTemplateWithDockerImage update", async () => {
+    const data = (
+      await schema.DockerImageModel.create(mockData.MockDockerImage)
+    ).toJSON();
+    const data2 = (
+      await schema.DockerImageModel.create(mockData.MockDockerImage2)
+    ).toJSON();
+
+    const imageId = data._id;
+    const tagId = data.tags[0]._id;
+
+    const imageId2 = data2._id;
+    const tagId2 = data2.tags[0]._id;
+
+    const mockUpdateScriptData = JSON.parse(
+      JSON.stringify(mockData.MockUpdateScriptData2)
+    );
+
+    mockUpdateScriptData.imageStacks[0].tag = tagId;
+    mockUpdateScriptData.imageStacks[0].image = imageId;
+
+    mockUpdateScriptData.imageStacks[1].tag = tagId2;
+    mockUpdateScriptData.imageStacks[1].image = imageId2;
+
+    mockUpdateScriptData.containerStacks = [];
+
+    const createdData = await schema.UpdateScriptModel.create(
+      mockUpdateScriptData
+    );
+
+    const plugin = new UpdateTemplateService();
+    await plugin.patch(createdData);
+
+    const result = (await plugin.getUpdateTemplateWithDockerImage(
+      createdData._id
+    ))!;
+    expect(result).toBeDefined();
+    expect(result.imageStacks.length).toBe(2);
+    expect(result.containerStacks.length).toBe(0);
+  });
 });
