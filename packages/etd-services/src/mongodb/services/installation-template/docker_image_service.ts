@@ -51,7 +51,10 @@ export class DockerImageService extends BaseMongoDBService<schema.IDockerImage> 
       .exec();
     if (prevImage) {
       await this.model.updateOne(
-        { imageName: data.repository.repo_name },
+        {
+          imageName: data.repository.repo_name,
+          "tags.tag": { $ne: data.push_data.tag },
+        },
         { $push: { tags: { tag: data.push_data.tag } } }
       );
     } else {
