@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.16.4 (2022-02-28)
+
+
+### Bug Fixes
+
+* returns a container stacks where image is undefined ([#33](https://github.com/etherdata-blockchain/packages/issues/33)) ([62c2b37](https://github.com/etherdata-blockchain/packages/commit/62c2b370d992f6112520e17c4782d1e2deebd6d2))
+
+
+
+
+
 ## 1.16.3 (2022-02-26)
 
 
