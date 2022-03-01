@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.16.10 (2022-03-01)
+
+
+### Bug Fixes
+
+* merge NEXT_PUBLIC_SECRET and NEXT_PUBLIC_CLIENT_SECRET ([#39](https://github.com/etherdata-blockchain/packages/issues/39)) ([c8fdd7b](https://github.com/etherdata-blockchain/packages/commit/c8fdd7bdfd242f37d0ad50483ea559a982246423))
+
+
+
+
+
 ## 1.16.9 (2022-03-01)
 
 
