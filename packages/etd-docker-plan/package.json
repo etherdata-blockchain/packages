@@ -27,6 +27,7 @@
   },
   "scripts": {
     "test": "jest --coverage",
+    "prebuild": "rm -rf dist",
     "build": "tsc",
     "start": "ts-node src/main.ts"
   }

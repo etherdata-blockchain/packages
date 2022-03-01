@@ -9,6 +9,12 @@ import { JSONSchema7 } from "json-schema";
 export class Environments {
   /**
    * Get serverside environments
+   * @STATS_SERVER ETD Stats API endpoint
+   * @MONGODB_URL backend database's api
+   * @PUBLIC_SECRET use to authenticate the user. Should be equal to @NEXT_PUBLIC_SECRET
+   * @STORAGE_MANAGEMENT_URL is the api endpoint for storage management system
+   * @STORAGE_MANAGEMENT_API_TOKEN API token for storage management system
+   *
    * @constructor
    */
   static get ServerSideEnvironments() {
@@ -23,7 +29,11 @@ export class Environments {
 
   /**
    * Get client side environments starts with NEXT_
-   * Only can be used on client side
+   * Only can be used on client side.
+   *
+   * @NEXT_PUBLIC_SECRET should equal to PUBLIC_SECRET used for client to send http request to the backend server
+   * @NEXT_PUBLIC_APP_ID  is the realm api's api id
+   * @NEXT_PUBLIC_VERSION is th current version of the app
    * @constructor
    */
   static get ClientSideEnvironments() {
@@ -31,7 +41,6 @@ export class Environments {
       NEXT_PUBLIC_SECRET: process.env.NEXT_PUBLIC_SECRET!,
       NEXT_PUBLIC_APP_ID: process.env.NEXT_PUBLIC_APP_ID!,
       NEXT_PUBLIC_STATS_SERVER: process.env.NEXT_PUBLIC_STATS_SERVER!,
-      NEXT_PUBLIC_CLIENT_PASSWORD: process.env.NEXT_PUBLIC_CLIENT_PASSWORD!,
       NEXT_PUBLIC_VERSION: process.env.NEXT_PUBLIC_VERSION!,
     };
   }
