@@ -78,7 +78,7 @@ export class Environments {
         serverEnvs: {
           title: "Server Environments",
           type: "object",
-          properties: clientSchema,
+          properties: serverSchema,
         },
       },
     };

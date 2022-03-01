@@ -26,5 +26,13 @@ describe("Given a environment", () => {
     expect(Object.keys(result.properties?.serverEnvs.properties).length).toBe(
       Object.keys(Environments.ServerSideEnvironments).length
     );
+
+    expect(
+      Object.keys((result.properties?.serverEnvs as any).properties)
+    ).toStrictEqual(Object.keys(Environments.ServerSideEnvironments));
+
+    expect(
+      Object.keys((result.properties?.clientEnvs as any).properties)
+    ).toStrictEqual(Object.keys(Environments.ClientSideEnvironments));
   });
 });
