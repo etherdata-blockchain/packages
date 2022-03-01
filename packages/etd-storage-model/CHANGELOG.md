@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.16.9 (2022-03-01)
+
+
+### Bug Fixes
+
+* no serverside envs returns ([#38](https://github.com/etherdata-blockchain/packages/issues/38)) ([581f845](https://github.com/etherdata-blockchain/packages/commit/581f845cd9eb0fe0f5d8f05f08ab9d5af23ecf74))
+
+
+
+
+
 ## 1.16.8 (2022-02-28)
 
 
