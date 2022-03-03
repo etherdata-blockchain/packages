@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.17.0 (2022-03-03)
+
+
+### Features
+
+* export json schema for db interfaces ([#40](https://github.com/etherdata-blockchain/packages/issues/40)) ([2e6ffba](https://github.com/etherdata-blockchain/packages/commit/2e6ffbab69046361d1f80a642bdddb3ce7393efa))
+
+
+
+
+
 ## 1.16.10 (2022-03-01)
 
 
