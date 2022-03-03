@@ -16,6 +16,6 @@ jobs:
     name: Lint PR
     steps:
       - name: label
-        uses: action-runner/conventional-labeler@v1
+        uses: action-runner/conventional-labeler@2.0.0
         with:
           access_token: ${{ secrets.GITHUB_TOKEN }}
