@@ -34,7 +34,7 @@ describe("Given a docker image service", () => {
 
   test("When creating a docker image with webhook data and empty tag", async () => {
     const service = new DockerImageService();
-    const data: interfaces.DockerWebhookInterface = {
+    const data: interfaces.db.DockerWebhookInterface = {
       callback_url: "",
       push_data: {
         tag: "",
@@ -67,7 +67,7 @@ describe("Given a docker image service", () => {
 
   test("When creating a docker image with webhook data", async () => {
     const service = new DockerImageService();
-    const data: interfaces.DockerWebhookInterface = {
+    const data: interfaces.db.DockerWebhookInterface = {
       callback_url: "",
       push_data: {
         tag: "1.0",
@@ -100,7 +100,7 @@ describe("Given a docker image service", () => {
 
   test("When creating a docker image with webhook data with existing tag", async () => {
     const service = new DockerImageService();
-    const data: interfaces.DockerWebhookInterface = {
+    const data: interfaces.db.DockerWebhookInterface = {
       callback_url: "",
       push_data: {
         tag: "v1.1",
@@ -139,7 +139,7 @@ describe("Given a docker image service", () => {
 
   test("When creating a docker image with webhook data with existing tag", async () => {
     const service = new DockerImageService();
-    const data: interfaces.DockerWebhookInterface = {
+    const data: interfaces.db.DockerWebhookInterface = {
       callback_url: "",
       push_data: {
         tag: "v1.1",

@@ -33,7 +33,7 @@ export class DockerImageService extends BaseMongoDBService<schema.IDockerImage> 
    * @param {DockerWebhookInterface} data data from webhook
    */
   async createWithDockerWebhookData(
-    data: interfaces.DockerWebhookInterface
+    data: interfaces.db.DockerWebhookInterface
   ): Promise<void> {
     if (data.push_data?.tag?.length === 0) {
       return;
