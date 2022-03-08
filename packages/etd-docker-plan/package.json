@@ -1,6 +1,6 @@
 {
   "name": "@etherdata-blockchain/docker-plan",
-  "version": "1.17.1",
+  "version": "1.17.2",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "license": "MIT",
@@ -8,8 +8,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@etherdata-blockchain/common": "^1.17.1",
-    "@etherdata-blockchain/logger": "^1.17.1",
+    "@etherdata-blockchain/common": "^1.17.2",
+    "@etherdata-blockchain/logger": "^1.17.2",
     "@types/cli-progress": "^3.9.2",
     "@types/dockerode": "^3.3.0",
     "@types/jest-when": "^2.7.3",
