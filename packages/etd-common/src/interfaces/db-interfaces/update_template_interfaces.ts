@@ -4,16 +4,41 @@ import { DeviceRequest, MountConfig } from "dockerode";
  * Stack to describe the structure of the container
  */
 export interface ContainerStack {
+  /**
+   * Docker container's id. If this was sent by remote server used to create a new container,
+   * then this field will be undefined
+   */
   containerId?: string;
+  /**
+   * Docker container's name
+   */
   containerName: string;
+  /**
+   * Related image
+   */
   image: ImageStack;
+  /**
+   * Map of container's configuration. Similar to the docker's config
+   */
   config?: DockerContainerConfig;
+  /**
+   * Log of container
+   */
   runningLog?: string;
 }
 
 export interface ImageStack {
+  /**
+   * Image id. This field will be set during pulling. It will be undefined when receiving from the server.
+   */
   imageId?: string;
+  /**
+   * Image name
+   */
   image: string;
+  /**
+   * Image tag
+   */
   tag: string;
 }
 
