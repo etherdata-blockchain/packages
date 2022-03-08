@@ -38,4 +38,8 @@ export const Routes = {
   settings: "/settings",
   // Pending jobs
   pendingJobsAPIGet: "/api/v1/device/job",
+  // Docs
+  documentation: "/docs",
+  apiDocumentation: "/docs/api",
+  developmentDocumentation: "/docs/dev",
 };
