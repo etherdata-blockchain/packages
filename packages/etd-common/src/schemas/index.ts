@@ -2,7 +2,7 @@ import deviceSchema from "./device_interfaces.json";
 import dockerSchema from "./docker_interfaces.json";
 import etdSchema from "./etd_interfaces.json";
 import executionPlanSchema from "./execution_plan_interfaces.json";
-import installationTemplateSchema from "./execution_plan_interfaces.json";
+import installationTemplateSchema from "./installation_template_interfaces.json";
 import jobResultSchema from "./job_result_interfaces.json";
 import pendingJobSchema from "./pending_job_interfaces.json";
 import pluginInterfaceSchema from "./plugin_interfaces.json";

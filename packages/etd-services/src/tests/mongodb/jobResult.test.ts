@@ -56,7 +56,7 @@ describe("Job Result Test", () => {
     command: undefined,
     result: undefined,
     success: true,
-    commandType: "",
+    commandType: enums.JobTaskType.Web3,
   };
 
   /**
@@ -70,7 +70,7 @@ describe("Job Result Test", () => {
     command: undefined,
     result: undefined,
     success: false,
-    commandType: "",
+    commandType: enums.JobTaskType.Web3,
   };
 
   beforeAll(async () => {

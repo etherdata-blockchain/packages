@@ -1,13 +1,25 @@
 import { DeviceDBInterface } from "./device_interfaces";
 
 export interface StorageUserDBInterface {
+  /**
+   * User name
+   */
   // eslint-disable-next-line camelcase
   user_name: string;
+  /**
+   * User id
+   */
   // eslint-disable-next-line camelcase
   user_id: string;
+  /**
+   * User's coinbase
+   */
   coinbase?: string;
 }
 
+/**
+ * @deprecated this interface will be removed in the future
+ */
 export interface OwnerDBInterface {
   // eslint-disable-next-line camelcase
   user_id: string;
@@ -44,5 +56,8 @@ export interface StorageItemDBInterface {
 
 export interface StorageItemWithStatusDBInterface
   extends StorageItemDBInterface {
+  /**
+   * Realtime status of the device
+   */
   status?: DeviceDBInterface;
 }

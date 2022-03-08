@@ -1,13 +1,22 @@
 export interface DockerImageDBInterface {
+  /**
+   * Name of the docker image. For example hello-world
+   */
   imageName: string;
+  /**
+   * List of tags of the given image. For example [latest, 1.0, 1.1]
+   */
   tags: DockerImageVersionDBInterface[];
   /**
-   * Will be set when query from installation template
+   * Read only! Will be set when query from installation template.
    */
   tag?: DockerImageVersionDBInterface;
 }
 
 interface DockerImageVersionDBInterface {
+  /**
+   * Tag of the image. For example 1.0
+   */
   tag: string;
 }
 
