@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.17.3 (2022-03-08)
+
+
+### Bug Fixes
+
+* add new routes to configs/route ([#43](https://github.com/etherdata-blockchain/packages/issues/43)) ([ad0f9dc](https://github.com/etherdata-blockchain/packages/commit/ad0f9dcf719cc188625bd824f69c06e9ea04485b))
+
+
+
+
+
 ## 1.17.2 (2022-03-08)
 
 **Note:** Version bump only for package @etherdata-blockchain/next-js-handlers
