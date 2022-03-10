@@ -1,12 +1,12 @@
 {
   "name": "@etherdata-blockchain/services",
-  "version": "1.17.3",
+  "version": "1.17.4",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "license": "MIT",
   "dependencies": {
-    "@etherdata-blockchain/logger": "^1.17.3",
-    "@etherdata-blockchain/storage-model": "^1.17.3",
+    "@etherdata-blockchain/logger": "^1.17.4",
+    "@etherdata-blockchain/storage-model": "^1.17.4",
     "@types/jsonwebtoken": "^8.5.7",
     "axios": "^0.24.0",
     "jsonwebtoken": "^8.5.1",
