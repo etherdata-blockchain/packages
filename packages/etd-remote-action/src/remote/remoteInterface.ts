@@ -1,4 +1,4 @@
-import { Directory } from "../config/config-interface";
+import { Directory } from "../config/interface";
 
 export interface ReplaceParams {
   index: number;
