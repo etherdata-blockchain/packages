@@ -249,7 +249,7 @@ export class ConfigParser {
             let progress = currentStepNumber / (stepLength - 1);
             const {
               files,
-              directory,
+              directories,
               run,
               cwd,
               env,
@@ -283,11 +283,11 @@ export class ConfigParser {
                 onError,
                 onCommandOutput,
               });
-            } else if (directory !== undefined) {
-              result = await remote.putDirectory(
+            } else if (directories !== undefined) {
+              result = await remote.putDirectories(
                 count,
                 currentStepNumber,
-                directory,
+                directories,
                 {
                   onCommandOutput,
                   onError,

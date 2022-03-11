@@ -173,10 +173,10 @@ export class Remote {
     }
   }
 
-  async putDirectory(
+  async putDirectories(
     index: number,
     progress: number,
-    { local, remote }: Directory,
+    directories: Directory[],
     { onCommandOutput, onError }: CommandParam
   ): Promise<Result | undefined> {
     if (this.ssh === undefined) {
@@ -184,10 +184,15 @@ export class Remote {
     }
 
     try {
-      Logger.info(`${this.remoteIP}: Putting directory ${local} to ${remote}`);
-      let result = await this.ssh.putDirectory(local, remote, {
-        concurrency: this.concurrency,
-      });
+      let result = false;
+      for (const { local, remote } of directories) {
+        Logger.info(
+          `${this.remoteIP}: Putting directory ${local} to ${remote}`
+        );
+        result = await this.ssh.putDirectory(local, remote, {
+          concurrency: this.concurrency,
+        });
+      }
 
       return {
         type: "directory",
@@ -201,7 +206,7 @@ export class Remote {
           err,
           index,
           progress,
-          `${this.remoteIP}: Putting directory ${local} to ${remote}`,
+          `${this.remoteIP}: Putting directory due to ${err}`,
           false
         );
       }
