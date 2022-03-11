@@ -30,8 +30,9 @@
     "yaml": "^1.10.2"
   },
   "scripts": {
-    "start": "ts-node lib/example.ts",
-    "dev": "ts-node-dev --respawn --transpile-only lib/index.ts",
+    "start": "ts-node src/example.ts",
+    "prebuild": "ts-node src/generate.ts",
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "test": "jest",
     "build": "tsc"
   }

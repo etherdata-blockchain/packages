@@ -1,6 +1,6 @@
 import fs from "fs";
 import YAML from "yaml";
-import { Config } from "./config-interface";
+import { Config } from "./interface";
 import Logger from "@etherdata-blockchain/logger";
 import { Remote } from "../remote/remote";
 import { Result } from "../remote";

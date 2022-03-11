@@ -1,4 +1,2 @@
-import ConfigParser, { Config, WorkerStatus } from "./config";
-
-export type { Config, WorkerStatus };
-export { ConfigParser };
+export * from "./config";
+export * as schema from "./schemas";
