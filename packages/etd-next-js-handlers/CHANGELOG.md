@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.17.7 (2022-03-11)
+
+
+### Bug Fixes
+
+* default export in remote action ([3645567](https://github.com/etherdata-blockchain/packages/commit/36455675189f585a926d82088529155862e4c9fc))
+
+
+
+
+
 ## 1.17.6 (2022-03-11)
 
 
