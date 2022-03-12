@@ -29,3 +29,11 @@ jobs:
         name: Releasing NPM package
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Post to a Slack channel
+        id: slack
+        uses: slackapi/slack-github-action@v1.18.0
+        with:
+          channel-id: ${{ secrets.SLARK_CHANNEL_ID }}
+          slack-message: "A New Version Released <${{ github.repository }}>! ${{ github.event.release.tag_name }}"
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
