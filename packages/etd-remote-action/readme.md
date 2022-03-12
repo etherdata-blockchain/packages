@@ -1,4 +1,4 @@
-# Remote Config
+# Remote Action
 
 Run your ssh command with simple a configuration file
 
