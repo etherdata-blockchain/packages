@@ -1,6 +1,6 @@
 import { Directory } from "../config/interface";
 import Logger from "@etherdata-blockchain/logger";
-import { Command, ReplaceParams, Result } from "./remoteInterface";
+import { Command, ReplaceParams, Result } from "./interface";
 import { NodeSSH } from "node-ssh";
 
 interface Param {
