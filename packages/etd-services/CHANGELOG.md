@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.17.9 (2022-03-12)
+
+
+### Bug Fixes
+
+* export type ([3d360de](https://github.com/etherdata-blockchain/packages/commit/3d360dee30f0d5e16aafe2d9a1265c9dcbebcc5c))
+
+
+
+
+
 ## 1.17.8 (2022-03-11)
 
 
