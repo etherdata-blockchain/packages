@@ -1,6 +1,6 @@
 {
   "name": "@etherdata-blockchain/remote-action",
-  "version": "1.18.0",
+  "version": "1.18.1",
   "description": "Remote ssh config file",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -9,7 +9,7 @@
     "access": "public"
   },
   "devDependencies": {
-    "@etherdata-blockchain/etd-schema-generator": "^1.18.0",
+    "@etherdata-blockchain/etd-schema-generator": "^1.18.1",
     "jest": "^27.0.6",
     "ts-jest": "^27.0.3",
     "ts-node": "^10.1.0",
@@ -17,7 +17,7 @@
     "typescript": "^4.3.5"
   },
   "dependencies": {
-    "@etherdata-blockchain/logger": "^1.18.0",
+    "@etherdata-blockchain/logger": "^1.18.1",
     "@types/chalk": "^2.2.0",
     "@types/cli-progress": "^3.9.2",
     "@types/jest": "^26.0.24",
