@@ -9,6 +9,10 @@
   "publishConfig": {
     "access": "public"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/etherdata-blockchain/packages.git"
+  },
   "devDependencies": {
     "@types/cli-progress": "^3.9.2",
     "jest": "^27.0.6",
