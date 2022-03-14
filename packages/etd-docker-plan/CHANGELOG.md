@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.18.2 (2022-03-14)
+
+
+### Bug Fixes
+
+* add action to publish packages to github ([#50](https://github.com/etherdata-blockchain/packages/issues/50)) ([8ccbbac](https://github.com/etherdata-blockchain/packages/commit/8ccbbac3755ba92cce030526daaedb879a737939))
+
+
+
+
+
 ## 1.18.1 (2022-03-13)
 
 
