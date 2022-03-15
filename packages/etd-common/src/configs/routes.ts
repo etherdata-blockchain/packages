@@ -23,7 +23,7 @@ export const Routes = {
   itemSearch: "/api/v1/device/search",
   owner: "/storage_management/owner",
   // Device
-  devicesWithStatus: "/api/v1/device/devices-with-status",
+  devicesWithStatus: "/api/v1/device/by_user",
   // Update
   update: "/update",
   updateTemplateCreate: "/update/template/create",
