@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.19.0 (2022-03-15)
+
+
+### Features
+
+* add docker logs to schema ([#52](https://github.com/etherdata-blockchain/packages/issues/52)) ([0936d5e](https://github.com/etherdata-blockchain/packages/commit/0936d5ec5ce65b95b555ca1e5930c01d156ec27c))
+
+
+
+
+
 ## 1.18.3 (2022-03-15)
 
 
