@@ -95,3 +95,22 @@ export const MockDeviceStatus2 = {
   name: MockDeviceName2,
   user: MockStorageUserId,
 };
+
+/**
+ * Online mock device
+ */
+export const MockDeviceStatusWithDocker = {
+  adminVersion: MockAdminVersion,
+  data: undefined,
+  docker: {
+    containers: [
+      {
+        logs: "mock_log",
+      },
+    ],
+  },
+  id: MockDeviceID,
+  lastSeen: moment(),
+  name: MockDeviceName,
+  user: MockStorageUserId,
+};

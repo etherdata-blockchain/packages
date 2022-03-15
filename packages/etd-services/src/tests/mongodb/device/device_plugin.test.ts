@@ -5,8 +5,8 @@ import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose from "mongoose";
 
 import jwt from "jsonwebtoken";
-import { DeviceRegistrationService } from "../../../mongodb/services/device/device_registration_service";
-import { StorageManagementService } from "../../../mongodb/services/device/storage_management_item_service";
+import { DeviceRegistrationService } from "../../../mongodb";
+import { StorageManagementService } from "../../../mongodb";
 
 jest.mock("../../../mongodb/services/device/storage_management_item_service");
 
@@ -44,7 +44,7 @@ describe("Given a device plugin", () => {
     const pluginResult = await plugin.get("a");
     expect(pluginResult?.name).toBe("a");
     expect(pluginResult?.id).toBeDefined();
-    expect(pluginResult.isOnline).toBeTruthy();
+    expect(pluginResult?.isOnline).toBeTruthy();
   });
 
   test("When calling list all items", async () => {
@@ -89,6 +89,15 @@ describe("Given a device plugin", () => {
     const plugin = new DeviceRegistrationService();
     const count = await plugin.getOnlineDevicesCount();
     expect(count).toBe(1);
+  });
+
+  test("When creating device with docker logs", async () => {
+    await schema.DeviceModel.create(mockData.MockDeviceStatusWithDocker);
+
+    const plugin = new DeviceRegistrationService();
+    const result = await plugin.list(1, 1);
+    expect(result!.count).toBe(1);
+    expect(result!.results[0].docker!.containers[0].logs).toBeDefined();
   });
 
   test("When calling list of admin versions", async () => {

@@ -17,9 +17,9 @@ export interface VersionInfo {
  * Device registration service will register,
  * update, and query the info of devices
  */
-export class DeviceRegistrationService extends BaseMongoDBService<any> {
+export class DeviceRegistrationService extends BaseMongoDBService<schema.IDevice> {
   serviceName: enums.DBServiceName = enums.DBServiceName.deviceRegistration;
-  protected model: Model<interfaces.db.DeviceDBInterface> = schema.DeviceModel;
+  protected model: Model<schema.IDevice> = schema.DeviceModel;
 
   // eslint-disable-next-line require-jsdoc
   async performPatch(data: schema.IDevice): Promise<schema.IDevice> {

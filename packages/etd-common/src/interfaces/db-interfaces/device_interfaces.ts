@@ -1,6 +1,13 @@
 import { ContainerInfo, ImageInfo } from "dockerode";
 import { Web3DataInfo } from "../etd_interfaces";
 
+interface ContainerInfoWithLog extends ContainerInfo {
+  /**
+   * Container's log. Might be undefined if container doesn't produce any log
+   */
+  logs?: string;
+}
+
 interface Docker {
   /**
    * Docker images' info
@@ -9,7 +16,7 @@ interface Docker {
   /**
    * Docker container's info
    */
-  containers: ContainerInfo[];
+  containers: ContainerInfoWithLog[];
 }
 
 export interface DeviceDBInterface {
