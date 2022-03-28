@@ -135,7 +135,7 @@ export class ConfigParser {
       }
       this.checkAndFixConfig();
       Logger.info("Starting job " + this.config.name);
-      let concurrency = this.config.concurrency ?? 1;
+      let concurrency = Math.max(this.config.concurrency ?? 1, 1);
       // Perform deep copy
       let remoteAddresses: string[] = JSON.parse(
         JSON.stringify(this.config.remote)
