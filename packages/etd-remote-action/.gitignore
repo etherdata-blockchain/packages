@@ -6,3 +6,4 @@ yarn.lock
 *.zip
 !jest.config.js
 src/schemas/*.json
+src/main.ts
