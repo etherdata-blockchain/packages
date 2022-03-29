@@ -12,6 +12,10 @@ export interface StorageUserDBInterface {
   // eslint-disable-next-line camelcase
   user_id: string;
   /**
+   * User's group id
+   */
+  group_id?: string;
+  /**
    * User's coinbase
    */
   coinbase?: string;

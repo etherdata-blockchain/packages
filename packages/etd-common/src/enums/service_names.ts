@@ -1,5 +1,5 @@
 /**
- * List of plugin names
+ * List of plugin names 插件列表的名称
  */
 export enum DBServiceName {
   deviceRegistration = "device-registration",
