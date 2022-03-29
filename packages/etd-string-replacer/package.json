@@ -1,5 +1,5 @@
 {
-  "name": "@etherdata-blockchain/common",
+  "name": "@etherdata-blockchain/string-replacer",
   "version": "2.0.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -32,8 +32,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "test": "jest",
-    "prebuild": "ts-node src/main.ts"
+    "test": "jest"
   },
   "gitHead": "222c868ef7b50aa6a8fb216019733e971c213a89"
 }

@@ -13,6 +13,29 @@ jest.mock("node-ssh", () => {
   };
 });
 
+test("Simple test with concurrency 0", async () => {
+  let config = new ConfigParser({ filePath: "/", concurrency: 3 });
+
+  config.config = {
+    logger: undefined,
+    login: { username: "user", password: "pass" },
+    name: "Test",
+    output: false,
+    concurrency: 0,
+    steps: [
+      {
+        name: "My Command",
+        run: "ls",
+      },
+    ],
+    remote: ["1", "2"],
+  };
+
+  let results = await config.runRemoteCommand({});
+  expect(results?.length).toBe(2);
+  expect(results![0][0].type).toBe("command");
+});
+
 test("Simple test with concurrency 1", async () => {
   let config = new ConfigParser({ filePath: "/", concurrency: 3 });
 
