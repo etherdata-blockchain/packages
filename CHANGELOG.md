@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.1 (2022-04-01)
+
+
+### Bug Fixes
+
+* no description field in return template ([#58](https://github.com/etherdata-blockchain/packages/issues/58)) ([eaccd07](https://github.com/etherdata-blockchain/packages/commit/eaccd0742307170680c51706d6f01803f8a86a33))
+
+
+
+
+
 # 2.1.0 (2022-04-01)
 
 
