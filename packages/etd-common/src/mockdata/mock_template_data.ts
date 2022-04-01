@@ -28,6 +28,7 @@ export const MockInstallationTemplateData = {
   template_tag: "test",
   // eslint-disable-next-line camelcase
   created_by: "",
+  description: "mock_data",
 };
 
 export const MockInstallationTemplateDataWithId = {
@@ -48,6 +49,7 @@ export const MockInstallationTemplateDataWithId = {
   template_tag: "test",
   // eslint-disable-next-line camelcase
   created_by: "",
+  description: "mock_data",
 };
 
 export const MockEmptyServiceTemplateData = {
@@ -87,6 +89,7 @@ export const MockComplicatedTemplateData = {
   template_tag: "test",
   // eslint-disable-next-line camelcase
   created_by: "",
+  description: "mock_data",
 };
 
 export const MockJSONSchemaFormInstallationTemplateData = {
@@ -107,4 +110,5 @@ export const MockJSONSchemaFormInstallationTemplateData = {
   template_tag: "test",
   // eslint-disable-next-line camelcase
   created_by: "",
+  description: "mock_data",
 };

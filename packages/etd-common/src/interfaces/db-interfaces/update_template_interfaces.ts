@@ -144,6 +144,10 @@ export interface DockerContainerConfig {
 
 export interface UpdateTemplateDBInterface {
   name: string;
+  /**
+   * Update template's description
+   */
+  description: string;
   targetDeviceIds: string[];
   targetGroupIds: string[];
   /**

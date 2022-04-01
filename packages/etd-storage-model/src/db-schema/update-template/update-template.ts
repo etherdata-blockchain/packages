@@ -22,6 +22,7 @@ const ContainerStackSchema = new Schema<interfaces.db.ContainerStack>({
 export const UpdateScriptSchema = new Schema<IUpdateTemplate>(
   {
     name: { type: String, required: true },
+    description: { type: String, required: true },
     targetDeviceIds: { type: [String], required: true },
     targetGroupIds: { type: [String], required: true },
     from: { type: String, required: true },

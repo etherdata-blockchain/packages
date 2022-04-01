@@ -2,7 +2,7 @@ import { mockData } from "@etherdata-blockchain/common";
 import { schema } from "@etherdata-blockchain/storage-model";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose from "mongoose";
-import { InstallationService } from "../../../mongodb/services/installation-template/installation_service";
+import { InstallationService } from "../../../mongodb";
 
 describe("Given a installation template service", () => {
   let dbServer: MongoMemoryServer;

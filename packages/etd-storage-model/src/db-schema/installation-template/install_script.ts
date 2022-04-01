@@ -39,6 +39,7 @@ export const installationTemplateSchema = new Schema<IInstallationTemplate>(
       auto: true,
     },
     template_tag: { type: String, unique: true },
+    description: { type: String, required: true },
     services: [serviceSchema],
     created_by: "string",
     version: "string",

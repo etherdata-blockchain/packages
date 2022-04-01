@@ -18,6 +18,10 @@ export interface InstallationTemplateDBInterface {
   // eslint-disable-next-line camelcase
   template_tag: string;
   /**
+   * Template's description
+   */
+  description: string;
+  /**
    * Author of this installation template. Will be set on server.
    */
   // eslint-disable-next-line camelcase
