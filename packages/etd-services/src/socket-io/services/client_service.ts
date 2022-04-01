@@ -21,9 +21,14 @@ export class ClientService extends APpService {
   }
 
   auth(password: string): boolean {
-    Logger.info(
-      `${configs.Environments.ClientSideEnvironments.NEXT_PUBLIC_SECRET} is not equal to ${password}, rejecting...`
-    );
+    if (
+      configs.Environments.ClientSideEnvironments.NEXT_PUBLIC_SECRET !==
+      password
+    ) {
+      Logger.info(
+        `${configs.Environments.ClientSideEnvironments.NEXT_PUBLIC_SECRET} is not equal to ${password}, rejecting...`
+      );
+    }
     return (
       configs.Environments.ClientSideEnvironments.NEXT_PUBLIC_SECRET ===
       password
