@@ -49,6 +49,9 @@ describe("Given a installation template service", () => {
     expect(result!.template_tag).toBe(
       mockData.MockInstallationTemplateData.template_tag
     );
+    expect(result!.description).toBe(
+      mockData.MockInstallationTemplateData.description
+    );
     expect(result!.version).toBe(mockData.MockInstallationTemplateData.version);
   });
 
