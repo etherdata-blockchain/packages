@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.1.0 (2022-04-01)
+
+
+### Features
+
+* add description field to installation and update template model ([#57](https://github.com/etherdata-blockchain/packages/issues/57)) ([f5fdcdd](https://github.com/etherdata-blockchain/packages/commit/f5fdcdd078d2790cd247539e7a861be95a70a6ce))
+
+
+
+
+
 ## 2.0.1 (2022-03-28)
 
 
