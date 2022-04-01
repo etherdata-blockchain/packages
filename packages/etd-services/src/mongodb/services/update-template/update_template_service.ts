@@ -102,12 +102,14 @@ export class UpdateTemplateService extends BaseMongoDBService<schema.IUpdateTemp
           targetDeviceIds: 1,
           targetGroupIds: 1,
           name: 1,
+          description: 1,
         },
       },
       {
         $group: {
           _id: "$_id",
           name: { $first: "$name" },
+          description: { $first: "$description" },
           targetDeviceIds: { $first: "$targetDeviceIds" },
           targetGroupIds: { $first: "$targetGroupIds" },
           containerStacks: {

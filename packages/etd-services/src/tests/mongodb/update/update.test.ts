@@ -56,10 +56,12 @@ describe("Given a update-script-script plugin", () => {
 
     expect(result._id).toStrictEqual(createdData._id);
     expect(result.targetGroupIds).toStrictEqual(createdData.targetGroupIds);
+    expect(result);
     expect(result.targetDeviceIds).toStrictEqual(createdData.targetDeviceIds);
     expect(result.imageStacks[0].imageName).toStrictEqual(
       mockData.MockDockerImage.imageName
     );
+    expect(result.description).toBe(createdData.description);
     expect(result.imageStacks[0].image).toBeDefined();
     expect(result.imageStacks[0].tag).toBeDefined();
     expect(result.imageStacks[0].tags.tag).toStrictEqual(
