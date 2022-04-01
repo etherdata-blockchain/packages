@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.2 (2022-04-01)
+
+
+### Bug Fixes
+
+* update script won't include description field ([#59](https://github.com/etherdata-blockchain/packages/issues/59)) ([3d8acb1](https://github.com/etherdata-blockchain/packages/commit/3d8acb139b7a2ee2048bb94e9a2c3af638c90e20))
+
+
+
+
+
 ## 2.1.1 (2022-04-01)
 
 
