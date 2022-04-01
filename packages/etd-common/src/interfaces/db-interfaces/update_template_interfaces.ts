@@ -181,6 +181,7 @@ interface UpdateContainerStack {
 export interface UpdateTemplateWithDockerImageDBInterface {
   _id: string;
   name: string;
+  description: string;
   targetDeviceIds: string[];
   targetGroupIds: string[];
   from: string;
