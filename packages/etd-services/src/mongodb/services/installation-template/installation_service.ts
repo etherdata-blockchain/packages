@@ -157,6 +157,9 @@ export class InstallationService extends BaseMongoDBService<schema.IInstallation
           template_tag: {
             $first: "$template_tag",
           },
+          description: {
+            $first: "$description",
+          },
         },
       },
     ];
