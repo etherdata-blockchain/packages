@@ -2,7 +2,8 @@ import { mockData } from "@etherdata-blockchain/common";
 import { schema } from "@etherdata-blockchain/storage-model";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose from "mongoose";
-import {MockUserGroup1, MockUserGroup2} from "@etherdata-blockchain/common/mockdata";
+import { StorageOwnerGroupModel } from "../../../../db-schema";
+import {MockStorageUserGroupId} from "@etherdata-blockchain/common/dist/mockdata";
 
 describe("Given a storage owner", () => {
   let dbServer: MongoMemoryServer;
@@ -23,21 +24,31 @@ describe("Given a storage owner", () => {
 
   test("test for saving documents of StorageOwnerModel", async () => {
 
-    await schema.StorageOwnerModel.create(mockData.MockUser);
-    await schema.StorageOwnerModel.create(mockData.MockUser2);
+    const resultId1 = await schema.StorageOwnerModel.create(mockData.MockUser);
+    const resultId2 = await schema.StorageOwnerModel.create(mockData.MockUser2);
 
-    const insertedOwner = schema.StorageOwnerModel.find({});
-    expect(insertedOwner[0]).toEqual(mockData.MockUser);
-    expect(insertedOwner[1]).toEqual(mockData.MockUser2);
+    const resultData1 = await schema.StorageOwnerModel.findOne({
+      _id: resultId1,
+    });
+    const resultData2 = await schema.StorageOwnerModel.findOne({
+      _id: resultId2,
+    });
+    expect(resultData1!.user_name).toBe("test");
+    expect(resultData2!.user_name).toBe("test_2");
   });
 
   test("test for saving documents of StorageOwnerGroupModel", async () => {
 
-    await schema.StorageOwnerGroupModel.create(mockData.MockUserGroup1);
-    await schema.StorageOwnerGroupModel.create(mockData.MockUserGroup2);
+    const resultId1 = await StorageOwnerGroupModel.create(mockData.MockUserGroup1);
+    const resultId2 = await StorageOwnerGroupModel.create(mockData.MockUserGroup2);
 
-    const insertedOwnerGroup = schema.StorageOwnerGroupModel.find({});
-    expect(insertedOwnerGroup[0]).toEqual(mockData.MockUser);
-    expect(insertedOwnerGroup[1]).toEqual(mockData.MockUser2);
+    const resultData1 = await StorageOwnerGroupModel.findOne({
+      _id: resultId1,
+    });
+    const resultData2 = await StorageOwnerGroupModel.findOne({
+      _id: resultId2,
+    });
+    expect(resultData1!.group_id).toBe(mockData.MockStorageUserGroupId);
+    expect(resultData2!.group_id).toBe(mockData.MockStorageUserGroupId2);
   });
 });
