@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.3 (2022-04-02)
+
+
+### Bug Fixes
+
+* add dependency outdater ([#60](https://github.com/etherdata-blockchain/packages/issues/60)) ([149fb85](https://github.com/etherdata-blockchain/packages/commit/149fb854923c698f862692f1ddf5a2232f581328))
+
+
+
+
+
 ## 2.1.2 (2022-04-01)
 
 
