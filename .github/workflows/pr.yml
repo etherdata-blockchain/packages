@@ -19,3 +19,12 @@ jobs:
         uses: action-runner/conventional-labeler@2.0.0
         with:
           access_token: ${{ secrets.GITHUB_TOKEN }}
+  outdater:
+    runs-on: ubuntu-latest
+    name: Dependencies outdater
+    steps:
+      - uses: actions/checkout@v2
+      - name: Dependencies Outdater
+        uses: action-runner/dependencies-outdater@master
+        with:
+          access_token: ${{ secrets.GITHUB_TOKEN }}
