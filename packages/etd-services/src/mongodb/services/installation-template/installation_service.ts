@@ -29,6 +29,7 @@ export class InstallationService extends BaseMongoDBService<schema.IInstallation
     delete deepCopiedTemplate.updatedAt;
     delete deepCopiedTemplate.__v;
     delete deepCopiedTemplate._id;
+    delete deepCopiedTemplate.description;
     for (const [key, val] of Object.entries(deepCopiedTemplate.services)) {
       //@ts-ignore
       if (val.image.tag) {

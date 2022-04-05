@@ -1,4 +1,4 @@
-import { mockData } from "@etherdata-blockchain/common";
+import { mockData, utils } from "@etherdata-blockchain/common";
 import { schema } from "@etherdata-blockchain/storage-model";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose from "mongoose";
@@ -59,8 +59,10 @@ describe("Given a installation template service", () => {
     const service = new InstallationService();
     const template = await service.getTemplateWithDockerImages(templateId!);
     const result = service.generateDockerComposeFile(template!);
+    const parsedResult = utils.yaml.parse(result);
     expect(result).toBeDefined();
     expect(result.length).toBeGreaterThan(0);
+    expect(parsedResult.description).toBeUndefined();
   });
 
   test("When calling generating env file", () => {
