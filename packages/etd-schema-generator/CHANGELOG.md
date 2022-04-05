@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.4 (2022-04-05)
+
+
+### Bug Fixes
+
+* generated docker compose file should not contain description field ([#61](https://github.com/etherdata-blockchain/packages/issues/61)) ([48edad4](https://github.com/etherdata-blockchain/packages/commit/48edad4e7069093a2a24cdd3678e987f7d8a2835))
+
+
+
+
+
 ## 2.1.3 (2022-04-02)
 
 
