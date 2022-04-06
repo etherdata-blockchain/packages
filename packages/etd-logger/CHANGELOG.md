@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.5 (2022-04-06)
+
+
+### Bug Fixes
+
+* add type def for restart policy ([#62](https://github.com/etherdata-blockchain/packages/issues/62)) ([8c3c02b](https://github.com/etherdata-blockchain/packages/commit/8c3c02b3c293e7a307d70bb066b862be44899452))
+
+
+
+
+
 ## 2.1.4 (2022-04-05)
 
 

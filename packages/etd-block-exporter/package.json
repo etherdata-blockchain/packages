@@ -1,6 +1,6 @@
 {
   "name": "@etherdata-blockchain/block-exporter",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "description": "Block Exporter",
   "private": false,
   "main": "dist/index.js",
