@@ -42,6 +42,11 @@ export interface ImageStack {
   tag: string;
 }
 
+interface RestartPolicy {
+  name: string;
+  maximumRetryCount: number;
+}
+
 interface HostConfig {
   AutoRemove?: boolean | undefined;
   Binds?: string[] | undefined;
@@ -54,7 +59,7 @@ interface HostConfig {
     | undefined;
   NetworkMode?: string | undefined;
   PortBindings?: any;
-  RestartPolicy?: any | undefined;
+  RestartPolicy?: RestartPolicy | undefined;
   VolumeDriver?: string | undefined;
   VolumesFrom?: any;
   Mounts?: MountConfig | undefined;

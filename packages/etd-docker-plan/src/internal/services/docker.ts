@@ -138,7 +138,7 @@ export default class DockerService {
         const container = await this.docker.createContainer({
           name: newContainer.containerName,
           Image: `${newContainer.image.image}:${newContainer.image.tag}`,
-          ...newContainer.config,
+          ...(newContainer.config as any),
         });
         await container.start();
         // check for container status
