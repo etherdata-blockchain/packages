@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.6 (2022-04-10)
+
+
+### Bug Fixes
+
+* error event name ([#63](https://github.com/etherdata-blockchain/packages/issues/63)) ([6bb371e](https://github.com/etherdata-blockchain/packages/commit/6bb371ea46413e878c1181d56a25bf2d8c1bd757))
+
+
+
+
+
 ## 2.1.5 (2022-04-06)
 
 
