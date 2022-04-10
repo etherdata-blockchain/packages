@@ -101,7 +101,7 @@ export class DBChangeService extends BaseSocketIOService {
                   clientPlugin?.server
                     ?.in(result.from)
                     .emit(
-                      `${enums.SocketIOEvents.dockerError}-${result.jobId}`,
+                      `${enums.SocketIOEvents.rpcError}-${result.jobId}`,
                       result.result
                     );
                   break;
