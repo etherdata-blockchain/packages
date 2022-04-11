@@ -1,14 +1,14 @@
 import { ContainerInfo, ImageInfo } from "dockerode";
 import { Web3DataInfo } from "../etd_interfaces";
 
-interface ContainerInfoWithLog extends ContainerInfo {
+export interface ContainerInfoWithLog extends ContainerInfo {
   /**
    * Container's log. Might be undefined if container doesn't produce any log
    */
   logs?: string;
 }
 
-interface Docker {
+export interface Docker {
   /**
    * Docker images' info
    */
