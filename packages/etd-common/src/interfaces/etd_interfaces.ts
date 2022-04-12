@@ -38,7 +38,7 @@ interface PeerInfo {
   protocols: any;
 }
 
-export interface Web3DataInfo extends BlockTransactionString {
+export interface Web3DataInfoInterface extends BlockTransactionString {
   systemInfo: {
     /**
      * @deprecated Use admin version in device data directly. This field will be deleted in the future.
