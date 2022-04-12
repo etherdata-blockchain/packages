@@ -24,7 +24,7 @@
     "@etherdata-blockchain/logger": "^3.0.0",
     "@types/glob": "^7.2.0",
     "@types/jest": "^27.4.1",
-    "glob": "^7.2.0",
+    "glob": "^8.0.1",
     "jest": "^27.5.1",
     "ts-jest": "^27.1.4",
     "ts-json-schema-generator": "1.0.0",
