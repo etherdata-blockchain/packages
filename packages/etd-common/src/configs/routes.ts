@@ -24,7 +24,7 @@ export const Routes = {
   owner: "/storage_management/owner",
   // Device
   devicesWithStatus: "/api/v1/device/by_user",
-  deviceDetailPage: "/user/devices/detail/etd_node_2",
+  deviceDetailPage: "/user/devices/detail",
   // Update
   update: "/update",
   updateTemplateCreate: "/update/template/create",
