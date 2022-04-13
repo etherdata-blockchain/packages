@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.0.4 (2022-04-13)
+
+
+### Bug Fixes
+
+* url ([3d969cd](https://github.com/etherdata-blockchain/packages/commit/3d969cd2c30149c37d568d107609ddf2a6dace5c))
+
+
+
+
+
 ## 3.0.3 (2022-04-13)
 
 
