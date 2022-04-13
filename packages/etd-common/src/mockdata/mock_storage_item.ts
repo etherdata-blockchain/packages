@@ -1,9 +1,14 @@
 import moment from "moment";
 import { StorageUserDBInterface } from "../interfaces/db-interfaces";
+import { IStorageOwnerGroup } from "@etherdata-blockchain/storage-model/db-schema";
 import { Configurations } from "../configs";
 
 export const MockStorageUserId = "mock_user";
 export const MockStorageUserId2 = "mock_user_2";
+export const MockStorageUserGroupId = "mock_user_group";
+export const MockStorageUserGroupId2 = "mock_user_group_2";
+export const MockStorageUserGroupName = "mock_user_group_name";
+export const MockStorageUserGroupName2 = "mock_user_group_name_2";
 export const MockDeviceID = "mock_device_id_1";
 export const MockDeviceID2 = "mock_device_id_2";
 export const MockDeviceID3 = "mock_device_id_3";
@@ -21,6 +26,18 @@ export const MockUser2: StorageUserDBInterface = {
   user_name: "test_2",
   user_id: MockStorageUserId2,
   coinbase: "b",
+};
+
+export const MockUserGroup1: IStorageOwnerGroup = {
+  group_id: MockStorageUserGroupId,
+  group_name: MockStorageUserGroupName,
+  group_intro: "This is group1 intro",
+};
+
+export const MockUserGroup2: IStorageOwnerGroup = {
+  group_id: MockStorageUserGroupId2,
+  group_name: MockStorageUserGroupName2,
+  group_intro: "This is group2 intro",
 };
 
 export const MockStorageItem = {
