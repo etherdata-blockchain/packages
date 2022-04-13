@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.0.3 (2022-04-13)
+
+
+### Bug Fixes
+
+* add new route ([#77](https://github.com/etherdata-blockchain/packages/issues/77)) ([103a74a](https://github.com/etherdata-blockchain/packages/commit/103a74ae7e3f7f4462660e66d31208460e7231ff))
+
+
+
+
+
 ## 3.0.2 (2022-04-12)
 
 
