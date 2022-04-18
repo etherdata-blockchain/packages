@@ -17,6 +17,19 @@ export interface StorageUserDBInterface {
   coinbase?: string;
 }
 
+export interface StorageUserGroupDBInterface {
+  /**
+   * UserGroup name
+   */
+  // eslint-disable-next-line camelcase
+  usergroup_name: string;
+  /**
+   * UserGroup id
+   */
+  // eslint-disable-next-line camelcase
+  usergroup_id: string;
+}
+
 /**
  * @deprecated this interface will be removed in the future
  */

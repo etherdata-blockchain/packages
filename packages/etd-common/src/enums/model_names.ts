@@ -4,6 +4,7 @@
 export enum ModelName {
   storageItem = "storage_item",
   storageOwner = "storage_owner",
+  storageOwnerGroup = "storage_owner_group",
   jobResult = "job_result",
   pendingJob = "pending_job",
   dockerImage = "dockerImage",

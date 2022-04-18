@@ -9,3 +9,4 @@ export * from "./docker/docker_image";
 export * from "./device/device";
 export * from "./device/storage/item";
 export * from "./device/storage/owner";
+export * from "./device/storage/ownerGroup";
