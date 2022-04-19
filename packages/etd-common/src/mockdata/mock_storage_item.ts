@@ -15,12 +15,14 @@ export const MockUser: StorageUserDBInterface = {
   user_name: "test",
   user_id: MockStorageUserId,
   coinbase: "a",
+  group_id: "1",
 };
 
 export const MockUser2: StorageUserDBInterface = {
   user_name: "test_2",
   user_id: MockStorageUserId2,
   coinbase: "b",
+  group_id: "2",
 };
 
 export const MockStorageItem = {

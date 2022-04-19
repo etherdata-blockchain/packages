@@ -16,6 +16,7 @@ export const storageOwnerSchema = new Schema<IStorageOwner>(
     user_id: { type: "string", index: true, unique: true },
     user_name: "string",
     coinbase: "string",
+    group_id: "string",
   },
   { collection: "storage_management_owner", toJSON: { virtuals: true } }
 );

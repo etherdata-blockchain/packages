@@ -31,6 +31,7 @@ describe("Given onwer storage situation", () => {
       user_name: "user name",
       user_id: "user id",
       coinbase: "coinbase",
+      group_id: "group_id",
     };
     const resultId = await StorageOwnerModel.create(data);
     const returnData = await StorageOwnerModel.findOne({
@@ -39,5 +40,6 @@ describe("Given onwer storage situation", () => {
     expect(returnData!.user_name).toBe("user name");
     expect(returnData!.user_id).toBe("user id");
     expect(returnData!.coinbase).toBe("coinbase");
-  })
+    expect(returnData!.group_id).toBe("group_id");
+  });
 })

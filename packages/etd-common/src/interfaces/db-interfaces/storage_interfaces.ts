@@ -15,6 +15,10 @@ export interface StorageUserDBInterface {
    * User's coinbase
    */
   coinbase?: string;
+  /**
+   * In which group's id
+   */
+  group_id: string;
 }
 
 export interface StorageUserGroupDBInterface {
