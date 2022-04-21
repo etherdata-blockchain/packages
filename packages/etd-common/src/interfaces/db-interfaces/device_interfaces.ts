@@ -19,6 +19,11 @@ export interface DockerDataInterface {
   containers: ContainerInfoWithLog[];
 }
 
+export interface NetworkInfo {
+  localIpAddress?: string;
+  remoteIpAddress?: string;
+}
+
 export interface DeviceDBInterface {
   /**
    * Device's online status
@@ -41,6 +46,10 @@ export interface DeviceDBInterface {
    * Admin node's version
    */
   adminVersion: string;
+  /**
+   * Network info
+   */
+  networkSettings: NetworkInfo;
   /**
    * ETD Node's info
    */
