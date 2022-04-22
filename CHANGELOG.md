@@ -1,5 +1,12 @@
 # Changelog
 
+# 3.2.0 (2022-04-22)
+
+
+### Features
+
+* add search by ip address function to services ([#83](https://github.com/etherdata-blockchain/packages/issues/83)) ([d67b21e](https://github.com/etherdata-blockchain/packages/commit/d67b21e65a639122dacb8758dbc2b5eaa7303c63))
+
 ## 3.1.2 (2022-04-22)
 
 
