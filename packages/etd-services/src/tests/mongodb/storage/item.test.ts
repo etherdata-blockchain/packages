@@ -72,7 +72,7 @@ describe("Given a storage item", () => {
     await schema.DeviceModel.create(mockData.MockDeviceStatus2);
 
     const plugin = new StorageManagementService();
-    const result = await plugin.searchById(mockData.MockStorageItem.qr_code);
+    const result = await plugin.search(mockData.MockStorageItem.qr_code);
 
     expect(result[0].qr_code).toBe(mockData.MockStorageItem.qr_code);
     expect(result).toHaveLength(1);
