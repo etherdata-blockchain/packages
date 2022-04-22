@@ -38,7 +38,7 @@ describe("Given a device status", () => {
     const returnData = await DeviceModel.findOne({
       _id: resultId,
     });
-    expect(returnData.networkSettings).toStrictEqual({
+    expect(returnData.toJSON().networkSettings).toStrictEqual({
       localIpAddress: "192.168.1.1",
       remoteIpAddress: "192.168.2.2",
     });

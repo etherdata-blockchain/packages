@@ -23,6 +23,7 @@ describe("Given a device plugin", () => {
   });
 
   afterEach(async () => {
+    await schema.StorageItemModel.collection.deleteMany({});
     await schema.DeviceModel.collection.deleteMany({});
   });
 
@@ -149,5 +150,51 @@ describe("Given a device plugin", () => {
     );
     const result = await plugin.auth(mockData.MockDeviceID, token);
     expect(result[0]).toBeTruthy();
+  });
+
+  test("When search device by local ip address", async () => {
+    await schema.StorageItemModel.create(mockData.MockStorageItem);
+    await schema.StorageItemModel.create(mockData.MockStorageItem2);
+    await schema.StorageItemModel.create(mockData.MockStorageItem3);
+    await schema.DeviceModel.create(mockData.MockDeviceStatus);
+    await schema.DeviceModel.create(mockData.MockDeviceStatus2);
+    await schema.DeviceModel.create(mockData.MockDeviceStatus3);
+
+    const plugin = new DeviceRegistrationService();
+    const result = await plugin.search(
+      mockData.MockDeviceStatus.networkSettings.localIpAddress
+    );
+
+    expect(result[0].networkSettings.localIpAddress).toBe(
+      mockData.MockDeviceStatus.networkSettings.localIpAddress
+    );
+
+    expect(result[1].networkSettings.localIpAddress).toBe(
+      mockData.MockDeviceStatus3.networkSettings.localIpAddress
+    );
+    expect(result).toHaveLength(2);
+  });
+
+  test("When search device by local remote address", async () => {
+    await schema.StorageItemModel.create(mockData.MockStorageItem);
+    await schema.StorageItemModel.create(mockData.MockStorageItem2);
+    await schema.StorageItemModel.create(mockData.MockStorageItem3);
+    await schema.DeviceModel.create(mockData.MockDeviceStatus);
+    await schema.DeviceModel.create(mockData.MockDeviceStatus2);
+    await schema.DeviceModel.create(mockData.MockDeviceStatus3);
+
+    const plugin = new DeviceRegistrationService();
+    const result = await plugin.search(
+      mockData.MockDeviceStatus.networkSettings.remoteIpAddress
+    );
+
+    expect(result[0].networkSettings.localIpAddress).toBe(
+      mockData.MockDeviceStatus.networkSettings.localIpAddress
+    );
+
+    expect(result[1].networkSettings.localIpAddress).toBe(
+      mockData.MockDeviceStatus2.networkSettings.localIpAddress
+    );
+    expect(result).toHaveLength(2);
   });
 });
