@@ -1,7 +1,7 @@
 {
   "name": "root",
   "private": true,
-  "version": "1.2.0",
+  "version": "3.1.0",
   "workspaces": [
     "packages/*"
   ],
@@ -12,18 +12,20 @@
     "eslint": "^8.13.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",
+    "turbo": "^1.2.5",
     "jest": "^27.5.1",
-    "lerna": "^4.0.0",
+    "release-it": "^14.14.2",
+    "typescript": "^4.6.3",
+    "@release-it/conventional-changelog": "^4.2.2",
+    "@release-it/bumper": "^3.0.1",
     "prettier": "^2.6.2",
     "ts-jest": "^27.1.4"
   },
   "scripts": {
-    "test": "lerna run test",
+    "build": "turbo run build",
+    "test": "jest",
     "coverage": "jest --coverage --forceExit",
-    "build": "lerna run build",
-    "lint": "lerna run lint",
-    "postinstall": "lerna run bootstrap",
-    "version-create": "lerna version --conventional-commits --yes --create-release github",
-    "release": "lerna publish from-git --yes"
+    "release": "release-it --no-requireCleanWorkingDir",
+    "release-dry": "release-it --no-requireCleanWorkingDir --dry-run"
   }
 }

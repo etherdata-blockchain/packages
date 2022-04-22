@@ -17,19 +17,17 @@ jobs:
           cache: "yarn"
       - run: yarn install
       - run: yarn build
-      - name: Authenticate with Registry
-        run: |
-          yarn logout
-          echo "@apollo-elements:registry=http://registry.npmjs.org/" > .npmrc
-          echo "registry=http://registry.npmjs.org/" >> .npmrc
-          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc
-          npm whoami
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - run: yarn release --no-verify-access
-        name: Releasing NPM package
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: publish
+        uses: action-runner/npm-publish@main
+        with:
+          tokens: |
+            ${{ secrets.npm_token }}
+            ${{ secrets.GITHUB_TOKEN}}
+          packageFiles: |
+            sdk-dist/typescript/package.json
+          registries: |
+            https://registry.npmjs.org
+            https://npm.pkg.github.com
       - name: Post to a Slack channel
         id: slack
         uses: slackapi/slack-github-action@v1.18.0
@@ -38,23 +36,3 @@ jobs:
           slack-message: "A New Version Released <${{ github.repository }}>! ${{ github.event.release.tag_name }}"
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
-
-  release-github:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '16.x'
-          registry-url: 'https://npm.pkg.github.com'
-          cache: "yarn"
-      - run: yarn
-      - run: yarn build
-      - run: yarn release --no-verify-access
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
