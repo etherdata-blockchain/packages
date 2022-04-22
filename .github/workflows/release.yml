@@ -24,7 +24,7 @@ jobs:
             ${{ secrets.npm_token }}
             ${{ secrets.GITHUB_TOKEN}}
           packageFiles: |
-            sdk-dist/typescript/package.json
+            package.json
           registries: |
             https://registry.npmjs.org
             https://npm.pkg.github.com
