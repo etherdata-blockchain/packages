@@ -56,6 +56,7 @@ jobs:
         run: |
           git config --global user.email "github-action.github.com"
           git config --global user.name "github action"
-      - run: yarn version-create
+      - name: Release
+        run: yarn release --ci
         env:
-          GH_TOKEN: ${{secrets.RELEASE_TOKEN}}
+          GITHUB_TOKEN: ${{secrets.RELEASE_TOKEN}}
