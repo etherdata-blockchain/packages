@@ -17,6 +17,7 @@ export const deviceSchema = new Schema<IDevice>({
   data: { type: Object, required: false },
   adminVersion: { type: String, required: true },
   docker: { type: Object, required: false },
+  networkSettings: { type: Object, required: false },
 });
 
 deviceSchema.virtual("isOnline").get(function () {
