@@ -1,5 +1,12 @@
 # Changelog
 
+# 3.3.0 (2022-04-22)
+
+
+### Features
+
+* add search function to storage service ([#84](https://github.com/etherdata-blockchain/packages/issues/84)) ([57dd2a4](https://github.com/etherdata-blockchain/packages/commit/57dd2a42a9c664ef25cc7a9f573d5ee65fb579bb))
+
 # 3.2.0 (2022-04-22)
 
 
