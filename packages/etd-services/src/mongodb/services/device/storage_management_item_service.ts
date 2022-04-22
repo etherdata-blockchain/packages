@@ -49,11 +49,48 @@ export class StorageManagementService extends BaseMongoDBService<schema.IStorage
    * Search items by key
    * @param key
    */
-  async search(key: string): Promise<schema.IStorageItem[]> {
+  async searchById(key: string): Promise<schema.IStorageItem[]> {
     const query = this.model
       .find({
         $or: [{ qr_code: { $regex: ".*" + key + ".*" } }],
       })
+      .limit(configs.Configurations.numberPerPage);
+    return query.exec();
+  }
+
+  /**
+   * Search devices matched using qr_code, localIpAddress, remoteIpAddress
+   * @param key
+   */
+  async search(
+    key: string
+  ): Promise<interfaces.db.StorageItemWithStatusDBInterface[]> {
+    const pipelines = [
+      {
+        $lookup: {
+          from: `${enums.ModelName.device}s`,
+          localField: "qr_code",
+          foreignField: "id",
+          as: "status",
+        },
+      },
+      {
+        $unwind: {
+          path: "$status",
+        },
+      },
+      {
+        $match: {
+          $or: [
+            { "status.networkSettings.localIpAddress": key },
+            { "status.networkSettings.remoteIpAddress": key },
+          ],
+        },
+      },
+    ];
+
+    const query = this.model
+      .aggregate(pipelines)
       .limit(configs.Configurations.numberPerPage);
     return query.exec();
   }
