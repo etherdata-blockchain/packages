@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 3.1.0 (2022-04-22)
+
+
+### Features
+
+* add get local ip address package ([#81](https://github.com/etherdata-blockchain/packages/issues/81)) ([de5f752](https://github.com/etherdata-blockchain/packages/commit/de5f7526b68089874ee8dd228688faa12a5d4b9d))
+
+
+
+
+
 ## 3.0.5 (2022-04-22)
 
 
