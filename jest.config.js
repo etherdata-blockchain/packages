@@ -8,5 +8,5 @@ module.exports = {
         "!<rootDir>/node_modules/",
         "!index.ts"
     ],
-    testTimeout: 30000
+    testTimeout: 40000
 };
