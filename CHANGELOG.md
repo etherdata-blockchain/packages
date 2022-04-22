@@ -1,3 +1,12 @@
+# Changelog
+
+## 3.1.1 (2022-04-22)
+
+
+### Bug Fixes
+
+* release action ([7dd61bc](https://github.com/etherdata-blockchain/packages/commit/7dd61bc10d23800361b6fe7affed348a88d6c33d))
+
 # Change Log
 
 All notable changes to this project will be documented in this file.
