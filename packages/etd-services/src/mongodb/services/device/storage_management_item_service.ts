@@ -42,7 +42,7 @@ export class StorageManagementService extends BaseMongoDBService<schema.IStorage
    */
   async auth(deviceID: string): Promise<boolean> {
     //@ts-ignore
-    return await this.model.exists({ qr_code: deviceID });
+    return this.model.exists({ qr_code: deviceID });
   }
 
   /**

@@ -51,6 +51,10 @@ export const MockStorageItem2 = {
   qr_code: MockDeviceID2,
   row: 0,
   uuid: "",
+  networkSettings: {
+    localIpAddress: "192.168.1.2",
+    remoteIpAddress: "170.1.1.1",
+  },
 };
 
 export const MockStorageItem3 = {
@@ -65,6 +69,10 @@ export const MockStorageItem3 = {
   qr_code: MockDeviceID3,
   row: 0,
   uuid: "",
+  networkSettings: {
+    localIpAddress: "192.168.1.0",
+    remoteIpAddress: "170.1.1.2",
+  },
 };
 
 /**
@@ -78,6 +86,10 @@ export const MockDeviceStatus = {
   lastSeen: moment(),
   name: MockDeviceName,
   user: MockStorageUserId,
+  networkSettings: {
+    localIpAddress: "192.168.1.1",
+    remoteIpAddress: "170.1.1.1",
+  },
 };
 
 /**
@@ -94,6 +106,30 @@ export const MockDeviceStatus2 = {
   ),
   name: MockDeviceName2,
   user: MockStorageUserId,
+  networkSettings: {
+    localIpAddress: "192.168.1.2",
+    remoteIpAddress: "170.1.1.1",
+  },
+};
+
+/**
+ * Offline mock device
+ */
+export const MockDeviceStatus3 = {
+  adminVersion: MockAdminVersion,
+  data: undefined,
+  docker: undefined,
+  id: MockDeviceID3,
+  lastSeen: moment().subtract(
+    Configurations.maximumNotSeenDuration * 2,
+    "seconds"
+  ),
+  name: MockDeviceName2,
+  user: MockStorageUserId,
+  networkSettings: {
+    localIpAddress: "192.168.1.1",
+    remoteIpAddress: "170.1.1.2",
+  },
 };
 
 /**

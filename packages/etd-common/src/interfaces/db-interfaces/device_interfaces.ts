@@ -19,7 +19,7 @@ export interface DockerDataInterface {
   containers: ContainerInfoWithLog[];
 }
 
-export interface NetworkInfo {
+export interface NetworkSettings {
   localIpAddress?: string;
   remoteIpAddress?: string;
 }
@@ -49,7 +49,7 @@ export interface DeviceDBInterface {
   /**
    * Network info
    */
-  networkSettings: NetworkInfo;
+  networkSettings: NetworkSettings;
   /**
    * ETD Node's info
    */

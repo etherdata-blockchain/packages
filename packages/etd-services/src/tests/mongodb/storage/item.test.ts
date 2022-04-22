@@ -2,7 +2,7 @@ import { mockData } from "@etherdata-blockchain/common";
 import { schema } from "@etherdata-blockchain/storage-model";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose from "mongoose";
-import { StorageManagementService } from "../../../mongodb/services/device/storage_management_item_service";
+import { StorageManagementService } from "../../../mongodb";
 
 describe("Given a storage item", () => {
   let dbServer: MongoMemoryServer;
@@ -60,6 +60,19 @@ describe("Given a storage item", () => {
 
     expect(result2.qr_code).toBe(mockData.MockStorageItem2.qr_code);
     expect(result2.deviceStatus.isOnline).toBeFalsy();
+  });
+
+  test("When search device by id", async () => {
+    await schema.StorageItemModel.create(mockData.MockStorageItem);
+    await schema.StorageItemModel.create(mockData.MockStorageItem2);
+    await schema.DeviceModel.create(mockData.MockDeviceStatus);
+    await schema.DeviceModel.create(mockData.MockDeviceStatus2);
+
+    const plugin = new StorageManagementService();
+    const result = await plugin.search(mockData.MockStorageItem.qr_code);
+
+    expect(result[0].qr_code).toBe(mockData.MockStorageItem.qr_code);
+    expect(result).toHaveLength(1);
   });
 
   test("When calling auth", async () => {
