@@ -1,6 +1,6 @@
 {
   "name": "@etherdata-blockchain/common",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "license": "MIT",
@@ -21,7 +21,7 @@
     "access": "public"
   },
   "devDependencies": {
-    "@etherdata-blockchain/logger": "^3.0.4",
+    "@etherdata-blockchain/logger": "^3.0.5",
     "@types/glob": "^7.2.0",
     "@types/jest": "^27.4.1",
     "glob": "^8.0.1",

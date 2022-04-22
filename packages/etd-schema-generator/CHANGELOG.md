@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.0.5 (2022-04-22)
+
+
+### Bug Fixes
+
+* add network properties ([#79](https://github.com/etherdata-blockchain/packages/issues/79)) ([d71ba73](https://github.com/etherdata-blockchain/packages/commit/d71ba73daad7f83b933157e76b79c1119d964665))
+
+
+
+
+
 ## 3.0.4 (2022-04-13)
 
 
