@@ -2,7 +2,10 @@ import { mockData } from "@etherdata-blockchain/common";
 import { schema } from "@etherdata-blockchain/storage-model";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose from "mongoose";
-import { StorageManagementService } from "../../../mongodb";
+import {
+  DeviceRegistrationService,
+  StorageManagementService,
+} from "../../../mongodb";
 
 describe("Given a storage item", () => {
   let dbServer: MongoMemoryServer;
@@ -69,7 +72,7 @@ describe("Given a storage item", () => {
     await schema.DeviceModel.create(mockData.MockDeviceStatus2);
 
     const plugin = new StorageManagementService();
-    const result = await plugin.search(mockData.MockStorageItem.qr_code);
+    const result = await plugin.searchById(mockData.MockStorageItem.qr_code);
 
     expect(result[0].qr_code).toBe(mockData.MockStorageItem.qr_code);
     expect(result).toHaveLength(1);
@@ -81,5 +84,51 @@ describe("Given a storage item", () => {
     const plugin = new StorageManagementService();
     const authorized = plugin.auth(mockData.MockStorageItem.qr_code);
     expect(authorized).toBeTruthy();
+  });
+
+  test("When search device by local ip address", async () => {
+    await schema.StorageItemModel.create(mockData.MockStorageItem);
+    await schema.StorageItemModel.create(mockData.MockStorageItem2);
+    await schema.StorageItemModel.create(mockData.MockStorageItem3);
+    await schema.DeviceModel.create(mockData.MockDeviceStatus);
+    await schema.DeviceModel.create(mockData.MockDeviceStatus2);
+    await schema.DeviceModel.create(mockData.MockDeviceStatus3);
+
+    const plugin = new StorageManagementService();
+    const result = await plugin.search(
+      mockData.MockDeviceStatus.networkSettings.localIpAddress
+    );
+
+    expect(result[0].status!.networkSettings.localIpAddress).toBe(
+      mockData.MockDeviceStatus.networkSettings.localIpAddress
+    );
+
+    expect(result[1].status!.networkSettings.localIpAddress).toBe(
+      mockData.MockDeviceStatus3.networkSettings.localIpAddress
+    );
+    expect(result).toHaveLength(2);
+  });
+
+  test("When search device by local remote address", async () => {
+    await schema.StorageItemModel.create(mockData.MockStorageItem);
+    await schema.StorageItemModel.create(mockData.MockStorageItem2);
+    await schema.StorageItemModel.create(mockData.MockStorageItem3);
+    await schema.DeviceModel.create(mockData.MockDeviceStatus);
+    await schema.DeviceModel.create(mockData.MockDeviceStatus2);
+    await schema.DeviceModel.create(mockData.MockDeviceStatus3);
+
+    const plugin = new StorageManagementService();
+    const result = await plugin.search(
+      mockData.MockDeviceStatus.networkSettings.remoteIpAddress
+    );
+
+    expect(result[0].status!.networkSettings.localIpAddress).toBe(
+      mockData.MockDeviceStatus.networkSettings.localIpAddress
+    );
+
+    expect(result[1].status!.networkSettings.localIpAddress).toBe(
+      mockData.MockDeviceStatus2.networkSettings.localIpAddress
+    );
+    expect(result).toHaveLength(2);
   });
 });

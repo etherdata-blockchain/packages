@@ -227,20 +227,4 @@ export class DeviceRegistrationService extends BaseMongoDBService<schema.IDevice
       return [false, undefined];
     }
   }
-
-  /**
-   * Search devices matched using localIpAddress, remoteIpAddress
-   * @param key
-   */
-  async search(key: string): Promise<schema.IDevice[]> {
-    const query = this.model
-      .find({
-        $or: [
-          { "networkSettings.localIpAddress": key },
-          { "networkSettings.remoteIpAddress": key },
-        ],
-      })
-      .limit(configs.Configurations.numberPerPage);
-    return query.exec();
-  }
 }
