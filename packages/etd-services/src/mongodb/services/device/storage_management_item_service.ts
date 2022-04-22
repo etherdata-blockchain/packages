@@ -46,19 +46,6 @@ export class StorageManagementService extends BaseMongoDBService<schema.IStorage
   }
 
   /**
-   * Search items by key
-   * @param key
-   */
-  async searchById(key: string): Promise<schema.IStorageItem[]> {
-    const query = this.model
-      .find({
-        $or: [{ qr_code: { $regex: ".*" + key + ".*" } }],
-      })
-      .limit(configs.Configurations.numberPerPage);
-    return query.exec();
-  }
-
-  /**
    * Search devices matched using qr_code, localIpAddress, remoteIpAddress
    * @param key
    */
@@ -84,6 +71,7 @@ export class StorageManagementService extends BaseMongoDBService<schema.IStorage
           $or: [
             { "status.networkSettings.localIpAddress": key },
             { "status.networkSettings.remoteIpAddress": key },
+            { qr_code: { $regex: ".*" + key + ".*" } },
           ],
         },
       },
