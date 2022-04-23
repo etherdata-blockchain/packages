@@ -1,5 +1,12 @@
 # Changelog
 
+# 3.4.0 (2022-04-23)
+
+
+### Features
+
+* update string replacer to support more types ([#88](https://github.com/etherdata-blockchain/packages/issues/88)) ([e652682](https://github.com/etherdata-blockchain/packages/commit/e652682bff21c001cc5a1a9f77b41e5f06295399))
+
 ## 3.3.1 (2022-04-23)
 
 

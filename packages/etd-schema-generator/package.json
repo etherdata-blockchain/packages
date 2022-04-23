@@ -1,6 +1,6 @@
 {
   "name": "@etherdata-blockchain/etd-schema-generator",
-  "version": "3.3.1",
+  "version": "3.4.0",
   "description": "JSON schema generator for typescript interfaces",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
