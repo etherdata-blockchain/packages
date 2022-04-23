@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.3.1 (2022-04-23)
+
+
+### Bug Fixes
+
+* Update dependencies for main ([#87](https://github.com/etherdata-blockchain/packages/issues/87)) ([add773b](https://github.com/etherdata-blockchain/packages/commit/add773b3bbb40d881f95881c2cf6a625861598bf))
+
 # 3.3.0 (2022-04-22)
 
 
