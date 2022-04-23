@@ -1,1 +1,1 @@
-export { StringReplacer } from "./replacer/replacer";
+export { StringReplacer } from "./replacer/string_replacer";

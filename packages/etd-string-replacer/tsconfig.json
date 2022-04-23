@@ -4,7 +4,7 @@
 
     /* Projects */
     // "incremental": true,                              /* Enable incremental compilation */
-    "composite": true,
+    "composite": false,
     /* Enable constraints that allow a TypeScript project to be used with project references. */
     // "tsBuildInfoFile": "./",                          /* Specify the folder for .tsbuildinfo incremental compilation files. */
     // "disableSourceOfProjectReferenceRedirect": true,  /* Disable preferring source files instead of declaration files when referencing composite projects */
@@ -109,7 +109,10 @@
     /* Skip type checking all .d.ts files. */
   },
   "include": [
-    "src/schemas/*.json",
     "src/**/*.ts"
+  ],
+  "exclude": [
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts"
   ]
 }
