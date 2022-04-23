@@ -5,8 +5,8 @@
   "types": "dist/index.d.ts",
   "license": "MIT",
   "dependencies": {
-    "@etherdata-blockchain/logger": "^3.2.0",
-    "@etherdata-blockchain/storage-model": "^3.2.0",
+    "@etherdata-blockchain/logger": "^3.3.0",
+    "@etherdata-blockchain/storage-model": "^3.3.0",
     "@types/jsonwebtoken": "^8.5.8",
     "axios": "^0.26.1",
     "jsonwebtoken": "^8.5.1",
