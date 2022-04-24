@@ -9,7 +9,7 @@
     "access": "public"
   },
   "devDependencies": {
-    "@etherdata-blockchain/etd-schema-generator": "^3.3.0",
+    "@etherdata-blockchain/etd-schema-generator": "^3.4.0",
     "jest": "^27.5.1",
     "ts-jest": "^27.1.4",
     "ts-node": "^10.7.0",
@@ -21,7 +21,7 @@
     "url": "https://github.com/etherdata-blockchain/packages.git"
   },
   "dependencies": {
-    "@etherdata-blockchain/logger": "^3.3.0",
+    "@etherdata-blockchain/logger": "^3.4.0",
     "@types/chalk": "^2.2.0",
     "@types/cli-progress": "^3.9.2",
     "@types/jest": "^27.4.1",
