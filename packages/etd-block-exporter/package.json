@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@types/jest": "^27.4.1",
-    "@types/node": "^17.0.25",
+    "@types/node": "^17.0.26",
     "@types/yaml": "^1.9.7",
     "cancelable-promise": "^4.3.0",
     "cli-progress": "^3.10.0",
