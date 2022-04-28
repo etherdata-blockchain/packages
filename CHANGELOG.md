@@ -1,5 +1,17 @@
 # Changelog
 
+# 4.0.0 (2022-04-28)
+
+
+### Features
+
+* add volumes support ([#95](https://github.com/etherdata-blockchain/packages/issues/95)) ([d8e68cc](https://github.com/etherdata-blockchain/packages/commit/d8e68ccbb30f7ac76d970e9106bbdced07fbf9c1))
+
+
+### BREAKING CHANGES
+
+* add volume support and Bump version to 4.0
+
 # 3.4.0 (2022-04-23)
 
 
