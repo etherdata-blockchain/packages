@@ -29,6 +29,11 @@ describe("Given a device status", () => {
       id: "mock_device_id",
       user: null,
       adminVersion: "1.12.5",
+      docker: {
+        images: [],
+        containers: [],
+        volumes: [],
+      },
       networkSettings: {
         localIpAddress: "192.168.1.1",
         remoteIpAddress: "192.168.2.2",
@@ -42,5 +47,8 @@ describe("Given a device status", () => {
       localIpAddress: "192.168.1.1",
       remoteIpAddress: "192.168.2.2",
     });
+    expect(returnData.toJSON().docker.images).toBeDefined();
+    expect(returnData.toJSON().docker.containers).toBeDefined();
+    expect(returnData.toJSON().docker.volumes).toBeDefined();
   });
 });

@@ -1,4 +1,4 @@
-import { ContainerInfo, ImageInfo } from "dockerode";
+import { ContainerInfo, ImageInfo, VolumeInspectInfo } from "dockerode";
 import { Web3DataInfoInterface } from "../etd_interfaces";
 
 export interface ContainerInfoWithLog extends ContainerInfo {
@@ -17,6 +17,10 @@ export interface DockerDataInterface {
    * Docker container's info
    */
   containers: ContainerInfoWithLog[];
+  /**
+   * Docker volume's info
+   */
+  volumes: VolumeInspectInfo[];
 }
 
 export interface NetworkSettings {

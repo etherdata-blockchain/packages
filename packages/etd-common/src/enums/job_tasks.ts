@@ -29,10 +29,54 @@ export interface Web3ValueType {
   params: string[];
 }
 
-export interface DockerValueType {
-  method: "logs" | "start" | "stop" | "remove" | "restart" | "exec";
-  value: any;
-}
+export type DockerValueType =
+  | {
+      method: "removeVolume";
+      /**
+       * Volume name
+       */
+      value: string;
+    }
+  | {
+      /**
+       * Stop docker container
+       */
+      method: "stopContainer";
+      /**
+       * Container id
+       */
+      value: string;
+    }
+  | {
+      /**
+       * Remove container
+       */
+      method: "removeContainer";
+      /**
+       * Container Id
+       */
+      value: string;
+    }
+  | {
+      /**
+       * Remove image
+       */
+      method: "removeImage";
+      /**
+       * Image id
+       */
+      value: string;
+    }
+  | {
+      /**
+       * Get container's log
+       */
+      method: "logs";
+      /**
+       * Container id
+       */
+      value: string;
+    };
 
 export type AnyValueType = {};
 
