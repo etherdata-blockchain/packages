@@ -4,29 +4,31 @@ import { MockContainerId, MockContainers } from "../data/mock_container_stack";
 import { MockImageStacks } from "../data/mock_image_stack";
 import { Configurations } from "../../internal/const/configurations";
 
-const container = {
-  id: MockContainerId,
-  stop: jest.fn(),
-  remove: jest.fn(),
-  start: jest.fn(),
-  inspect: jest.fn().mockResolvedValue({ State: { Running: true } }),
-  logs: jest.fn().mockResolvedValue(Buffer.from("mock_data")),
-};
+jest.mock("dockerode", () => {
+  const mockId = "mock_container_id";
 
-const image = {
-  id: MockContainerId,
-  remove: jest.fn(),
-};
+  const image = {
+    id: mockId,
+    remove: jest.fn(),
+  };
 
-jest.mock("dockerode", () =>
-  jest.fn().mockImplementation(() => ({
+  const container = {
+    id: mockId,
+    stop: jest.fn(),
+    remove: jest.fn(),
+    start: jest.fn(),
+    inspect: jest.fn().mockResolvedValue({ State: { Running: true } }),
+    logs: jest.fn().mockResolvedValue(Buffer.from("mock_data")),
+  };
+
+  return jest.fn().mockImplementation(() => ({
     createContainer: jest.fn().mockReturnValue(container),
     getImage: jest.fn().mockReturnValue(image),
     getContainer: jest.fn().mockReturnValue(container),
     pull: jest.fn().mockReturnValue(image),
     listImages: jest.fn().mockResolvedValue([image]),
-  }))
-);
+  }));
+});
 describe("Given a docker service while docker works as expected", () => {
   let docker: Docker;
   beforeEach(() => {

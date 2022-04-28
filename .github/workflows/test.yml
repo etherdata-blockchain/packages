@@ -8,6 +8,9 @@ on:
 
 jobs:
   dependencies:
+    env:
+      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+      TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
     if: ${{ github.event.pusher.name != 'github action' }}
     runs-on: ubuntu-latest
     steps:
@@ -24,6 +27,9 @@ jobs:
           prettier: true
 
   test:
+    env:
+      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+      TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
     if: ${{ github.event.pusher.name != 'github action' }}
     runs-on: ubuntu-latest
     steps:
@@ -34,13 +40,16 @@ jobs:
           cache: "yarn"
       - run: yarn install
       - run: yarn build
-      - run: yarn coverage
+      - run: yarn test
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
 
   release:
+    env:
+      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+      TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
     if: ${{ (github.event.pusher.name != 'github action') && (github.ref == 'refs/heads/main') }}
     needs: [ dependencies, test ]
     runs-on: ubuntu-latest
