@@ -12,25 +12,23 @@
     "url": "https://github.com/etherdata-blockchain/packages.git"
   },
   "dependencies": {
-    "@etherdata-blockchain/common": "^3.3.0",
-    "@etherdata-blockchain/logger": "^3.3.0",
+    "@etherdata-blockchain/common": "*",
+    "@etherdata-blockchain/logger": "*",
     "@types/cli-progress": "^3.9.2",
     "@types/dockerode": "^3.3.8",
     "@types/jest-when": "^3.5.0",
     "cli-progress": "^3.10.0",
     "dockerode": "^3.3.1",
-    "jest": "^27.5.1",
-    "jest-when": "^3.5.1",
     "typescript": "^4.6.3",
     "yaml": "^2.0.1"
   },
   "devDependencies": {
-    "@types/jest": "^27.4.1",
-    "ts-jest": "^27.1.4",
-    "ts-node": "^10.7.0"
+    "ts-jest": "^28.0.0-next.1",
+    "ts-node": "^10.7.0",
+    "jest": "^28.0.2"
   },
   "scripts": {
-    "test": "jest --coverage",
+    "test": "jest --silent",
     "prebuild": "rm -rf dist",
     "build": "tsc",
     "start": "ts-node src/main.ts"

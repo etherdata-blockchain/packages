@@ -42,7 +42,7 @@ describe("Given a docker plan", () => {
     }
   });
 
-  test("When creating a simple hello world docker", async () => {
+  test.skip("When creating a simple hello world docker", async () => {
     const dockerService = new DockerService(docker);
     const plan = new DockerPlan(dockerService);
     const image: ImageStack = {

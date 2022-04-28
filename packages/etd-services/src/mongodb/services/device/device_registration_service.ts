@@ -108,9 +108,9 @@ export class DeviceRegistrationService extends BaseMongoDBService<schema.IDevice
         }
       );
       return [true, undefined];
-    } catch (e) {
-      console.log(e);
-      return [false, (e as AxiosError).response?.data.err];
+    } catch (e: any) {
+      const err = e as any;
+      return [false, err.response?.data?.err];
     }
   }
 

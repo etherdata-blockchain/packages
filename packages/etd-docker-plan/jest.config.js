@@ -2,5 +2,12 @@
 module.exports = {
   preset: "ts-jest",
   testEnvironment: "node",
-  testTimeout: 20000,
+  testPathIgnorePatterns: ["dist"],
+  collectCoverageFrom: [
+    "**/*.{ts,tsx}",
+    "!<rootDir>/node_modules/",
+    "!index.ts",
+  ],
+  testTimeout: 40000,
+  reporters: ["default", "github-actions"],
 };
