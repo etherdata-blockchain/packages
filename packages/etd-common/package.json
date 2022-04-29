@@ -9,7 +9,7 @@
     "@types/json-schema": "^7.0.11",
     "bson": "^4.6.3",
     "json-schema": "^0.4.0",
-    "typescript": "^4.6.3",
+    "typescript": "^4.6.4",
     "web3": "^1.7.3",
     "yaml": "^2.0.1"
   },
@@ -21,7 +21,7 @@
     "access": "public"
   },
   "devDependencies": {
-    "@etherdata-blockchain/logger": "^3.4.0",
+    "@etherdata-blockchain/logger": "^4.0.2",
     "@types/glob": "^7.2.0",
     "@types/jest": "^27.4.1",
     "glob": "^8.0.1",
