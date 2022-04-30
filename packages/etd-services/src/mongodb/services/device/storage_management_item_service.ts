@@ -26,6 +26,28 @@ export class StorageManagementService extends BaseMongoDBService<schema.IStorage
   }
 
   /**
+   * Get device ids by given user.
+   * This will not do the pagination by default since only id field will be return.
+   * @param userID
+   */
+  async getDeviceIdsByUser(userID: string): Promise<string[]> {
+    const result = await this.model
+      .find({ owner_id: userID })
+      .select("qr_code")
+      .exec();
+    return result.map((r) => r.qr_code);
+  }
+
+  /**
+   * This method will update all owner by given device ids.
+   * @param userID Owner to be updated
+   * @param deviceIds List of devices to be updated
+   */
+  async bindDevicesByUser(userID: string, deviceIds: string[]) {
+    await this.model.updateMany({ qr_code: deviceIds }, { owner_id: userID });
+  }
+
+  /**
    * Get device with status from database
    * @param deviceID
    */

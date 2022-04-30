@@ -2,10 +2,7 @@ import { mockData } from "@etherdata-blockchain/common";
 import { schema } from "@etherdata-blockchain/storage-model";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose from "mongoose";
-import {
-  DeviceRegistrationService,
-  StorageManagementService,
-} from "../../../mongodb";
+import { StorageManagementService } from "../../../mongodb";
 
 describe("Given a storage item", () => {
   let dbServer: MongoMemoryServer;
@@ -130,5 +127,40 @@ describe("Given a storage item", () => {
       mockData.MockDeviceStatus2.networkSettings.localIpAddress
     );
     expect(result).toHaveLength(2);
+  });
+
+  test("When calling get device ids by user", async () => {
+    const id1 = await schema.StorageItemModel.create(mockData.MockStorageItem);
+    const id2 = await schema.StorageItemModel.create(mockData.MockStorageItem2);
+    const id3 = await schema.StorageItemModel.create(mockData.MockStorageItem3);
+
+    const service = new StorageManagementService();
+    const result = await service.getDeviceIdsByUser(mockData.MockStorageUserId);
+    expect(result).toHaveLength(2);
+    expect(result[0]).toBe(id1.qr_code);
+    expect(result[1]).toBe(id2.qr_code);
+  });
+
+  test("When calling get device ids by user", async () => {
+    const service = new StorageManagementService();
+    const result = await service.getDeviceIdsByUser(mockData.MockStorageUserId);
+    expect(result).toHaveLength(0);
+  });
+
+  test("When calling bind devices by user", async () => {
+    const id1 = await schema.StorageItemModel.create(mockData.MockStorageItem);
+    const id2 = await schema.StorageItemModel.create(mockData.MockStorageItem2);
+    const id3 = await schema.StorageItemModel.create(mockData.MockStorageItem3);
+
+    const service = new StorageManagementService();
+    await service.bindDevicesByUser(mockData.MockStorageUserId2, [
+      id1.qr_code,
+      id2.qr_code,
+      id3.qr_code,
+    ]);
+    const result = await service.getDeviceIdsByUser(
+      mockData.MockStorageUserId2
+    );
+    expect(result).toHaveLength(3);
   });
 });
