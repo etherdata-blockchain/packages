@@ -13,7 +13,7 @@
     "url": "https://github.com/etherdata-blockchain/packages.git"
   },
   "devDependencies": {
-    "jest": "^28.0.2",
+    "jest": "^28.0.3",
     "ts-node": "^10.7.0",
     "ts-node-dev": "^1.1.8",
     "typescript": "^4.6.4"
