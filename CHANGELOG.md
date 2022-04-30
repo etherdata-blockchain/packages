@@ -1,5 +1,12 @@
 # Changelog
 
+# 4.1.0 (2022-04-30)
+
+
+### Features
+
+* add bind devices by owner id and get device ids by owner ([#100](https://github.com/etherdata-blockchain/packages/issues/100)) ([ebf85eb](https://github.com/etherdata-blockchain/packages/commit/ebf85eba4004e7bcf78441e7bbdae4cdab93408c))
+
 ## 4.0.2 (2022-04-28)
 
 
