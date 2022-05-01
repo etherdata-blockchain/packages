@@ -147,13 +147,13 @@ describe("Given a storage item", () => {
     expect(result).toHaveLength(0);
   });
 
-  test("When calling bind devices by user", async () => {
+  test("When calling register devices by user", async () => {
     const id1 = await schema.StorageItemModel.create(mockData.MockStorageItem);
     const id2 = await schema.StorageItemModel.create(mockData.MockStorageItem2);
     const id3 = await schema.StorageItemModel.create(mockData.MockStorageItem3);
 
     const service = new StorageManagementService();
-    await service.bindDevicesByUser(mockData.MockStorageUserId2, [
+    await service.registerDevicesByUser(mockData.MockStorageUserId2, [
       id1.qr_code,
       id2.qr_code,
       id3.qr_code,
@@ -162,5 +162,18 @@ describe("Given a storage item", () => {
       mockData.MockStorageUserId2
     );
     expect(result).toHaveLength(3);
+  });
+
+  test("When calling unregister devices by user", async () => {
+    const id1 = await schema.StorageItemModel.create(mockData.MockStorageItem);
+    const id2 = await schema.StorageItemModel.create(mockData.MockStorageItem2);
+    const id3 = await schema.StorageItemModel.create(mockData.MockStorageItem3);
+
+    const service = new StorageManagementService();
+    await service.unregisterDevicesByUser(mockData.MockStorageUserId2);
+    const result = await service.getDeviceIdsByUser(
+      mockData.MockStorageUserId2
+    );
+    expect(result).toHaveLength(0);
   });
 });

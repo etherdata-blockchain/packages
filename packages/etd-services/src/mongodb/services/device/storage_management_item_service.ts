@@ -39,12 +39,24 @@ export class StorageManagementService extends BaseMongoDBService<schema.IStorage
   }
 
   /**
-   * This method will update all owner by given device ids.
+   * This method will update given devices' owner and also will
+   * unset the owner field of all owner's owned devices.
    * @param userID Owner to be updated
    * @param deviceIds List of devices to be updated
    */
-  async bindDevicesByUser(userID: string, deviceIds: string[]) {
+  async registerDevicesByUser(userID: string, deviceIds: string[]) {
     await this.model.updateMany({ qr_code: deviceIds }, { owner_id: userID });
+  }
+
+  /**
+   * This method will unset the owner field of all owner's owned devices.
+   * @param userID Owner to be updated
+   */
+  async unregisterDevicesByUser(userID: string) {
+    await this.model.updateMany(
+      { owner_id: userID },
+      { $unset: { owner_id: 1 } }
+    );
   }
 
   /**
