@@ -22,8 +22,10 @@ export const Routes = {
   item: "/storage_management/item",
   itemSearch: "/api/v1/device/search",
   owner: "/storage_management/owner",
+  editOwner: "/api/v1/edit/owner",
   // Device
-  devicesWithStatus: "/api/v1/device/by_user",
+  devicesWithStatus: "/api/v1/device/get/by_user",
+  devicesIdByUser: "/api/v1/device/get/id/by_user",
   deviceDetailPage: "/user/devices/detail",
   // Update
   update: "/update",
