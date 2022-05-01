@@ -1,5 +1,12 @@
 # Changelog
 
+## 4.1.4 (2022-05-01)
+
+
+### Bug Fixes
+
+* search items by qr code ([#102](https://github.com/etherdata-blockchain/packages/issues/102)) ([f14f6eb](https://github.com/etherdata-blockchain/packages/commit/f14f6eb159e0770ab95a7c9543649b9c204f2b2c))
+
 ## 4.1.3 (2022-05-01)
 
 
