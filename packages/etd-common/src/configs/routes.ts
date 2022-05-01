@@ -22,7 +22,7 @@ export const Routes = {
   item: "/storage_management/item",
   itemSearch: "/api/v1/device/search",
   owner: "/storage_management/owner",
-  editOwner: "/api/v1/edit/owner",
+  editOwner: "/api/v1/device/edit/owner",
   // Device
   devicesWithStatus: "/api/v1/device/get/by_user",
   devicesIdByUser: "/api/v1/device/get/id/by_user",
