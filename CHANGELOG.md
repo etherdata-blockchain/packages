@@ -1,5 +1,12 @@
 # Changelog
 
+## 4.1.1 (2022-05-01)
+
+
+### Bug Fixes
+
+* add unregister function ([#101](https://github.com/etherdata-blockchain/packages/issues/101)) ([2a580e5](https://github.com/etherdata-blockchain/packages/commit/2a580e5f050f6d661cf56b7cdf7dded59d731c3b))
+
 # 4.1.0 (2022-04-30)
 
 
