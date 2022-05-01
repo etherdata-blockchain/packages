@@ -1,5 +1,12 @@
 # Changelog
 
+## 4.1.5 (2022-05-01)
+
+
+### Bug Fixes
+
+* update api route ([3116465](https://github.com/etherdata-blockchain/packages/commit/311646554e7680b7197b047407d15a4f5b5c41c6))
+
 ## 4.1.4 (2022-05-01)
 
 
