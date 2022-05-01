@@ -65,14 +65,17 @@ describe("Given a storage item", () => {
   test("When search device by id", async () => {
     await schema.StorageItemModel.create(mockData.MockStorageItem);
     await schema.StorageItemModel.create(mockData.MockStorageItem2);
+    await schema.StorageItemModel.create(mockData.MockStorageItem3);
     await schema.DeviceModel.create(mockData.MockDeviceStatus);
     await schema.DeviceModel.create(mockData.MockDeviceStatus2);
 
     const plugin = new StorageManagementService();
     const result = await plugin.search(mockData.MockStorageItem.qr_code);
+    const result2 = await plugin.search(mockData.MockStorageItem3.qr_code);
 
     expect(result[0].qr_code).toBe(mockData.MockStorageItem.qr_code);
     expect(result).toHaveLength(1);
+    expect(result2).toHaveLength(1);
   });
 
   test("When calling auth", async () => {
@@ -170,10 +173,15 @@ describe("Given a storage item", () => {
     const id3 = await schema.StorageItemModel.create(mockData.MockStorageItem3);
 
     const service = new StorageManagementService();
+
     await service.unregisterDevicesByUser(mockData.MockStorageUserId2);
     const result = await service.getDeviceIdsByUser(
       mockData.MockStorageUserId2
     );
     expect(result).toHaveLength(0);
+    const searchedResults = await service.search(
+      mockData.MockStorageItem.qr_code
+    );
+    expect(searchedResults).toHaveLength(1);
   });
 });

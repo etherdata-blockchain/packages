@@ -105,7 +105,6 @@ export class StorageManagementService extends BaseMongoDBService<schema.IStorage
           $or: [
             { "status.networkSettings.localIpAddress": key },
             { "status.networkSettings.remoteIpAddress": key },
-            { qr_code: { $regex: ".*" + key + ".*" } },
           ],
         },
       },
@@ -114,6 +113,11 @@ export class StorageManagementService extends BaseMongoDBService<schema.IStorage
     const query = this.model
       .aggregate(pipelines)
       .limit(configs.Configurations.numberPerPage);
-    return query.exec();
+
+    const query2 = this.model.find({ qr_code: { $regex: ".*" + key + ".*" } });
+
+    const [result1, result2] = await Promise.all([query.exec(), query2.exec()]);
+
+    return [...result1, ...result2];
   }
 }
