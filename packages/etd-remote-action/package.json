@@ -10,26 +10,26 @@
   },
   "devDependencies": {
     "@etherdata-blockchain/etd-schema-generator": "*",
-    "jest": "^28.0.2",
+    "jest": "^28.0.3",
     "ts-jest": "^28.0.0-next.1",
     "ts-node": "^10.7.0",
     "ts-node-dev": "^1.1.8",
-    "typescript": "^4.6.3"
+    "typescript": "^4.6.4"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/etherdata-blockchain/packages.git"
   },
   "dependencies": {
-    "@etherdata-blockchain/logger": "^3.4.0",
+    "@etherdata-blockchain/logger": "^4.1.5",
     "@types/chalk": "^2.2.0",
     "@types/cli-progress": "^3.9.2",
     "@types/jest": "^27.4.1",
-    "@types/node": "^17.0.29",
+    "@types/node": "^17.0.31",
     "@types/yaml": "^1.9.7",
     "cancelable-promise": "^4.3.0",
     "chalk": "^5.0.1",
-    "cli-progress": "^3.10.0",
+    "cli-progress": "^3.11.0",
     "moment": "^2.29.3",
     "node-ssh": "12.0.4",
     "yaml": "^2.0.1"
