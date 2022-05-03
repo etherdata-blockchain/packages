@@ -27,7 +27,7 @@
     "access": "public"
   },
   "devDependencies": {
-    "@types/jest": "^27.4.1",
+    "@types/jest": "^27.5.0",
     "jest": "^28.0.3",
     "mongodb-memory-server": "^8.5.2",
     "socket.io-client": "^4.5.0",
