@@ -1,5 +1,12 @@
 # Changelog
 
+## 4.2.1 (2022-05-04)
+
+
+### Bug Fixes
+
+* use pnpm ([#106](https://github.com/etherdata-blockchain/packages/issues/106)) ([72887ea](https://github.com/etherdata-blockchain/packages/commit/72887eab5a973501e5aabcd8f5e01a05b44b7757))
+
 # 4.2.0 (2022-05-04)
 
 

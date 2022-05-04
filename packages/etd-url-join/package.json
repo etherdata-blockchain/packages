@@ -1,6 +1,6 @@
 {
   "name": "@etherdata-blockchain/url-join",
-  "version": "4.2.0",
+  "version": "4.2.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "license": "MIT",
