@@ -111,5 +111,8 @@
     {
       "path": "../etd-logger"
     }
+  ],
+  "exclude": [
+    "./dist/**/*"
   ]
 }

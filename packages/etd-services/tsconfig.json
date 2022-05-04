@@ -111,5 +111,8 @@
     {"path":  "../etd-logger"},
     {"path":  "../etd-next-js-handlers"},
     {"path":  "../etd-storage-model"},
+  ],
+  "exclude": [
+    "./dist/**/*"
   ]
 }

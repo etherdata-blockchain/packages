@@ -108,5 +108,8 @@
     {
       "path": "../etd-common"
     }
+  ],
+  "exclude": [
+    "./dist/**/*"
   ]
 }

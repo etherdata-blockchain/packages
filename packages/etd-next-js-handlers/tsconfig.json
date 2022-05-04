@@ -108,5 +108,8 @@
   "references": [
     {"path":  "../etd-common"},
     {"path":  "../etd-services"}
+  ],
+  "exclude": [
+    "./dist/**/*"
   ]
 }
