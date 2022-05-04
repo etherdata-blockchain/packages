@@ -1,5 +1,12 @@
 # Changelog
 
+# 4.2.0 (2022-05-04)
+
+
+### Features
+
+* add search user function ([#104](https://github.com/etherdata-blockchain/packages/issues/104)) ([38faead](https://github.com/etherdata-blockchain/packages/commit/38faead177d84b6c41c877ec7e8bd26e46b6c757))
+
 ## 4.1.5 (2022-05-01)
 
 
