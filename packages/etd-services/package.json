@@ -31,7 +31,7 @@
     "jest": "^28.0.3",
     "mongodb-memory-server": "^8.5.2",
     "socket.io-client": "^4.5.0",
-    "ts-jest": "^28.0.0-next.1"
+    "ts-jest": "^28.0.1"
   },
   "gitHead": "222c868ef7b50aa6a8fb216019733e971c213a89"
 }
