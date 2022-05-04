@@ -22,7 +22,6 @@
   },
   "dependencies": {
     "@etherdata-blockchain/logger": "^3.4.0",
-    "@types/chalk": "^2.2.0",
     "@types/cli-progress": "^3.9.2",
     "@types/jest": "^27.4.1",
     "@types/node": "^17.0.29",

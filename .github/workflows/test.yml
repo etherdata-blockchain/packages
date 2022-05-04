@@ -15,11 +15,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 6.32.9
+      - uses: actions/setup-node@v3
         with:
           node-version: "16"
-          cache: "yarn"
-      - run: yarn
+          cache: "pnpm"
+      - run: pnpm install
       - name: Run linters
         uses: wearerequired/lint-action@v1
         with:
@@ -34,13 +37,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 6.32.9
+      - uses: actions/setup-node@v3
         with:
           node-version: "16"
-          cache: "yarn"
-      - run: yarn install
-      - run: yarn build
-      - run: yarn test
+          cache: "pnpm"
+      - run: pnpm install
+      - run: pnpm build
+      - run: pnpm test
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
         with:
@@ -55,17 +61,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 6.32.9
+      - uses: actions/setup-node@v3
         with:
           node-version: "16"
-          cache: "yarn"
-      - run: yarn install
-      - run: yarn build
+          cache: "pnpm"
+      - run: pnpm install
+      - run: pnpm build
       - name: Setup git identity
         run: |
           git config --global user.email "github-action.github.com"
           git config --global user.name "github action"
       - name: Release
-        run: yarn release --ci
+        run: pnpm release --ci
         env:
           GITHUB_TOKEN: ${{secrets.RELEASE_TOKEN}}
