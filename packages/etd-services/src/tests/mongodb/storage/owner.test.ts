@@ -159,4 +159,24 @@ describe("Given a storage owner", () => {
     expect(result!.user_name).toBe(mockData.MockUser2.user_name);
     expect(result!.user_id).toBe(mockData.MockUser2.user_id);
   });
+
+  test("When calling search", async () => {
+    await schema.StorageOwnerModel.create(mockData.MockUser);
+    await schema.StorageOwnerModel.create(mockData.MockUser2);
+    const service = new StorageManagementOwnerService();
+    let result = await service.search(mockData.MockUser.user_name);
+    expect(result).toHaveLength(2);
+
+    result = await service.search(mockData.MockUser2.user_name);
+    expect(result).toHaveLength(1);
+
+    result = await service.search("");
+    expect(result).toHaveLength(0);
+
+    result = await service.search(mockData.MockUser2.user_id);
+    expect(result).toHaveLength(1);
+
+    result = await service.search(mockData.MockUser.user_id);
+    expect(result).toHaveLength(2);
+  });
 });

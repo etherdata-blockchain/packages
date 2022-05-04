@@ -3,6 +3,7 @@ import { configs, enums, interfaces } from "@etherdata-blockchain/common";
 import { Model } from "mongoose";
 import { BaseMongoDBService } from "../../db_service";
 import moment from "moment";
+import { PaginationResult } from "@etherdata-blockchain/common/dist/interfaces";
 
 /**
  * Storage management system plugin
@@ -144,5 +145,24 @@ export class StorageManagementOwnerService extends BaseMongoDBService<schema.ISt
     }
 
     return undefined;
+  }
+
+  /**
+   * Search owner by user_id or user_name
+   * @param keyword
+   */
+  async search(keyword: string): Promise<schema.IStorageOwner[]> {
+    if (keyword.length === 0) {
+      return [];
+    }
+
+    const query = this.model.find({
+      $or: [
+        { user_id: { $regex: ".*" + keyword + ".*" } },
+        { user_name: { $regex: ".*" + keyword + ".*" } },
+      ],
+    });
+
+    return query.exec();
   }
 }
