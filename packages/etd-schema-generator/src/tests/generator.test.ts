@@ -1,6 +1,5 @@
 import { SchemaGenerator } from "../generator";
 import fs from "fs";
-import * as tsj from "ts-json-schema-generator";
 import glob from "glob";
 
 jest.mock("fs");

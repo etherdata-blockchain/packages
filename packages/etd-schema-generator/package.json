@@ -8,6 +8,10 @@
   "publishConfig": {
     "access": "public"
   },
+  "dependencies": {
+    "glob": "^8.0.1",
+    "@types/glob": "^7.2.0"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/etherdata-blockchain/packages.git"
@@ -19,7 +23,8 @@
     "ts-json-schema-generator": "^1.0.0",
     "ts-node": "^10.7.0",
     "ts-node-dev": "^1.1.8",
-    "typescript": "^4.6.3"
+    "typescript": "^4.6.3",
+    "@types/node": "^17.0.31"
   },
   "scripts": {
     "test": "jest",

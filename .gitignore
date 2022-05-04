@@ -9,3 +9,4 @@ out.json
 packages/etd-docker-plan/stack.lock.yaml
 stack.lock.yaml
 .turbo
+*.lock
