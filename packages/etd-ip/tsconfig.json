@@ -108,5 +108,8 @@
   "include": [
     "src/schemas/*.json",
     "src/**/*.ts"
-  ]
+  ],
+  "exclude": [
+    "./dist/**/*"
+  ],
 }

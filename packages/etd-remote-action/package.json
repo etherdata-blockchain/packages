@@ -35,9 +35,8 @@
   },
   "scripts": {
     "start": "ts-node src/main.ts",
-    "prebuild": "ts-node src/generate.ts",
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "test": "jest",
-    "build": "tsc"
+    "build": "ts-node src/generate.ts && tsc"
   }
 }
