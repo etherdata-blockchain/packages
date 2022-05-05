@@ -1,5 +1,12 @@
 # Changelog
 
+## 4.2.2 (2022-05-05)
+
+
+### Bug Fixes
+
+* exclude dist folder in typescript config ([#107](https://github.com/etherdata-blockchain/packages/issues/107)) ([827cbc3](https://github.com/etherdata-blockchain/packages/commit/827cbc34bdd43a01c54d00435e0bb4165543df3f))
+
 ## 4.2.1 (2022-05-04)
 
 
