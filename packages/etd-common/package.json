@@ -34,9 +34,8 @@
     "@types/node": "^17.0.31"
   },
   "scripts": {
-    "build": "tsc",
-    "test": "jest",
-    "prebuild": "ts-node src/main.ts"
+    "build": "ts-node src/main.ts && tsc",
+    "test": "jest"
   },
   "gitHead": "222c868ef7b50aa6a8fb216019733e971c213a89"
 }
