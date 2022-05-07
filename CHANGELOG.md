@@ -1,5 +1,12 @@
 # Changelog
 
+## 4.2.3 (2022-05-07)
+
+
+### Bug Fixes
+
+* add search by owner api route ([#108](https://github.com/etherdata-blockchain/packages/issues/108)) ([29af9f0](https://github.com/etherdata-blockchain/packages/commit/29af9f06e918e6376407ab6dfa3ec7bcec6c5967))
+
 ## 4.2.2 (2022-05-05)
 
 
