@@ -1,5 +1,12 @@
 # Changelog
 
+# 4.3.0 (2022-05-07)
+
+
+### Features
+
+* get list of device ids by owner ids ([#109](https://github.com/etherdata-blockchain/packages/issues/109)) ([95688bc](https://github.com/etherdata-blockchain/packages/commit/95688bc1b5c881f8e169915bffd5a08a268cee66))
+
 ## 4.2.3 (2022-05-07)
 
 
