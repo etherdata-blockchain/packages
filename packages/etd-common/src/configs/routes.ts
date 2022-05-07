@@ -26,6 +26,7 @@ export const Routes = {
   editOwner: "/api/v1/device/owner",
   addOwner: "/api/v1/device/owner",
   deleteOwner: "/api/v1/device/owner",
+  ownerSearch: "/api/v1/device/owner/search",
   // Device
   devicesWithStatus: "/api/v1/device/get/by_user",
   devicesIdByUser: "/api/v1/device/get/id/by_user",
