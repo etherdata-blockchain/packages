@@ -3,7 +3,6 @@ import { configs, enums, interfaces } from "@etherdata-blockchain/common";
 import { Model } from "mongoose";
 import { BaseMongoDBService } from "../../db_service";
 import moment from "moment";
-import { PaginationResult } from "@etherdata-blockchain/common/dist/interfaces";
 
 /**
  * Storage management system plugin
@@ -145,6 +144,20 @@ export class StorageManagementOwnerService extends BaseMongoDBService<schema.ISt
     }
 
     return undefined;
+  }
+
+  /**
+   * Get list of device ids by owner ids
+   * @param ownerIds
+   */
+  async getDeviceIdsByOwnerIds(ownerIds: string[]): Promise<string[]> {
+    const query = schema.StorageItemModel.find({
+      owner_id: { $in: ownerIds },
+    }).populate("qr_code");
+
+    const results = await query.exec();
+
+    return results.map((r) => r.qr_code);
   }
 
   /**
