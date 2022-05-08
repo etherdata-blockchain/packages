@@ -1,6 +1,6 @@
 import { schema } from "@etherdata-blockchain/storage-model";
 import { configs, enums, interfaces } from "@etherdata-blockchain/common";
-import { Model } from "mongoose";
+import { Model, set } from "mongoose";
 import { BaseMongoDBService } from "../../db_service";
 import moment from "moment";
 
@@ -147,12 +147,19 @@ export class StorageManagementOwnerService extends BaseMongoDBService<schema.ISt
   }
 
   /**
-   * Get list of device ids by owner ids
+   * Get list of device ids by owner ids or owner ids with names
    * @param ownerIds
    */
-  async getDeviceIdsByOwnerIds(ownerIds: string[]): Promise<string[]> {
+  async getDeviceIdsByOwnerIdsOrNames(ownerIds: string[]): Promise<string[]> {
+    const ownersFromUserNames = await this.model
+      .find({ user_name: { $in: ownerIds } })
+      .populate("user_id")
+      .exec();
+    const queryOwnerIds = ownersFromUserNames
+      .map((o) => o.user_id)
+      .concat(ownerIds);
     const query = schema.StorageItemModel.find({
-      owner_id: { $in: ownerIds },
+      owner_id: { $in: queryOwnerIds },
     }).populate("qr_code");
 
     const results = await query.exec();
