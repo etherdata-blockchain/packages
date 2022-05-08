@@ -1,5 +1,12 @@
 # Changelog
 
+## 4.3.1 (2022-05-08)
+
+
+### Bug Fixes
+
+* allow get device ids by owner ids or names or both ([#110](https://github.com/etherdata-blockchain/packages/issues/110)) ([f514d3d](https://github.com/etherdata-blockchain/packages/commit/f514d3dacdc84228bf9c190ffea3068a5f8dc712))
+
 # 4.3.0 (2022-05-07)
 
 
