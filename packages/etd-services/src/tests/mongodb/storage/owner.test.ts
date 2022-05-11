@@ -271,4 +271,33 @@ describe("Given a storage owner", () => {
     result = await service.search(mockData.MockUser.user_id);
     expect(result).toHaveLength(2);
   });
+
+  test("When calling search with some symbols", async () => {
+    await schema.StorageOwnerModel.create({
+      user_name: "mock_user_1",
+      user_id: "+852-12345",
+    });
+    await schema.StorageOwnerModel.create({
+      user_name: "mock_user_2",
+      user_id: "+852-67890",
+    });
+
+    await schema.StorageOwnerModel.create({
+      user_name: "某人姓名",
+      user_id: "+852-12456",
+    });
+
+    const service = new StorageManagementOwnerService();
+    let result = await service.search("+852-12");
+    expect(result).toHaveLength(2);
+
+    result = await service.search("某人");
+    expect(result).toHaveLength(1);
+
+    result = await service.search("");
+    expect(result).toHaveLength(0);
+
+    result = await service.search("+852-67890");
+    expect(result).toHaveLength(1);
+  });
 });
