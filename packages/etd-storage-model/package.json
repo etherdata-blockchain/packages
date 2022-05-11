@@ -6,7 +6,7 @@
   "license": "MIT",
   "dependencies": {
     "@etherdata-blockchain/common": "*",
-    "mongoose": "^6.3.3",
+    "mongoose": "6.3.3",
     "typescript": "4.6.4",
     "web3-eth": "1.7.3",
     "moment": "^2.29.3"
