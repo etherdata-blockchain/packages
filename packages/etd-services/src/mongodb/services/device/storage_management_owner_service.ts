@@ -160,6 +160,7 @@ export class StorageManagementOwnerService extends BaseMongoDBService<schema.ISt
       .concat(ownerIds);
     const query = schema.StorageItemModel.find({
       owner_id: { $in: queryOwnerIds },
+      qr_code: { $ne: null },
     }).populate("qr_code");
 
     const results = await query.exec();
