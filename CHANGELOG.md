@@ -1,5 +1,12 @@
 # Changelog
 
+## 4.3.4 (2022-05-11)
+
+
+### Bug Fixes
+
+* device ids should not contain null ([#113](https://github.com/etherdata-blockchain/packages/issues/113)) ([b85d989](https://github.com/etherdata-blockchain/packages/commit/b85d989008105985911b9b1eb28ecd64eef77bcc))
+
 ## 4.3.3 (2022-05-11)
 
 
