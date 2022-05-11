@@ -195,11 +195,62 @@ describe("Given a storage owner", () => {
     await schema.StorageOwnerModel.create(mockData.MockUser2);
     await schema.StorageItemModel.create(mockData.MockStorageItem);
     await schema.StorageItemModel.create(mockData.MockStorageItem2);
+
     const service = new StorageManagementOwnerService();
     let result = await service.getDeviceIdsByOwnerIdsOrNames([
       mockData.MockUser2.user_name,
     ]);
     expect(result).toHaveLength(0);
+  });
+
+  test("When calling get devices by owner ids", async () => {
+    await schema.StorageOwnerModel.create(mockData.MockUser);
+    await schema.StorageOwnerModel.create(mockData.MockUser2);
+    await schema.StorageItemModel.create(mockData.MockStorageItem);
+    await schema.StorageItemModel.create(mockData.MockStorageItem2);
+    await schema.StorageItemModel.create({
+      owner_id: mockData.MockUser.user_id,
+    });
+
+    const service = new StorageManagementOwnerService();
+    let result = await service.getDeviceIdsByOwnerIdsOrNames([
+      mockData.MockUser.user_name,
+    ]);
+    expect(result).toHaveLength(2);
+  });
+
+  test("When calling get devices by owner ids", async () => {
+    await schema.StorageOwnerModel.create(mockData.MockUser);
+    await schema.StorageOwnerModel.create(mockData.MockUser2);
+    await schema.StorageItemModel.create(mockData.MockStorageItem);
+    await schema.StorageItemModel.create(mockData.MockStorageItem2);
+    await schema.StorageItemModel.create({
+      owner_id: mockData.MockUser.user_id,
+      qr_code: null,
+    });
+
+    const service = new StorageManagementOwnerService();
+    let result = await service.getDeviceIdsByOwnerIdsOrNames([
+      mockData.MockUser.user_name,
+    ]);
+    expect(result).toHaveLength(2);
+  });
+
+  test("When calling get devices by owner ids", async () => {
+    await schema.StorageOwnerModel.create(mockData.MockUser);
+    await schema.StorageOwnerModel.create(mockData.MockUser2);
+    await schema.StorageItemModel.create(mockData.MockStorageItem);
+    await schema.StorageItemModel.create(mockData.MockStorageItem2);
+    await schema.StorageItemModel.create({
+      owner_id: mockData.MockUser.user_id,
+      qr_code: "mock_qr_code",
+    });
+
+    const service = new StorageManagementOwnerService();
+    let result = await service.getDeviceIdsByOwnerIdsOrNames([
+      mockData.MockUser.user_name,
+    ]);
+    expect(result).toHaveLength(3);
   });
 
   test("When calling get devices by owner ids", async () => {
