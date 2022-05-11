@@ -1,5 +1,12 @@
 # Changelog
 
+## 4.3.3 (2022-05-11)
+
+
+### Bug Fixes
+
+* fixed mongoose version ([#112](https://github.com/etherdata-blockchain/packages/issues/112)) ([afe5aac](https://github.com/etherdata-blockchain/packages/commit/afe5aac38dfacd4d67bfeec60d95436047ed9138))
+
 ## 4.3.2 (2022-05-11)
 
 
