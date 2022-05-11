@@ -110,11 +110,15 @@ export class StorageManagementService extends BaseMongoDBService<schema.IStorage
       },
     ];
 
+    const replacedKeyword = key.replace(/[-\/\\^$*+?.()|[\]{}]/g, "\\$&");
+
     const query = this.model
       .aggregate(pipelines)
       .limit(configs.Configurations.numberPerPage);
 
-    const query2 = this.model.find({ qr_code: { $regex: ".*" + key + ".*" } });
+    const query2 = this.model.find({
+      qr_code: { $regex: ".*" + replacedKeyword + ".*" },
+    });
 
     const [result1, result2] = await Promise.all([query.exec(), query2.exec()]);
 

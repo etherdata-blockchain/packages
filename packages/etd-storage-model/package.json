@@ -6,8 +6,8 @@
   "license": "MIT",
   "dependencies": {
     "@etherdata-blockchain/common": "*",
-    "mongoose": "^6.3.2",
-    "typescript": "4.6.3",
+    "mongoose": "^6.3.3",
+    "typescript": "4.6.4",
     "web3-eth": "1.7.3",
     "moment": "^2.29.3"
   },
@@ -16,9 +16,9 @@
     "url": "https://github.com/etherdata-blockchain/packages.git"
   },
   "devDependencies": {
-    "jest": "^28.0.2",
-    "mongodb-memory-server": "^8.5.1",
-    "ts-jest": "^28.0.0-next.1"
+    "jest": "^28.1.0",
+    "mongodb-memory-server": "^8.5.2",
+    "ts-jest": "^28.0.2"
   },
   "publishConfig": {
     "access": "public"

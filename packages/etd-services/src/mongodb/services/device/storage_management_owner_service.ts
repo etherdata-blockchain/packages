@@ -176,10 +176,12 @@ export class StorageManagementOwnerService extends BaseMongoDBService<schema.ISt
       return [];
     }
 
+    const replacedKeyword = keyword.replace(/[-\/\\^$*+?.()|[\]{}]/g, "\\$&");
+
     const query = this.model.find({
       $or: [
-        { user_id: { $regex: ".*" + keyword + ".*" } },
-        { user_name: { $regex: ".*" + keyword + ".*" } },
+        { user_id: { $regex: ".*" + replacedKeyword + ".*" } },
+        { user_name: { $regex: ".*" + replacedKeyword + ".*" } },
       ],
     });
 
