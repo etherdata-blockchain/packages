@@ -1,5 +1,12 @@
 # Changelog
 
+## 4.3.2 (2022-05-11)
+
+
+### Bug Fixes
+
+* add special characters support for searching ([#111](https://github.com/etherdata-blockchain/packages/issues/111)) ([ebe1717](https://github.com/etherdata-blockchain/packages/commit/ebe17174a482a455c3ba189972f4f88c87470362))
+
 ## 4.3.1 (2022-05-08)
 
 
