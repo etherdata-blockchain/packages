@@ -294,7 +294,7 @@ importers:
       jsonwebtoken: ^8.5.1
       moment: ^2.29.3
       mongodb-memory-server: ^8.5.2
-      mongoose: ^6.3.3
+      mongoose: 6.3.3
       query-string: ^7.1.1
       socket.io: ^4.5.0
       socket.io-client: ^4.5.0
@@ -325,7 +325,7 @@ importers:
       jest: ^28.1.0
       moment: ^2.29.3
       mongodb-memory-server: ^8.5.2
-      mongoose: ^6.3.3
+      mongoose: 6.3.3
       ts-jest: ^28.0.2
       typescript: 4.6.4
       web3-eth: 1.7.3

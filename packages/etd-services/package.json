@@ -33,7 +33,7 @@
     "mongodb-memory-server": "^8.5.2",
     "socket.io-client": "^4.5.0",
     "ts-jest": "^28.0.2",
-    "mongoose": "^6.3.3"
+    "mongoose": "6.3.3"
   },
   "gitHead": "222c868ef7b50aa6a8fb216019733e971c213a89"
 }
