@@ -1,5 +1,12 @@
 # Changelog
 
+## 5.0.1 (2022-08-25)
+
+
+### Bug Fixes
+
+* tsconfig.json ([#117](https://github.com/etherdata-blockchain/packages/issues/117)) ([77b66f9](https://github.com/etherdata-blockchain/packages/commit/77b66f9aeb257f105b9e67e5474fa4391c47f434))
+
 # 5.0.0 (2022-08-25)
 
 
