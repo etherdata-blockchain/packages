@@ -162,6 +162,7 @@ export class DBChangeService extends BaseSocketIOService {
         enums.SocketIOServiceName.client
       );
       if (data.operationType === "insert" || data.operationType === "delete") {
+        //@ts-ignore
         const updateTemplateId = data.fullDocument?.updateTemplate;
         if (updateTemplateId) {
           clientService?.server

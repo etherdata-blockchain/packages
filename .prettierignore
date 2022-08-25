@@ -7,3 +7,4 @@
 *.lock
 jest.config.js
 *.yml
+*.yaml
