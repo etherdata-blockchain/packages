@@ -1,5 +1,12 @@
 # Changelog
 
+## 5.0.2 (2022-08-25)
+
+
+### Bug Fixes
+
+* add type def ([e6cf6ce](https://github.com/etherdata-blockchain/packages/commit/e6cf6cec46b6ebe10a1af364c06c817f92ea1246))
+
 ## 5.0.1 (2022-08-25)
 
 
