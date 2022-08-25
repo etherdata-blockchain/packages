@@ -1,6 +1,6 @@
 {
   "name": "@etherdata-blockchain/remote-action",
-  "version": "4.3.5",
+  "version": "5.0.0",
   "description": "Remote ssh config file",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

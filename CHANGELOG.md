@@ -1,5 +1,17 @@
 # Changelog
 
+# 5.0.0 (2022-08-25)
+
+
+### Features
+
+* add codeblock package ([#116](https://github.com/etherdata-blockchain/packages/issues/116)) ([175b249](https://github.com/etherdata-blockchain/packages/commit/175b249c0990f0233ed118a892b02cf3fac51a83))
+
+
+### BREAKING CHANGES
+
+* add code block package
+
 ## 4.3.5 (2022-05-12)
 
 

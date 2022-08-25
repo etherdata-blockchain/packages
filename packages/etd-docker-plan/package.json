@@ -1,6 +1,6 @@
 {
   "name": "@etherdata-blockchain/docker-plan",
-  "version": "4.3.5",
+  "version": "5.0.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "license": "MIT",
