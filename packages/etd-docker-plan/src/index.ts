@@ -56,4 +56,5 @@ export type {
   Container,
   ContainerStack,
   DockerContainerConfig,
+  DockerService
 };
